@@ -29,7 +29,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\ACER NITRO 5\\OneDrive\\BP\\BP\\backend\\ESearchAPI\\SearchAPI.csproj": {
+                "projectPath": "C:\\Users\\ACER NITRO 5\\OneDrive\\BP\\BP\\backend\\ESearchAPI\\SearchAPI.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,6 +44,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "NEST": {
+              "target": "Package",
+              "version": "[7.9.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -60,6 +74,17 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\ACER NITRO 5\\OneDrive\\BP\\BP\\backend\\ESearchAPI\\SearchAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ACER NITRO 5\\OneDrive\\BP\\BP\\backend\\ESearchAPI\\SearchAPI.csproj",
+        "projectName": "SearchAPI",
+        "projectPath": "C:\\Users\\ACER NITRO 5\\OneDrive\\BP\\BP\\backend\\ESearchAPI\\SearchAPI.csproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }
