@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bakalarska_praca.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Nest;
 
 namespace bakalarska_praca.Controllers
@@ -14,14 +15,17 @@ namespace bakalarska_praca.Controllers
     public class SearchController : ControllerBase
     {
         SearchAPI.ConnectionToNest SearchAPI;
-        public SearchController()
+        private readonly AppDbContext _appDbContext;
+        public SearchController(AppDbContext appdbContext)
         {
             SearchAPI = new SearchAPI.ConnectionToNest();
+            _appDbContext = appdbContext;
+
            
         }
         // GET: api/Search
         [HttpGet("/search")]
-        public List<string> Get()
+        public List<Attack> Get()
         {        
             var scanResults = SearchAPI.Client.Search<Attack>(s => s
                             .From(0)
@@ -29,7 +33,17 @@ namespace bakalarska_praca.Controllers
                             .Index("filebeat-7.9.3-2020.11.08-000001")
                             .Query(q => q.MatchAll()));
             var documents = scanResults.Documents.Select(f => f.Message).ToList();
-            return documents;
+            
+            foreach (var item in documents)
+            {
+                var attack = new Attack();
+                attack.Message = item;
+                _appDbContext.Attacks.Add(attack);
+               
+            }
+            _appDbContext.SaveChanges();
+
+            return _appDbContext.Attacks.ToList();
         }
 
         // GET: api/Search/5
