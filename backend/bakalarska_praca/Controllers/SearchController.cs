@@ -30,19 +30,23 @@ namespace bakalarska_praca.Controllers
             var scanResults = SearchAPI.Client.Search<Attack>(s => s
                             .From(0)
                             .Size(2000)
-                            .Index("filebeat-7.9.3-2020.11.08-000001")
+                            .Index("filebeat-7.9.3")
                             .Query(q => q.MatchAll()));
             var documents = scanResults.Documents.Select(f => f.Message).ToList();
-            
-            foreach (var item in documents)
+            if (documents.Count > 0)
             {
-                var attack = new Attack();
-                attack.Message = item;
-                _appDbContext.Attacks.Add(attack);
-               
-            }
-            _appDbContext.SaveChanges();
+                foreach (var item in documents)
+                {
+                    var attack = new Attack();
+                    attack.Message = item;
+                    _appDbContext.Attacks.Add(attack);
 
+                }
+                _appDbContext.SaveChanges();
+                var clearIndex = SearchAPI.Client.Indices.Delete("filebeat-7.9.3");
+            }  
+                
+            
             return _appDbContext.Attacks.ToList();
         }
 
