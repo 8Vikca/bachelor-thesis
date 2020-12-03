@@ -4,12 +4,12 @@
     font-size: 1.4em;
 }
 .logo-left {
-    background-color: #ff6b6b;
-    padding: 3px 5px 3px 8px;
+    background-color: #e04141;
+    padding: 3px 5px 3px 5px;
     border-radius: 4px;
 }
 .logo-right {
     padding: 3px 8px 3px 3px;
-    margin-left: -2px;
+    margin-left: 2px;
     border-radius: 4px;
 }

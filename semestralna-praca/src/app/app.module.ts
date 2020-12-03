@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TableComponent } from './sections/table/table.component';
-import { from } from 'rxjs';
 import { appRoutes } from 'src/routes';
+import {TableService} from './services/table.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,12 @@ import { appRoutes } from 'src/routes';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    TableService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

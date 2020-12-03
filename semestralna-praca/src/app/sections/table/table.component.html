@@ -1,18 +1,23 @@
 <div class="section-container">
     <h2>
-        Latest
+        Latest Attacks
     </h2>
-    <table class="table table-hover">
-        <thead class=" thead ">
+    <table class="table table-hover w-auto">
+        <thead class="thead">
             <tr>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Attack</th>
             </tr>
         </thead>
         <tbody class="tbody">
             <tr *ngFor="let attack of attacks">
-                <td>{{ attack.id}}</td>
+                <!-- <td>{{ attack.id}}</td> -->
                 <td>{{ attack.message}}</td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<button (click)="getAttacks()">Refresh</button>
+
+<!-- spravit button, spravit event OnClik(), zavolat funkciu getAttacks() -->

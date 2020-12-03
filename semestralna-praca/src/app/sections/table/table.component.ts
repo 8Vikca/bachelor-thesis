@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Attack } from '../../../shared/attack';
+import { Attack } from 'src/shared/attack';
+import {TableService} from '../../services/table.service'
 
 @Component({
   selector: 'app-table',
@@ -8,15 +9,20 @@ import { Attack } from '../../../shared/attack';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  attacks: Attack[] = [];
 
-  attacks : Attack[] = [
-    {id:1 , message: 'stp'},
-    {id:2 , message: 'udp'},
-    {id:3 , message: 'mitm'},
-  ];
+  constructor(private tableData: TableService) {
+   }
+  
 
   ngOnInit(): void {
+  this.getAttacks();
   }
-
+  
+  
+  getAttacks(): void {
+    this.tableData.getAttacks().subscribe(attacks => {
+      this.attacks = attacks;
+    })
+  };
 }

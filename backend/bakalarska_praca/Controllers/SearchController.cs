@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest;
+using SearchAPI;
 
 namespace bakalarska_praca.Controllers
 {
@@ -14,7 +15,7 @@ namespace bakalarska_praca.Controllers
     [ApiController]
     public class SearchController : ControllerBase
     {
-        SearchAPI.ConnectionToNest SearchAPI;
+        ConnectionToNest SearchAPI;
         private readonly AppDbContext _appDbContext;
         public SearchController(AppDbContext appdbContext)
         {
@@ -26,12 +27,13 @@ namespace bakalarska_praca.Controllers
         // GET: api/Search
         [HttpGet("/search")]
         public List<Attack> Get()
-        {        
+        {
             var scanResults = SearchAPI.Client.Search<Attack>(s => s
                             .From(0)
                             .Size(2000)
                             .Index("filebeat-7.9.3")
                             .Query(q => q.MatchAll()));
+
             var documents = scanResults.Documents.Select(f => f.Message).ToList();
             if (documents.Count > 0)
             {
@@ -44,9 +46,8 @@ namespace bakalarska_praca.Controllers
                 }
                 _appDbContext.SaveChanges();
                 var clearIndex = SearchAPI.Client.Indices.Delete("filebeat-7.9.3");
-            }  
-                
-            
+            }
+
             return _appDbContext.Attacks.ToList();
         }
 

@@ -1,0 +1,22 @@
+
+#sidebar-wrapper {
+    min-height: 100vh;    
+  }
+
+  #sidebar-wrapper .list-group {
+    width: 15rem;
+    padding-left: 5px;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  }
+
+  @media (min-width: 768px) {
+    #sidebar-wrapper {
+      margin-left: 0;
+    }
+
+
+
+}
