@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Nest;
 
 namespace SearchAPI
 {
-    public class ConnectionToNest
+    public class ConnectionToNest       //trieda na pristup ku klientovi NEST
     {
         public ElasticClient Client { get; }
         public ConnectionToNest()

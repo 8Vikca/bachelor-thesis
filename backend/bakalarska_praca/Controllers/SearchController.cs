@@ -1,41 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using bakalarska_praca.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Nest;
+using SearchAPI;
 
 namespace bakalarska_praca.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class SearchController : ControllerBase
+    public class SearchController : ControllerBase      //controller na pracu s databazou
     {
-        SearchAPI.ConnectionToNest SearchAPI;
-        private readonly AppDbContext _appDbContext;
-        public SearchController(AppDbContext appdbContext)
+        ConnectionToNest SearchAPI;         //premenna na pristup ku klentovi NEST
+        private readonly AppDbContext _appDbContext;        //premenna na pracu s lokalnou databazou
+        public SearchController(AppDbContext appdbContext)      //konštruktor
         {
             SearchAPI = new SearchAPI.ConnectionToNest();
             _appDbContext = appdbContext;
 
            
         }
-        // GET: api/Search
+        // GET: /search
         [HttpGet("/search")]
-        public List<Attack> Get()
-        {        
-            var scanResults = SearchAPI.Client.Search<Attack>(s => s
+        public List<Attack> Get() 
+        {             
+             var scanResults = SearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
                             .From(0)
                             .Size(2000)
                             .Index("filebeat-7.9.3")
                             .Query(q => q.MatchAll()));
+
             var documents = scanResults.Documents.Select(f => f.Message).ToList();
-            if (documents.Count > 0)
+            scanResults = null;
+            if (documents.Count > 0)        
             {
-                foreach (var item in documents)
+                foreach (var item in documents)         //vlozenie dat do lokalnej databazy
                 {
                     var attack = new Attack();
                     attack.Message = item;
@@ -43,36 +41,11 @@ namespace bakalarska_praca.Controllers
 
                 }
                 _appDbContext.SaveChanges();
-                var clearIndex = SearchAPI.Client.Indices.Delete("filebeat-7.9.3");
-            }  
+                var clearIndex = SearchAPI.Client.Indices.Delete("filebeat-7.9.3");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
                 
-            
-            return _appDbContext.Attacks.ToList();
-        }
-
-        // GET: api/Search/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Search
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Search/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            }
+           
+            return _appDbContext.Attacks.ToList();      //vratenie vsetkych dat z lokalnej databazy vo forme listu objektov
         }
     }
 }
