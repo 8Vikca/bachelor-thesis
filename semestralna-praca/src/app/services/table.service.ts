@@ -7,11 +7,11 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TableService {
+export class TableService {        //pripojenie sa na backend
 
   constructor(private http: HttpClient) { }
 
-  getAttacks(): Observable<Attack[]> { //pageIndex: number, pageSize: number
+  getAttacks(): Observable<Attack[]> {   
     return this.http.get<Attack[]>("https://localhost:44386/search");
   }
 }
