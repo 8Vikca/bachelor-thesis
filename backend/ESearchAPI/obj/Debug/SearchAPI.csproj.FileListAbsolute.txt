@@ -15,3 +15,27 @@ C:\Users\ACER NITRO 5\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.cspr
 C:\Users\ACER NITRO 5\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csproj.CopyComplete
 C:\Users\ACER NITRO 5\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\ESearchAPI.dll
 C:\Users\ACER NITRO 5\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\ESearchAPI.pdb
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\ESearchAPI.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\ESearchAPI.pdb
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Elasticsearch.Net.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Nest.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Buffers.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Elasticsearch.Net.pdb
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Elasticsearch.Net.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Nest.pdb
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Nest.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Buffers.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csprojAssemblyReference.cache
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csproj.CoreCompileInputs.cache
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csproj.CopyComplete
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\ESearchAPI.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\ESearchAPI.pdb
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\ESearchAPI.dll.config
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Memory.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Memory.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
