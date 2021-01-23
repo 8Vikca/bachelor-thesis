@@ -23,28 +23,28 @@ namespace bakalarska_praca.Controllers
         [HttpGet("/search")]
         public List<Attack> Get() 
         {
-            var scanResults = SearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
-                            .From(0)
-                            .Size(2000)
-                            .Index("attack")
-                            .Query(q => q.MatchAll()));
+            //var scanResults = SearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
+            //                .From(0)
+            //                .Size(2000)
+            //                .Index("attack")
+            //                .Query(q => q.MatchAll()));
                             
 
-            var documents = scanResults.Documents.Select(f => f.Message).ToList();
-            scanResults = null;
-            if (documents.Count > 0)        
-            {
-                foreach (var item in documents)         //vlozenie dat do lokalnej databazy
-                {
-                    var attack = new Attack();
-                    attack.Message = item;
-                    _appDbContext.Attacks.Add(attack);
+            //var documents = scanResults.Documents.Select(f => f.Message).ToList();
+            //scanResults = null;
+            //if (documents.Count > 0)        
+            //{
+            //    foreach (var item in documents)         //vlozenie dat do lokalnej databazy
+            //    {
+            //        var attack = new Attack();
+            //        attack.Message = item;
+            //        _appDbContext.Attacks.Add(attack);
 
-                }
-                _appDbContext.SaveChanges();
-                var clearIndex = SearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
+            //    }
+            //    _appDbContext.SaveChanges();
+            //    var clearIndex = SearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
                 
-            }
+            //}
            
             return _appDbContext.Attacks.ToList();      //vratenie vsetkych dat z lokalnej databazy vo forme listu objektov
         }
