@@ -10,6 +10,8 @@ import { TableComponent } from './sections/table/table.component';
 import { appRoutes } from 'src/routes';
 import {TableService} from './services/table.service';
 import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [

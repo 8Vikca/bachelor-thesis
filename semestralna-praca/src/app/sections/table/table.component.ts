@@ -25,4 +25,6 @@ export class TableComponent implements OnInit {
       this.attacks = attacks;
     })
   };
+  
 }
+  

@@ -10,8 +10,8 @@ using bakalarska_praca.Models;
 namespace bakalarska_praca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210120181345_mockData")]
-    partial class mockData
+    [Migration("20210123143139_create")]
+    partial class create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,38 +49,6 @@ namespace bakalarska_praca.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Attacks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 3,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 21, 15, 17, 49, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 3,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 22, 15, 17, 49, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 3,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 23, 15, 17, 49, 0, DateTimeKind.Unspecified)
-                        });
                 });
 #pragma warning restore 612, 618
         }
