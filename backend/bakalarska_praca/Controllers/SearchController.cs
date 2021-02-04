@@ -28,7 +28,7 @@ namespace bakalarska_praca.Controllers
             //                .Size(2000)
             //                .Index("attack")
             //                .Query(q => q.MatchAll()));
-                            
+
 
             //var documents = scanResults.Documents.Select(f => f.Message).ToList();
             //scanResults = null;
@@ -43,10 +43,10 @@ namespace bakalarska_praca.Controllers
             //    }
             //    _appDbContext.SaveChanges();
             //    var clearIndex = SearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
-                
+
             //}
-           
-            return _appDbContext.Attacks.ToList();      //vratenie vsetkych dat z lokalnej databazy vo forme listu objektov
+
+            return _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).ToList();    //vratenie vsetkych dat z lokalnej databazy vo forme listu objektov
         }
     }
 }
