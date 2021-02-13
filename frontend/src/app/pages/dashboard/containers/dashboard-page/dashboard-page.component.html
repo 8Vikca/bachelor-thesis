@@ -1,12 +1,12 @@
 <app-layout>
-  <mat-toolbar class="page-header gap" role="heading">
+  <mat-toolbar class="page-header mat-tool-gap" role="heading">
     <h1>Dashboard</h1>
     <!-- <button mat-flat-button>Latest Reports</button> -->
-    <!-- <app-date-picker></app-date-picker> -->
+    <app-date-picker></app-date-picker>
   </mat-toolbar> 
   <div class="charts-wrapper">
     <div class="table">
-      <app-severity-table *ngIf="dashboardTableData" [severityTableData]="dashboardTableData"></app-severity-table>
+      <app-severity-table *ngIf="severityTableData" [severityTableData]="severityTableData"></app-severity-table>
     </div>
     <div class="chart">
       <mat-card></mat-card>
@@ -21,7 +21,7 @@
 
   <div class="charts-wrapper">
     <div class="chart">
-      <app-recent-table *ngIf="dashboardTableData" [recentTableData]="dashboardTableData"></app-recent-table>
+      <app-recent-table *ngIf="recentTableData" [recentTableData]="recentTableData"></app-recent-table>
 
     </div>
     <div class="chart">

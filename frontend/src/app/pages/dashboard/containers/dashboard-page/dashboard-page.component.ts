@@ -20,18 +20,20 @@ import {
 })
 export class DashboardPageComponent {
 
-  public dashboardTableData:  Attack[];   //Observable<Attack[]>
+  public severityTableData: Attack[];
+  public recentTableData: Attack[];    //Observable<Attack[]>
 
   public ngOnInit() {
     this.getData();
-    }
-     getData(): void {
-      this.service.loadAllDashboardData()
+  }
+  getData(): void {
+    this.service.loadAllDashboardData()
       .subscribe(result => {
-        this.dashboardTableData= result;
-        });
+        this.severityTableData = result;
+        this.recentTableData = result;
+      });
 
-    }
+  }
 
 
   public dailyLineChartData$: Observable<DailyLineChartData>;
