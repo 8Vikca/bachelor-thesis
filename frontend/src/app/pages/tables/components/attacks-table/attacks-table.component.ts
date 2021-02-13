@@ -4,8 +4,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { Attack } from '../../models/attack';
 
-import { TableService } from '../../services';
-
 
 @Component({
   selector: 'app-attacks-table',
@@ -20,10 +18,10 @@ export class AttacksTableComponent implements OnInit {
 
   public isShowFilterInput = false;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor() {
-    
+
   }
 
   public ngOnInit(): void {

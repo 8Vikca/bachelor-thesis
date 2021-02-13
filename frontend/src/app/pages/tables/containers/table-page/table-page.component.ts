@@ -10,17 +10,19 @@ import { Attack } from '../../models';
   styleUrls: ['./table-page.component.scss']
 })
 export class TablePageComponent implements OnInit {
-  public employeeTableData: Attack[] = [];   //Observable<Attack[]>
-  public parentDataLoaded: boolean = false;
+  public employeeTableData:  Attack[];   //Observable<Attack[]>
 
   constructor(private service: TableService) {
   }
 
   public ngOnInit() {
-    this.service.loadEmployeeTableData().subscribe(result => {
-      this.employeeTableData= result;
-      this.parentDataLoaded = true;
-      });
+    this.getData();
+    }
+     getData(): void {
+      this.service.loadAllTableData()
+      .subscribe(result => {
+        this.employeeTableData= result;
+        });
 
     }
 };

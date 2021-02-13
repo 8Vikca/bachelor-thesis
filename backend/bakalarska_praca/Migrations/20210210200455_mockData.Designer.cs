@@ -10,7 +10,7 @@ using bakalarska_praca.Models;
 namespace bakalarska_praca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210203205228_mockData")]
+    [Migration("20210210200455_mockData")]
     partial class mockData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 3,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 10, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 10, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -69,7 +69,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 3,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 11, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 11, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -79,7 +79,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 3,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 12, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 12, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -89,7 +89,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 4,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 13, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 13, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -99,7 +99,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 4,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 14, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 14, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -109,7 +109,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 5,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 15, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 15, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -119,7 +119,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 5,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 16, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 16, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -129,7 +129,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 4,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 17, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 17, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -139,7 +139,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 4,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 18, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 18, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -149,7 +149,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 2,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 19, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 19, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -159,7 +159,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 2,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 20, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 20, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -169,7 +169,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 2,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 21, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 21, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -179,7 +179,7 @@ namespace bakalarska_praca.Migrations
                             Proto = "TCP",
                             Severity = 2,
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 22, 15, 17, 49, 0, DateTimeKind.Unspecified)
+                            Timestamp = new DateTime(2020, 10, 22, 13, 17, 49, 0, DateTimeKind.Utc)
                         });
                 });
 #pragma warning restore 612, 618

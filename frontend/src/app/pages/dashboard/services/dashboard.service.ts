@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -8,7 +9,8 @@ import {
   RevenueChartData,
   ServerChartData,
   SupportRequestData,
-  VisitsChartData
+  VisitsChartData,
+  Attack
 } from '../models';
 
 
@@ -16,6 +18,13 @@ import {
   providedIn: 'root'
 })
 export class DashboardService {
+  
+  constructor(private http: HttpClient) { }
+
+  loadAllDashboardData(): Observable<Attack[]> {   
+     return this.http.get<Attack[]>("https://localhost:44386/search");     
+   }
+  
   public loadDailyLineChartData(): Observable<DailyLineChartData> {
     return of({
       dailyData: {

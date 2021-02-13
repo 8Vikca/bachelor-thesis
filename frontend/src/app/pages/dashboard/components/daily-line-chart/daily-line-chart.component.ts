@@ -7,12 +7,16 @@ import {
   ApexTooltip,
   ApexMarkers,
   ApexXAxis,
-  ApexPlotOptions
+  ApexPlotOptions,
+  ApexStroke,
+  ApexLegend,
+  ApexGrid
 } from 'ng-apexcharts';
 
 import { DailyLineChartData, TimeData } from '../../models';
 import { colors } from '../../../../consts';
 import { customTooltip } from '../../consts';
+import * as ApexCharts from 'apexcharts';
 
 type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -100,7 +104,8 @@ export class DailyLineChartComponent implements OnInit, AfterViewInit {
       },
       stroke: {
         width: [2, 0, 2],
-        curve: ['smooth', 'smooth', 'straight']
+        //curve: ['smooth', 'straight', 'stepline']
+        
       },
       plotOptions: {
         bar: {

@@ -1,0 +1,43 @@
+
+
+    
+<mat-card class="example-container table-wrapper">
+    <div>
+        <mat-toolbar class="page-header gap" role="heading">
+            <h5>Most Recent Offenses</h5>
+        </mat-toolbar>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
+        
+        <ng-container matColumnDef="timestamp">
+            <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+            <td mat-cell *matCellDef="let element">{{element.timestamp | date:'medium'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef>Message</th>
+            <td mat-cell *matCellDef="let element">{{element.message}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="severity">
+            <th mat-header-cell *matHeaderCellDef>Severity</th>
+            <td mat-cell *matCellDef="let element">{{element.severity}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="row queue-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+                    <div class="row queue-element-detail">
+                        {{element.proto}}
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="queue-element-row"
+            [class.queue-expanded-row]="expandedElement === element" (click)="element.isExpanded = !element.isExpanded">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="queue-detail-row"></tr>
+    </table>
+</mat-card>

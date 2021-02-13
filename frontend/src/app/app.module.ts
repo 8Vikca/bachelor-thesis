@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -13,6 +14,7 @@ import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
 import {HttpClientModule} from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import {HttpClientModule} from '@angular/common/http';
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
 

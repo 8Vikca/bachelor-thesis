@@ -23,10 +23,20 @@ import {
   RevenueChartComponent,
   DailyLineChartComponent,
   SupportRequestsComponent,
-  ProjectStatChartComponent
+  ProjectStatChartComponent,
+  SeverityTableComponent,
+  RecentTableComponent,
+  DatePickerComponent
 } from './components';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardService } from './services';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { CategoryChartComponent } from './components/category-chart/category-chart.component';
+import { IpChartComponent } from './components/ip-chart/ip-chart.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field' 
 
 
 @NgModule({
@@ -38,7 +48,12 @@ import { DashboardService } from './services';
     RevenueChartComponent,
     DailyLineChartComponent,
     SupportRequestsComponent,
-    ProjectStatChartComponent
+    ProjectStatChartComponent,
+    RecentTableComponent,
+    SeverityTableComponent,
+    CategoryChartComponent,
+    IpChartComponent,
+    DatePickerComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +71,12 @@ import { DashboardService } from './services';
     MatInputModule,
     NgApexchartsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule
   ],
   exports: [
     DailyLineChartComponent

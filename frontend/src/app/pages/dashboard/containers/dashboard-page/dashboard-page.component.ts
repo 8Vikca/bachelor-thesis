@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { DashboardService } from '../../services';
 import {
+  Attack,
   DailyLineChartData,
   PerformanceChartData,
   ProjectStatData,
@@ -18,6 +19,21 @@ import {
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent {
+
+  public dashboardTableData:  Attack[];   //Observable<Attack[]>
+
+  public ngOnInit() {
+    this.getData();
+    }
+     getData(): void {
+      this.service.loadAllDashboardData()
+      .subscribe(result => {
+        this.dashboardTableData= result;
+        });
+
+    }
+
+
   public dailyLineChartData$: Observable<DailyLineChartData>;
   public performanceChartData$: Observable<PerformanceChartData>;
   public revenueChartData$: Observable<RevenueChartData>;
