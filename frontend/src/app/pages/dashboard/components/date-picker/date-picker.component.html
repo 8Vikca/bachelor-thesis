@@ -1,9 +1,7 @@
-<mat-form-field appearance="fill" class="date-picker-container">      
-  <mat-label>Enter a date range</mat-label>      
-  <mat-date-range-input [rangePicker]="picker">      
-    <input matStartDate placeholder="Start date">      
-    <input matEndDate placeholder="End date">      
-  </mat-date-range-input>      
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>      
-  <mat-date-range-picker #picker></mat-date-range-picker>      
-</mat-form-field> 
+<mat-card>
+    <div class="gap">
+        <input type="text" ngxDaterangepickerMd [(ngModel)]="selected" [showCustomRangeLabel]="true"
+            [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true" [isInvalidDate]="isInvalidDate"
+            [showClearButton]="true" (datesUpdated)="datesUpdated($event)">
+    </div>
+</mat-card>

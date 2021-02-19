@@ -10,7 +10,7 @@ using bakalarska_praca.Models;
 namespace bakalarska_praca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210210200455_mockData")]
+    [Migration("20210214154250_mockData")]
     partial class mockData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,7 +157,7 @@ namespace bakalarska_praca.Migrations
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
-                            Severity = 2,
+                            Severity = 6,
                             Src_ip = "192.168.40.11",
                             Timestamp = new DateTime(2020, 10, 20, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
@@ -167,7 +167,7 @@ namespace bakalarska_praca.Migrations
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
-                            Severity = 2,
+                            Severity = 7,
                             Src_ip = "192.168.40.11",
                             Timestamp = new DateTime(2020, 10, 21, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
@@ -177,9 +177,79 @@ namespace bakalarska_praca.Migrations
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
-                            Severity = 2,
+                            Severity = 5,
                             Src_ip = "192.168.40.11",
                             Timestamp = new DateTime(2020, 10, 22, 13, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 4,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 23, 13, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 2,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 24, 13, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 2,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 25, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 1,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 26, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 4,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 27, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 5,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 28, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 6,
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2020, 10, 29, 14, 17, 49, 0, DateTimeKind.Utc)
                         });
                 });
 #pragma warning restore 612, 618

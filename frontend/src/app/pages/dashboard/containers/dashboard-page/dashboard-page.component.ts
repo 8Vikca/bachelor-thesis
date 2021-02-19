@@ -12,6 +12,7 @@ import {
   SupportRequestData,
   VisitsChartData
 } from '../../models';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -22,21 +23,40 @@ export class DashboardPageComponent {
 
   public severityTableData: Attack[];
   public recentTableData: Attack[];    //Observable<Attack[]>
-
+  endDate= new Date(2020,10, 26);
+  date= new (Date);
+  startDate = new Date(this.date.setDate(this.date.getDate()-1));
+  params = new HttpParams().set("startDate", this.startDate.toISOString()).set("endDate", this.endDate.toISOString());
+  
   public ngOnInit() {
-    this.getData();
+    this.getRecentTableData(this.params);
+    this.getSeverityTableData();
   }
-  getData(): void {
-    this.service.loadAllDashboardData()
+  getSeverityTableData(): void {
+    this.service.loadSeverityTableData()
       .subscribe(result => {
         this.severityTableData = result;
-        this.recentTableData = result;
       });
-
+  }
+  getRecentTableData(params: HttpParams): void {
+    this.service.loadRecentTableData(params)
+      .subscribe(result => {
+        this.recentTableData = result;       
+      });
+      console.log('data from server' + this.recentTableData); 
   }
 
+  public pushDateRange(date: any):void {
+    // console.log('Picked date: ', date);
+    // this.params.set("startDate", date.startDate).set("endDate", date.endDate);
+}
 
-  public dailyLineChartData$: Observable<DailyLineChartData>;
+ 
+
+
+
+
+public dailyLineChartData$: Observable<DailyLineChartData>;
   public performanceChartData$: Observable<PerformanceChartData>;
   public revenueChartData$: Observable<RevenueChartData>;
   public serverChartData$: Observable<ServerChartData>;

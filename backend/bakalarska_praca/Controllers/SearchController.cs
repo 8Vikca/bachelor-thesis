@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using bakalarska_praca.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,36 +19,60 @@ namespace bakalarska_praca.Controllers
             SearchAPI = new SearchAPI.ConnectionToNest();
             _appDbContext = appdbContext;
 
-           
+
         }
-        // GET: /search
-        [HttpGet("/search")]
-        public List<Attack> Get() 
+
+        [HttpGet("/dataElastic")]
+        public void GetDataFromElastic() //List<Attack>
         {
-            //var scanResults = SearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
-            //                .From(0)
-            //                .Size(2000)
-            //                .Index("attack")
-            //                .Query(q => q.MatchAll()));
+            var scanResults = SearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
+                            .From(0)
+                            .Size(2000)
+                            .Index("attack")
+                            .Query(q => q.MatchAll()));
 
 
-            //var documents = scanResults.Documents.Select(f => f.Message).ToList();
-            //scanResults = null;
-            //if (documents.Count > 0)        
-            //{
-            //    foreach (var item in documents)         //vlozenie dat do lokalnej databazy
-            //    {
-            //        var attack = new Attack();
-            //        attack.Message = item;
-            //        _appDbContext.Attacks.Add(attack);
+            var documents = scanResults.Documents.Select(f => f.Message).ToList();
+            scanResults = null;
+            if (documents.Count > 0)
+            {
+                foreach (var item in documents)         //vlozenie dat do lokalnej databazy
+                {
+                    var attack = new Attack();
+                    attack.Message = item;
+                    _appDbContext.Attacks.Add(attack);
 
-            //    }
-            //    _appDbContext.SaveChanges();
-            //    var clearIndex = SearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
+                }
+                _appDbContext.SaveChanges();
+                var clearIndex = SearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
+            }
+        }
 
-            //}
+
+        // GET: /search
+        [HttpGet("/allData")]
+        public List<Attack> GetAllData()
+        {
+
 
             return _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).ToList();    //vratenie vsetkych dat z lokalnej databazy vo forme listu objektov
+        }
+
+        [HttpGet("/recentData")]
+        public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)
+        {
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                                .OrderByDescending(o => o.Timestamp)
+                                .Take(10).ToList();
+            return selectedData;
+        }
+
+        [HttpGet("/severityData")]
+        public List<Attack> GetSeverityData()
+        {
+            var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Severity)
+                                .Take(10);
+            return selectedData.ToList();
         }
     }
 }

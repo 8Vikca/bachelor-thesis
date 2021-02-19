@@ -1,0 +1,9 @@
+<form>  <!-- [formGroup]="dateRange" -->
+    <div class="date-picker-container" data-ngx-aircal [options]="calendarOptions" name="dateRange"
+         (onDateRangeChanged)="onDateRangeChanged($event)" (onInputFieldChanged)="onDateRangeChanged($event)" (onDateRangeCommitted)="onDateRangeChanged($event)"
+         (onDateRangeInitialised)="onDateRangeChanged($event)">
+    </div>
+</form>
+<!--  (onCalendarViewChanged)="onCalendarViewChanged($event)"
+         (onDateRangeCleared)="onDateRangeCleared($event)"-->
+        

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -21,9 +21,15 @@ export class DashboardService {
   
   constructor(private http: HttpClient) { }
 
-  loadAllDashboardData(): Observable<Attack[]> {   
-     return this.http.get<Attack[]>("https://localhost:44386/search");     
+  loadSeverityTableData(): Observable<Attack[]> {   
+     return this.http.get<Attack[]>("https://localhost:44386/severityData");     
    }
+   loadRecentTableData(params: HttpParams): Observable<Attack[]> { 
+    console.log('serveeeer ' + this.http.get<Attack[]>("https://localhost:44386/recentData", {params: params}));
+    debugger
+    return this.http.get<Attack[]>("https://localhost:44386/recentData", {params: params});  
+  }
+
   
   public loadDailyLineChartData(): Observable<DailyLineChartData> {
     return of({

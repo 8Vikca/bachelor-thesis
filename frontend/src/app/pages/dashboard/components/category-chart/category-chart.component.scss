@@ -1,0 +1,20 @@
+@import "src/app/styles/colors";
+@import "src/app/styles/font";
+@import "src/app/styles/variables";
+
+.gap {
+    color: #888888;
+    margin-top: -50px;
+    margin-bottom: -70px;
+    
+    @media (max-width: $small) {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+  }
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+    margin-bottom: -10px;
+  }
+

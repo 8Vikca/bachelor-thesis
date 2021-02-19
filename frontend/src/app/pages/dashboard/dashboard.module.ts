@@ -14,45 +14,42 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardPageComponent } from './containers';
 import {
-  VisitsChartComponent,
-  PerformanceChartComponent,
-  ServerChartComponent,
-  RevenueChartComponent,
   DailyLineChartComponent,
-  SupportRequestsComponent,
-  ProjectStatChartComponent,
   SeverityTableComponent,
-  RecentTableComponent,
-  DatePickerComponent
+  IpChartComponent,
+  RecentDataTableComponent,
+  
 } from './components';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardService } from './services';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CategoryChartComponent } from './components/category-chart/category-chart.component';
-import { IpChartComponent } from './components/ip-chart/ip-chart.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field' 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Daterangepicker } from 'ng2-daterangepicker';
+import { DatePickerAircalComponent } from './components/date-picker-aircal/date-picker-aircal.component';
+import { NgxAircalModule } from "ngx-aircal";
+import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { MomentModule } from 'ngx-moment';
 
 
 @NgModule({
   declarations: [
     DashboardPageComponent,
-    VisitsChartComponent,
-    PerformanceChartComponent,
-    ServerChartComponent,
-    RevenueChartComponent,
     DailyLineChartComponent,
-    SupportRequestsComponent,
-    ProjectStatChartComponent,
-    RecentTableComponent,
     SeverityTableComponent,
     CategoryChartComponent,
     IpChartComponent,
+    DatePickerAircalComponent,
+    RecentDataTableComponent,
+    DateRangePickerComponent,
     DatePickerComponent
   ],
   imports: [
@@ -76,7 +73,12 @@ import { MatFormFieldModule } from '@angular/material/form-field'
     MatSortModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    Daterangepicker,
+    NgxAircalModule,
+    NgxDaterangepickerMd.forRoot(),
+    MomentModule
   ],
   exports: [
     DailyLineChartComponent

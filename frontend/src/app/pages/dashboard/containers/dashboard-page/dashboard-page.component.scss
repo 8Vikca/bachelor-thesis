@@ -5,6 +5,22 @@
   margin-bottom: -20px;
   margin-left: 5px;
 }
+// .date-gap {
+//   margin-right: 100px;
+// }
+
+.gap-ip {
+  margin-top: -100px;
+  
+}
+.gap-category {
+  margin-top: -137px;
+  
+}
+
+.severity {
+  width: 100%;
+}
 
 .charts-wrapper {
   display: flex;
@@ -18,6 +34,7 @@
 
 .chart {
   width: 100%;
+  
 
   @media (max-width: $normal) {
     width: 50%;

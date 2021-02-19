@@ -13,7 +13,7 @@ export class TableService {
   constructor(private http: HttpClient) { }
 
   loadAllTableData(): Observable<Attack[]> {   
-     return this.http.get<Attack[]>("https://localhost:44386/search");     
+     return this.http.get<Attack[]>("https://localhost:44386/allData");     
    }
 
 
