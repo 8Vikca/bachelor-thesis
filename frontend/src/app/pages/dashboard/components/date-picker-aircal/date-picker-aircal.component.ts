@@ -25,8 +25,8 @@ export class DatePickerAircalComponent implements OnInit {
     allowUserInputField:true,
     closeOnOutsideClick:true,
     arrowBias: 'left',
-    startDate: new Date(this.today.setDate(this.today.getDate()-1)),
-    endDate: new Date()
+    startDate: new Date(),  //(this.today.setDate(this.today.getDate()-1)
+    endDate: new Date()   
   });
   constructor() { }
 
@@ -35,10 +35,7 @@ export class DatePickerAircalComponent implements OnInit {
   }
 
   public onDateRangeChanged(event: AircalResponse) {
-    //console.log(event.startDate, event.endDate);
-    //console.log('date is ' + this.dateRange);
     this.dateEmitter.emit(event);
-    debugger
     
   }
 

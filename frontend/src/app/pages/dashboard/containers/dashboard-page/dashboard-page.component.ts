@@ -13,6 +13,7 @@ import {
   VisitsChartData
 } from '../../models';
 import { HttpParams } from '@angular/common/http';
+import { AircalResponse } from 'ngx-aircal';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -23,17 +24,16 @@ export class DashboardPageComponent {
 
   public severityTableData: Attack[];
   public recentTableData: Attack[];    //Observable<Attack[]>
-  endDate= new Date(2020,10, 26);
-  date= new (Date);
-  startDate = new Date(this.date.setDate(this.date.getDate()-1));
-  params = new HttpParams().set("startDate", this.startDate.toISOString()).set("endDate", this.endDate.toISOString());
-  
+  params = new HttpParams();
+  variableDate = new Date;
+  //params2 = new HttpParams().set("startDate", this.startDate.toISOString()).set("endDate", this.date.toISOString());
+
   public ngOnInit() {
     this.getRecentTableData(this.params);
-    this.getSeverityTableData();
+    this.getSeverityTableData(this.params);
   }
-  getSeverityTableData(): void {
-    this.service.loadSeverityTableData()
+  getSeverityTableData(params: HttpParams): void {
+    this.service.loadSeverityTableData(params)
       .subscribe(result => {
         this.severityTableData = result;
       });
@@ -41,22 +41,33 @@ export class DashboardPageComponent {
   getRecentTableData(params: HttpParams): void {
     this.service.loadRecentTableData(params)
       .subscribe(result => {
-        this.recentTableData = result;       
+        this.recentTableData = result;
       });
-      console.log('data from server' + this.recentTableData); 
   }
 
-  public pushDateRange(date: any):void {
-    // console.log('Picked date: ', date);
-    // this.params.set("startDate", date.startDate).set("endDate", date.endDate);
-}
+  public pushDateRange(event: AircalResponse): void {
+    // if(event.endDate == null|) {
+    //   event.endDate = event.
+    // }
+    // if (event.endDate < event.startDate) {
+    //   this.variableDate = event.startDate;
+    //   event.startDate = event.endDate;
+    //   event.endDate = this.variableDate;
+    // }
+    event.startDate.setHours(0, 0, 0, 0);
+    event.endDate.setHours(23, 59, 59, 59);
+    this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
+    debugger
+    this.getRecentTableData(this.params);
+    this.getSeverityTableData(this.params)
+  }
 
- 
 
 
 
 
-public dailyLineChartData$: Observable<DailyLineChartData>;
+
+  public dailyLineChartData$: Observable<DailyLineChartData>;
   public performanceChartData$: Observable<PerformanceChartData>;
   public revenueChartData$: Observable<RevenueChartData>;
   public serverChartData$: Observable<ServerChartData>;

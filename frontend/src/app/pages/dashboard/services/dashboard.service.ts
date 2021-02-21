@@ -21,15 +21,17 @@ export class DashboardService {
   
   constructor(private http: HttpClient) { }
 
-  loadSeverityTableData(): Observable<Attack[]> {   
-     return this.http.get<Attack[]>("https://localhost:44386/severityData");     
+  loadSeverityTableData(params: HttpParams): Observable<Attack[]> {   
+     return this.http.get<Attack[]>("https://localhost:44386/severityData", {params: params});     
    }
    loadRecentTableData(params: HttpParams): Observable<Attack[]> { 
-    console.log('serveeeer ' + this.http.get<Attack[]>("https://localhost:44386/recentData", {params: params}));
-    debugger
     return this.http.get<Attack[]>("https://localhost:44386/recentData", {params: params});  
   }
 
+
+
+
+  
   
   public loadDailyLineChartData(): Observable<DailyLineChartData> {
     return of({

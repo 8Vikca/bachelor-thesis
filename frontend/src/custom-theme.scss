@@ -264,11 +264,9 @@ mat-toolbar.page-header {
 
 .mat-toolbar button {
   height: 41.6px;
-  width: auto;
-  color: $toolbar-button-font-color;
-  background-color: $toolbar-button-background-color;
+  color: #000000;
   line-height: 1.75;
-  font-size: 0.9375rem;
+  font-size: 1.2375rem;
   font-weight: 400;
 
   @media (max-width: $small) {
@@ -276,9 +274,9 @@ mat-toolbar.page-header {
   }
 }
 
-.mat-toolbar button:hover {
-  background-color: $toolbar-button-background-color-active;
-}
+// .mat-toolbar button:hover {
+//   background-color: white;
+// }
 
 mat-tab-header .mat-tab-label, .mat-tab-link {
   text-transform: uppercase;

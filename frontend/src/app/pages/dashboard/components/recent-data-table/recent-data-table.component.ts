@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Attack } from '../../models';
 
@@ -15,7 +15,7 @@ import { Attack } from '../../models';
     ]),
   ],
 })
-export class RecentDataTableComponent implements OnInit {
+export class RecentDataTableComponent implements OnInit, OnChanges {
   @Input() recentTableData: Attack[] = [];
   public displayedColumns = ['timestamp', 'message', 'severity'];
   public dataSource: MatTableDataSource<Attack>;
@@ -28,7 +28,9 @@ export class RecentDataTableComponent implements OnInit {
   ngOnInit() {
       this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
   }
-
+  ngOnChanges() {
+    this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
+  }
 
 }
 

@@ -68,11 +68,12 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/severityData")]
-        public List<Attack> GetSeverityData()
+        public List<Attack> GetSeverityData(DateTime startDate, DateTime endDate)
         {
-            var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Severity)
-                                .Take(10);
-            return selectedData.ToList();
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                .OrderByDescending(o => o.Severity)
+                                .Take(10).ToList();
+            return selectedData;
         }
     }
 }

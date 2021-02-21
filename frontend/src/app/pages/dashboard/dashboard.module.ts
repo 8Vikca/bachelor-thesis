@@ -35,7 +35,6 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { DatePickerAircalComponent } from './components/date-picker-aircal/date-picker-aircal.component';
 import { NgxAircalModule } from "ngx-aircal";
 import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
-import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MomentModule } from 'ngx-moment';
 
@@ -50,7 +49,6 @@ import { MomentModule } from 'ngx-moment';
     DatePickerAircalComponent,
     RecentDataTableComponent,
     DateRangePickerComponent,
-    DatePickerComponent
   ],
   imports: [
     CommonModule,

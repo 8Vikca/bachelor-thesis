@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Attack } from '../../models';
@@ -17,7 +17,7 @@ import { Attack } from '../../models';
   ],
 })
 
-export class SeverityTableComponent implements OnInit {
+export class SeverityTableComponent implements OnInit, OnChanges {
   @Input() severityTableData: Attack[] = [];
   public displayedColumns = ['timestamp', 'message', 'severity'];
   public dataSource: MatTableDataSource<Attack>;
@@ -26,11 +26,10 @@ export class SeverityTableComponent implements OnInit {
   ngOnInit() {
       this.dataSource = new MatTableDataSource<Attack>(this.severityTableData);
   }
+  ngOnChanges() {
+    this.dataSource = new MatTableDataSource<Attack>(this.severityTableData);
+  }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.sort = this.sort;
-  //   this.dataSource.paginator = this.paginator;
-  //   this.table.dataSource = this.dataSource;
-  // }
+
 }
 

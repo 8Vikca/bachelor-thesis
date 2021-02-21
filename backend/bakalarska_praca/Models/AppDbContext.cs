@@ -37,9 +37,9 @@ namespace bakalarska_praca.Models
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 18, Message = "Error Based SQL Injection Detected", Proto = "TCP", Severity = 4, Timestamp = new DateTime(2020, 10, 27, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 19, Message = "Error Based SQL Injection Detected", Proto = "TCP", Severity = 5, Timestamp = new DateTime(2020, 10, 28, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 20, Message = "Error Based SQL Injection Detected", Proto = "TCP", Severity = 6, Timestamp = new DateTime(2020, 10, 29, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
-
-
-
+            modelBuilder.Entity<Attack>().HasData(new Attack { Id = 21, Message = "Error Based SQL Injection Detected", Proto = "TCP", Severity = 6, Timestamp = new DateTime(2021, 2, 21, 10, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
+            modelBuilder.Entity<Attack>().HasData(new Attack { Id = 22, Message = "Error Based SQL Injection Detected", Proto = "TCP", Severity = 6, Timestamp = new DateTime(2021, 2, 21, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
+            modelBuilder.Entity<Attack>().HasData(new Attack { Id = 23, Message = "Error Based SQL Injection Detected", Proto = "TCP", Severity = 6, Timestamp = new DateTime(2021, 2, 21, 21, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
         }
     }
 }
