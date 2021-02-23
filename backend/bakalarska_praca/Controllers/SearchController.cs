@@ -49,7 +49,6 @@ namespace bakalarska_praca.Controllers
         }
 
 
-        // GET: /search
         [HttpGet("/allData")]
         public List<Attack> GetAllData()
         {
@@ -74,6 +73,45 @@ namespace bakalarska_praca.Controllers
                 .OrderByDescending(o => o.Severity)
                                 .Take(10).ToList();
             return selectedData;
+        }
+
+        [HttpGet("/graphData")]
+        public List<Attack> GetAllGraphData(DateTime startDate, DateTime endDate)
+        {
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                .OrderBy(o => o.Src_ip).ToList();
+            return selectedData;
+        }
+
+        [HttpGet("/counter")]
+        public Counter GetCounter(DateTime startDate, DateTime endDate)
+        {
+            var srcObject = new Counter();
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                .Select(o => o.Src_ip).ToList();
+            if(selectedData.Count == 0)
+            {
+                return srcObject; 
+            }
+            foreach (var item in selectedData)
+            {
+                if (!srcObject.LabelSrc.Contains(item))
+                {
+                    srcObject.LabelSrc.Add(item);
+                    srcObject.CounterSrc.Add(0);
+                }
+            }
+            for (int i = 0; i < srcObject.LabelSrc.Count; i++)
+            {
+                for (int j = 0; j < selectedData.Count; j++)
+                {
+                    if (srcObject.LabelSrc[i] == selectedData[j])
+                    {
+                        srcObject.CounterSrc[i] += 1;
+                    }
+                }
+            }
+            return srcObject;
         }
     }
 }

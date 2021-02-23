@@ -5,7 +5,7 @@
 .gap {
     color: #888888;
     margin-top: -50px;
-    margin-bottom: -70px;
+    margin-bottom: -50px;
     
     @media (max-width: $small) {
         margin-top: 0px;
@@ -15,6 +15,7 @@
 #chart {
     max-width: 650px;
     margin: 35px auto;
-    margin-bottom: -10px;
+    zoom: 0.9;
+    margin-bottom: 10px;
   }
 

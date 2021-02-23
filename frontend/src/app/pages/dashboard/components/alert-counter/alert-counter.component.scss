@@ -1,0 +1,51 @@
+@import "src/app/styles/colors";
+@import "src/app/styles/variables";
+@import "src/app/styles/font";
+
+.counter-wrapper {
+    width: 210px;
+    height: 110px;
+    display: inline-flex;
+    position: relative;
+    font-size: 1rem;
+    justify-content: center;
+     align-items: center;
+     color: white;
+     overflow: auto;
+     border-radius: 5px;
+     
+  }
+  .mat-card {
+    padding: 0px!important;
+    padding-right: -15px!important;
+    // margin-top: 30px;
+  }
+  .alert {
+    float: left;
+    text-align: left;
+    position: left;
+  }
+  .category {
+    float: left;
+
+  }
+  .total {
+        background-color: rgb(122, 122, 122);
+        margin-right: -16px;
+  }
+  .low {
+    background-color: rgb(125, 202, 125);
+    margin-right: -16px;
+  }
+  .medium {
+    background-color: rgb(255, 207, 104);
+    margin-right: -16px;
+  }
+  .high {
+    background-color: rgb(253, 131, 86);
+    margin-right: -16px;
+  }
+  .critical {
+    background-color: rgb(184, 43, 43);
+    margin-right: -16px!important;
+  }

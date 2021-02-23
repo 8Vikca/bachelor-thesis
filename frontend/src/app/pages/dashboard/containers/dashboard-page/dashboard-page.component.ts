@@ -4,13 +4,8 @@ import { Observable } from 'rxjs';
 import { DashboardService } from '../../services';
 import {
   Attack,
+  Counter,
   DailyLineChartData,
-  PerformanceChartData,
-  ProjectStatData,
-  RevenueChartData,
-  ServerChartData,
-  SupportRequestData,
-  VisitsChartData
 } from '../../models';
 import { HttpParams } from '@angular/common/http';
 import { AircalResponse } from 'ngx-aircal';
@@ -24,6 +19,8 @@ export class DashboardPageComponent {
 
   public severityTableData: Attack[];
   public recentTableData: Attack[];    //Observable<Attack[]>
+  public ipGraphData: Attack[];
+  public ipGraphSeries: Counter[];
   params = new HttpParams();
   variableDate = new Date;
   //params2 = new HttpParams().set("startDate", this.startDate.toISOString()).set("endDate", this.date.toISOString());
@@ -31,6 +28,8 @@ export class DashboardPageComponent {
   public ngOnInit() {
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
+    this.getIPGraphData(this.params);
+    this.getIPGraphSeries(this.params);
   }
   getSeverityTableData(params: HttpParams): void {
     this.service.loadSeverityTableData(params)
@@ -44,44 +43,33 @@ export class DashboardPageComponent {
         this.recentTableData = result;
       });
   }
+  getIPGraphData(params: HttpParams): void {
+    this.service.loadIPGraphData(params)
+      .subscribe(result => {
+        this.ipGraphData = result;
+      });
+  }
+  getIPGraphSeries(params: HttpParams): void {
+    this.service.loadCounterSrc(params)
+      .subscribe(result => {
+        this.ipGraphSeries = result;
+      });
+  }
 
   public pushDateRange(event: AircalResponse): void {
-    // if(event.endDate == null|) {
-    //   event.endDate = event.
-    // }
-    // if (event.endDate < event.startDate) {
-    //   this.variableDate = event.startDate;
-    //   event.startDate = event.endDate;
-    //   event.endDate = this.variableDate;
-    // }
     event.startDate.setHours(0, 0, 0, 0);
     event.endDate.setHours(23, 59, 59, 59);
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
-    debugger
     this.getRecentTableData(this.params);
-    this.getSeverityTableData(this.params)
+    this.getSeverityTableData(this.params);
+    this.getIPGraphData(this.params);
+    this.getIPGraphSeries(this.params);
   }
 
 
-
-
-
-
   public dailyLineChartData$: Observable<DailyLineChartData>;
-  public performanceChartData$: Observable<PerformanceChartData>;
-  public revenueChartData$: Observable<RevenueChartData>;
-  public serverChartData$: Observable<ServerChartData>;
-  public supportRequestData$: Observable<SupportRequestData[]>;
-  public visitsChartData$: Observable<VisitsChartData>;
-  public projectsStatsData$: Observable<ProjectStatData>;
 
   constructor(private service: DashboardService) {
     this.dailyLineChartData$ = this.service.loadDailyLineChartData();
-    this.performanceChartData$ = this.service.loadPerformanceChartData();
-    this.revenueChartData$ = this.service.loadRevenueChartData();
-    this.serverChartData$ = this.service.loadServerChartData();
-    this.supportRequestData$ = this.service.loadSupportRequestData();
-    this.visitsChartData$ = this.service.loadVisitsChartData();
-    this.projectsStatsData$ = this.service.loadProjectsStatsData();
   }
 }
