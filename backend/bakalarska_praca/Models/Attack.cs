@@ -16,5 +16,6 @@ namespace bakalarska_praca.Models
         public string Src_ip { get; set; }
         public string Proto { get; set; }
 
+        public string SeverityCategory { get; set; }
     }
 }
