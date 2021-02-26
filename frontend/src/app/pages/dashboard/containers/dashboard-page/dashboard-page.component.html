@@ -9,7 +9,7 @@
       <app-severity-table *ngIf="severityTableData" [severityTableData]="severityTableData"></app-severity-table>
     </div>
     <div class="chart alerts">
-      <app-alert-counter></app-alert-counter>
+      <app-alert-counter *ngIf="counters" [alertCounters]="counters"></app-alert-counter>
     </div>
     <!-- <div class="chart">
       <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart>
@@ -28,7 +28,7 @@
       <app-category-chart></app-category-chart> 
     </div>
     <div class="chart gap-ip">
-      <app-ip-chart *ngIf="ipGraphData" [ipGraphData]="ipGraphData" [ipGraphSeries]="ipGraphSeries"></app-ip-chart> 
+      <app-ip-chart *ngIf="ipGraphData" [ipGraphData]="ipGraphData" [ipGraphSeries]="counters"></app-ip-chart> 
     </div>
     <!-- <div class="chart">
         <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart>

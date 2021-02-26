@@ -20,7 +20,7 @@ export class DashboardPageComponent {
   public severityTableData: Attack[];
   public recentTableData: Attack[];    //Observable<Attack[]>
   public ipGraphData: Attack[];
-  public ipGraphSeries: Counter[];
+  public counters: Counter[];
   params = new HttpParams();
   variableDate = new Date;
   //params2 = new HttpParams().set("startDate", this.startDate.toISOString()).set("endDate", this.date.toISOString());
@@ -29,7 +29,7 @@ export class DashboardPageComponent {
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getIPGraphData(this.params);
-    this.getIPGraphSeries(this.params);
+    this.getCounters(this.params);
   }
   getSeverityTableData(params: HttpParams): void {
     this.service.loadSeverityTableData(params)
@@ -49,10 +49,10 @@ export class DashboardPageComponent {
         this.ipGraphData = result;
       });
   }
-  getIPGraphSeries(params: HttpParams): void {
+  getCounters(params: HttpParams): void {
     this.service.loadCounterSrc(params)
       .subscribe(result => {
-        this.ipGraphSeries = result;
+        this.counters = result;
       });
   }
 
@@ -63,7 +63,7 @@ export class DashboardPageComponent {
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getIPGraphData(this.params);
-    this.getIPGraphSeries(this.params);
+    this.getCounters(this.params);
   }
 
 

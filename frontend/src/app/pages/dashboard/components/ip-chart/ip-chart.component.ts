@@ -27,7 +27,8 @@ export class IpChartComponent implements OnChanges{
   @Input() ipGraphData: Attack[] = [];
   @Input() ipGraphSeries: Counter = {
     counterSrc : [],
-    labelSrc : []
+    labelSrc : [],
+    alertsCritical: null, alertsHigh: null, alertsLow: null, alertsMedium: null, alertsTotal: null,
   };
   public chartOptions: Partial<ChartOptions>;
   dataLabel: string[] = [];

@@ -48,7 +48,7 @@ tr.queue-element-row:not(.queue-expanded-row):active {
 
 .table-wrapper {
   position: relative;
-  background-color: #fbf9f9;
+  background-color: #ffffff;
   width: auto;
   overflow: auto;
   padding: 0;
@@ -56,7 +56,6 @@ tr.queue-element-row:not(.queue-expanded-row):active {
   padding-left: 0;
   padding-right: 0;
   margin: 16px 16px 32px 16px;
-  box-shadow: 0 3px 11px 0 $shadow-white, 0 3px 3px -2px $shadow-grey, 0 1px 8px 0 $shadow-dark-grey;
 }
 
 

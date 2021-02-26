@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { NullTemplateVisitor } from '@angular/compiler';
+import { Component, Input, OnInit } from '@angular/core';
+import { Counter } from '../../models';
 
 @Component({
   selector: 'app-alert-counter',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alert-counter.component.scss']
 })
 export class AlertCounterComponent implements OnInit {
-
+  @Input() alertCounters: Counter = {
+    counterSrc : null,
+    labelSrc : null,
+    alertsCritical: null, alertsHigh: null, alertsLow: null, alertsMedium: null, alertsTotal: null,
+  };
   constructor() { }
 
   ngOnInit(): void {
