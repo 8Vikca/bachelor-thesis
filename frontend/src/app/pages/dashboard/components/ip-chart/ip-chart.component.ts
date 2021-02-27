@@ -42,7 +42,6 @@ export class IpChartComponent implements OnChanges{
   }
     
   initializeChart() {   
-    debugger
     this.chartOptions = {
       series: this.ipGraphSeries.counterSrc,
       chart: {

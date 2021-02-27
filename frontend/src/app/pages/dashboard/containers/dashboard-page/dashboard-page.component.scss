@@ -10,12 +10,21 @@
 // }
 
 .gap-ip {
-  margin-top: -100px;
+  margin-top: -137px;
+  max-width: 540px;
+  max-height: 500px;
   
+  @media (max-width: $normal) {
+    margin-top: -137px;
+  }
+  @media (max-width: $small) {
+    margin: 16px;;
+  }
 }
 .gap-category {
   margin-top: -137px;
-  
+  max-width: 540px;
+  max-height: 500px;
 }
 .alerts {
   max-height: 120px;
@@ -32,6 +41,10 @@
 
   @media (max-width: $normal) {
     flex-wrap: wrap;
+    margin: 16px;
+  }
+  @media (max-width: $small) {
+    margin: 16px;
   }
 }
 

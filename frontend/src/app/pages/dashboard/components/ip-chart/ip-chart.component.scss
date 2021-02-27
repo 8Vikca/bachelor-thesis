@@ -8,9 +8,18 @@
     margin-bottom: -40px;
   }
 #chart {
-    max-width: 380px;
+    height: fit-content;
+    width: fit-content;
     margin: 35px auto;
     padding: 0;
     margin-bottom: 10px;
     zoom: 1.1;
+  }
+  .chart-wrapper {
+    position: relative;
+    background-color: #ffffff;
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+    height: 348px;
   }

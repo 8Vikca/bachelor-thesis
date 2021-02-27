@@ -86,53 +86,53 @@ namespace bakalarska_praca.Controllers
         [HttpGet("/counter")]
         public Counter GetCounter(DateTime startDate, DateTime endDate)
         {
-            var srcObject = new Counter();
+            var counter = new Counter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
                 .ToList();
             if (selectedData.Count == 0)
             {
-                return srcObject;
+                return counter;
             }
             for (int i = 0; i < selectedData.Count; i++)
             {
-                if (!srcObject.LabelSrc.Contains(selectedData[i].Src_ip))
+                if (!counter.LabelSrc.Contains(selectedData[i].Src_ip))
                 {
-                    srcObject.LabelSrc.Add(selectedData[i].Src_ip);
-                    srcObject.CounterSrc.Add(0);
+                    counter.LabelSrc.Add(selectedData[i].Src_ip);
+                    counter.CounterSrc.Add(0);
                 }
                 switch (selectedData[i].SeverityCategory)
                 {
                     case "low":
-                        srcObject.AlertsLow += 1;
+                        counter.AlertsLow += 1;
                         break;
                     case "medium":
-                        srcObject.AlertsMedium += 1;
+                        counter.AlertsMedium += 1;
                         break;
                     case "high":
-                        srcObject.AlertsHigh += 1;
+                        counter.AlertsHigh += 1;
                         break;
                     case "critical":
-                        srcObject.AlertsCritical += 1;
+                        counter.AlertsCritical += 1;
                         break;
 
                     default:
                         break;
                 }
-                srcObject.AlertsTotal = srcObject.AlertsLow + srcObject.AlertsMedium + srcObject.AlertsHigh + srcObject.AlertsCritical;
+                counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
             }
 
-            for (int i = 0; i < srcObject.LabelSrc.Count; i++)
+            for (int i = 0; i < counter.LabelSrc.Count; i++)
             {
                 for (int j = 0; j < selectedData.Count; j++)
                 {
-                    if (srcObject.LabelSrc[i] == selectedData[j].Src_ip)
+                    if (counter.LabelSrc[i] == selectedData[j].Src_ip)
                     {
-                        srcObject.CounterSrc[i] += 1;
+                        counter.CounterSrc[i] += 1;
                     }
                 }
             }
 
-            return srcObject;
+            return counter;
         }
     }
 }

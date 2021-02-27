@@ -1,41 +1,29 @@
 <app-layout>
   <mat-toolbar class="page-header mat-tool-gap " role="heading" >
-    <h1>Dashboard</h1>
+    <!-- <h1>Dashboard</h1> -->
     <!-- <button mat-flat-button>Latest Reports</button> -->
     <app-date-picker-aircal class="date-gap" (dateEmitter)="pushDateRange($event)"></app-date-picker-aircal> 
   </mat-toolbar> 
+
   <div class="charts-wrapper">
-    <div class="table severity">
-      <app-severity-table *ngIf="severityTableData" [severityTableData]="severityTableData"></app-severity-table>
-    </div>
     <div class="chart alerts">
       <app-alert-counter *ngIf="counters" [alertCounters]="counters"></app-alert-counter>
     </div>
-    <!-- <div class="chart">
-      <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart>
-    </div> -->
-    <!-- <div class="chart">
-      <app-revenue-chart [revenueCharData]="revenueChartData$ | async"></app-revenue-chart>
-    </div> -->
+    <div class="table severity">
+      <app-severity-table *ngIf="severityTableData" [severityTableData]="severityTableData"></app-severity-table>
+    </div>  
   </div>
   <!-- (newItemEvent)="addItem($event)" -->
   <div class="charts-wrapper">
-    <div class="chart">
-      <app-recent-data-table *ngIf="recentTableData" [recentTableData]="recentTableData"></app-recent-data-table> 
-
-    </div>
     <div class="chart gap-category">
       <app-category-chart></app-category-chart> 
     </div>
     <div class="chart gap-ip">
       <app-ip-chart *ngIf="ipGraphData" [ipGraphData]="ipGraphData" [ipGraphSeries]="counters"></app-ip-chart> 
     </div>
-    <!-- <div class="chart">
-        <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart>
-      </div> -->
-    <!-- <div class="chart">
-        <app-revenue-chart [revenueCharData]="revenueChartData$ | async"></app-revenue-chart>
-      </div> -->
+    <div class="chart">
+      <app-recent-data-table *ngIf="recentTableData" [recentTableData]="recentTableData"></app-recent-data-table> 
+    </div>
   </div>
 
   <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart>
