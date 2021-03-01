@@ -1,56 +1,66 @@
-@import 'src/app/styles/variables';
+@import "src/app/styles/variables";
 
 .mat-tool-gap {
-  margin-top: -40px;
-  margin-bottom: -20px;
+  margin-top: -30px;
+  margin-bottom: -30px;
   margin-left: 5px;
 }
-// .date-gap {
-//   margin-right: 100px;
-// }
-
-.gap-ip {
-  margin-top: -137px;
-  max-width: 540px;
-  max-height: 500px;
-  
-  @media (max-width: $normal) {
-    margin-top: -137px;
-  }
-  @media (max-width: $small) {
-    margin: 16px;;
-  }
-}
-.gap-category {
-  margin-top: -137px;
-  max-width: 540px;
-  max-height: 500px;
-}
-.alerts {
-  max-height: 120px;
-}
-
-.severity {
-  width: 100%;
-}
-
-.charts-wrapper {
+.layout-container {
   display: flex;
-  margin: 0 8px;
-  padding: 0 8px;
-
+  flex-direction: column;
+  margin: 14px;
   @media (max-width: $normal) {
     flex-wrap: wrap;
-    margin: 16px;
-  }
-  @media (max-width: $small) {
-    margin: 16px;
+    width: 100% !important;
   }
 }
+.column-container {
+  display: flex;
+  flex-direction: row;
+  @media (max-width: $normal) {
+    flex-wrap: wrap;
+    width: 100% !important;
+  }
+}
+.chart-wrapper {
+  display: flex;
+  flex-direction: row;
+  @media (max-width: $normal) {
+    flex-wrap: wrap;
+    width: 100% !important;
+    order: 3!important;
+  }
+}
+.left-column-container {
+  width: 60%;
+  @media (max-width: $normal) {
+    flex-wrap: wrap;
+    width: 100% !important;
+  }
+}
+.right-column-container {
+  margin-top: -50px;
+  width: 40%;
+  @media (max-width: $large) {
+    flex-wrap: wrap;
+    width: 100% !important;
+    margin-top: 0px!important;
+  }
+}
+
+#chart1 {
+  width: 100%;
+  height: 268px;
+  @media (max-width: $normal) {
+    flex-wrap: wrap;
+    width: 100% !important;
+  }
+}
+
+
 
 .chart {
   width: 100%;
-  
 
   @media (max-width: $normal) {
     width: 50%;

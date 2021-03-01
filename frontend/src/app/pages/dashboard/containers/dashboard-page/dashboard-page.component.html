@@ -1,11 +1,38 @@
 <app-layout>
-  <mat-toolbar class="page-header mat-tool-gap " role="heading" >
-    <!-- <h1>Dashboard</h1> -->
-    <!-- <button mat-flat-button>Latest Reports</button> -->
-    <app-date-picker-aircal class="date-gap" (dateEmitter)="pushDateRange($event)"></app-date-picker-aircal> 
-  </mat-toolbar> 
+  <mat-toolbar class="page-header mat-tool-gap " role="heading">
+    <app-date-picker-aircal class="date-gap" (dateEmitter)="pushDateRange($event)"></app-date-picker-aircal>
+  </mat-toolbar>
 
-  <div class="charts-wrapper">
+  <div class="layout-container">
+    <div class="column-container">
+      <div class="left-column-container">
+        <app-alert-counter *ngIf="counters" [alertCounters]="counters"></app-alert-counter>
+        <div class="chart-wrapper">
+          <mat-card id="chart1">
+            <app-category-chart *ngIf="ipGraphData" [ipGraphSeries]="counters"></app-category-chart>
+          </mat-card>
+          <mat-card id="chart1">
+            <app-ip-chart *ngIf="ipGraphData"  [ipGraphSeries]="counters"></app-ip-chart>
+          </mat-card>
+
+        </div>
+      </div>
+      <div class="right-column-container">
+        <app-severity-table *ngIf="severityTableData" [severityTableData]="severityTableData"></app-severity-table>
+        <app-recent-data-table *ngIf="recentTableData" [recentTableData]="recentTableData"></app-recent-data-table>
+      </div>
+    </div>
+    <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart>
+  </div>
+
+
+
+
+
+  <!-- <h1>Dashboard</h1> -->
+  <!-- <button mat-flat-button>Latest Reports</button> -->
+  <!--  
+  <div class="charts-wrapper"> 
     <div class="chart alerts">
       <app-alert-counter *ngIf="counters" [alertCounters]="counters"></app-alert-counter>
     </div>
@@ -13,7 +40,7 @@
       <app-severity-table *ngIf="severityTableData" [severityTableData]="severityTableData"></app-severity-table>
     </div>  
   </div>
-  <!-- (newItemEvent)="addItem($event)" -->
+  (newItemEvent)="addItem($event)"
   <div class="charts-wrapper">
     <div class="chart gap-category">
       <app-category-chart></app-category-chart> 
@@ -29,4 +56,4 @@
   <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart>
 
   <app-footer></app-footer>
-</app-layout>
+</app-layout> -->

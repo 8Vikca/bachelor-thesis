@@ -3,56 +3,62 @@
 @import "src/app/styles/font";
 
 .counter-wrapper {
-    width: 210px;
-    height: 110px;
-    display: inline-flex;
-    position: relative;
-    font-size: 1rem;
-    justify-content: center;
-     align-items: center;
-     color: white;
-     overflow: auto;
-     border-radius: 5px;
-     padding: 0px!important;
-     margin: 16px;
+  height: 150px;
+  min-height: 100px;
+  position: relative;
+  border-radius: 5px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row !important;
+  @media (max-width: $normal) {
+    width: 100% !important;
+    order: 1!important;
   }
-  // .mat-card {
-  //   padding: 0px!important;
-  // }
-  .alert {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-  }
-  .category {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-  }
-  .counter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 60px;
-    transform: translate(-50%, -50%);
-  }
-  .total {
-        background-color: $alert-total;
-        margin-right: -16px;      
-  }
-  .low {
-    background-color: $alert-low;
-    margin-right: -16px;
-  }
-  .medium {
-    background-color: $alert-medium;
-    margin-right: -16px;
-  }
-  .high {
-    background-color: $alert-high;
-    margin-right: -16px;
-  }
-  .critical {
-    background-color: $alert-critical;
-    margin-right: -16px;
-  }
+}
+.alert {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+.category {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+.counter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 60px;
+  transform: translate(-50%, -50%);
+}
+.total {
+  width: 20%;
+  background-color: $alert-total;
+  margin-right: -16px;
+  color: white;
+}
+.low {
+  width: 20%;
+  background-color: $alert-low;
+  margin-right: -16px;
+  color: white;
+}
+.medium {
+  width: 20%;
+  background-color: $alert-medium;
+  margin-right: -16px;
+  color: white;
+}
+.high {
+  width: 20%;
+  background-color: $alert-high;
+  margin-right: -16px;
+  color: white;
+}
+.critical {
+  width: 20%;
+  background-color: $alert-critical;
+  margin-right: 16px;
+  color: white;
+}

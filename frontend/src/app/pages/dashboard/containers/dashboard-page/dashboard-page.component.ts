@@ -30,6 +30,7 @@ export class DashboardPageComponent {
     this.getSeverityTableData(this.params);
     this.getIPGraphData(this.params);
     this.getCounters(this.params);
+    debugger
   }
   getSeverityTableData(params: HttpParams): void {
     this.service.loadSeverityTableData(params)

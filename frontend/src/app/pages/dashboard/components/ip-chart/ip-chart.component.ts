@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
+import { countReset } from "console";
 
 import {
   ApexNonAxisChartSeries,
@@ -6,7 +7,6 @@ import {
   ApexChart,
   ChartComponent
 } from "ng-apexcharts";
-import { colors } from "src/app/consts";
 import { Attack, Counter } from "../../models";
 
 export type ChartOptions = {
@@ -24,15 +24,8 @@ export type ChartOptions = {
 })
 export class IpChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
-  @Input() ipGraphData: Attack[] = [];
-  @Input() ipGraphSeries: Counter = {
-    counterSrc : [],
-    labelSrc : [],
-    alertsCritical: null, alertsHigh: null, alertsLow: null, alertsMedium: null, alertsTotal: null,
-  };
+  @Input() ipGraphSeries: Counter = {};
   public chartOptions: Partial<ChartOptions>;
-  dataLabel: string[] = [];
-  dataCounter: number[] = [];
 
   constructor() {
     this.initializeChart();
@@ -62,7 +55,7 @@ export class IpChartComponent implements OnChanges{
           }
         }
       ],
-      colors:['#F44336', '#E91E63', '#9C27B0', '#798DFE', '#9C27D0', '#9D22D0','#9C27D0','#9C27D0','#9C27D0']
+      colors:['#b88c8c', '#ddadad', '#d6c7c7', '#9fb9bf', '#aec8ce']
     };
   
   }

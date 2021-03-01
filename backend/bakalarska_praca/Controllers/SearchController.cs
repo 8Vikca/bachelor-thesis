@@ -89,17 +89,22 @@ namespace bakalarska_praca.Controllers
             var counter = new Counter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
                 .ToList();
+            var srcDictionary = new Dictionary<string, int>();
             if (selectedData.Count == 0)
             {
                 return counter;
             }
-            for (int i = 0; i < selectedData.Count; i++)
+            for (int i = 0; i < selectedData.Count; i++)        //pocitanie SRC IP 
             {
-                if (!counter.LabelSrc.Contains(selectedData[i].Src_ip))
+                if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))
                 {
-                    counter.LabelSrc.Add(selectedData[i].Src_ip);
-                    counter.CounterSrc.Add(0);
+                    srcDictionary.Add(selectedData[i].Src_ip, 1);
                 }
+                else
+                {
+                    srcDictionary[selectedData[i].Src_ip] += 1;
+                }
+
                 switch (selectedData[i].SeverityCategory)
                 {
                     case "low":
@@ -118,20 +123,14 @@ namespace bakalarska_praca.Controllers
                     default:
                         break;
                 }
-                counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
             }
-
-            for (int i = 0; i < counter.LabelSrc.Count; i++)
+            counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
+            srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o=> o.Key, o=> o.Value);
+            foreach (var item in srcDictionary)
             {
-                for (int j = 0; j < selectedData.Count; j++)
-                {
-                    if (counter.LabelSrc[i] == selectedData[j].Src_ip)
-                    {
-                        counter.CounterSrc[i] += 1;
-                    }
-                }
+                counter.LabelSrc.Add(item.Key);
+                counter.CounterSrc.Add(item.Value);
             }
-
             return counter;
         }
     }

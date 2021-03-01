@@ -1,14 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
 import { colors } from 'src/app/consts/colors';
+import { Attack, Counter } from "../../models";
 import {
+  ApexNonAxisChartSeries,
+  ApexResponsive,
   ApexChart,
-  ApexAxisChartSeries,
-  ChartComponent,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexYAxis,
-  ApexLegend,
-  ApexGrid
+  ChartComponent
 } from "ng-apexcharts";
 
 type ApexXAxis = {
@@ -23,15 +20,11 @@ type ApexXAxis = {
 };
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
+  series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  yaxis: ApexYAxis;
-  xaxis: ApexXAxis;
-  grid: ApexGrid;
+  responsive: ApexResponsive[];
+  labels: any;
   colors: string[];
-  legend: ApexLegend;
 };
 
 @Component({
@@ -39,79 +32,41 @@ export type ChartOptions = {
   templateUrl: './category-chart.component.html',
   styleUrls: ['./category-chart.component.scss']
 })
-export class CategoryChartComponent{
+export class CategoryChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  @Input() ipGraphSeries: Counter = {};
 
   constructor() {
+    this.initializeChart();
+  }
+  ngOnChanges(): void {
+    this.initializeChart();
+  }
+    
+  initializeChart() {   
     this.chartOptions = {
-      series: [
-        {
-          name: "distibuted",
-          data: [21, 22, 10, 28, 16, 21, 13, 30]
-        }
-      ],
+      series: this.ipGraphSeries.counterSrc,
       chart: {
-        height: 350,
-        type: "bar",
-        events: {
-          click: function(chart, w, e) {
-            // console.log(chart, w, e)
+        width: 380,
+        type: "pie"
+      },
+      labels: this.ipGraphSeries.labelSrc,
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "right"
+            }
           }
         }
-      },
-      colors: [
-        "#008FFB",
-        "#00E396",
-        "#FEB019",
-        "#FF4560",
-        "#775DD0",
-        "#546E7A",
-        "#26a69a",
-        "#D10CE8"
       ],
-      plotOptions: {
-        bar: {
-          columnWidth: "45%",
-          distributed: true
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      legend: {
-        show: false
-      },
-      grid: {
-        show: false
-      },
-      xaxis: {
-        categories: [
-          ["John", "Doe"],
-          ["Joe", "Smith"],
-          ["Jake", "Williams"],
-          "Amber",
-          ["Peter", "Brown"],
-          ["Mary", "Evans"],
-          ["David", "Wilson"],
-          ["Lily", "Roberts"]
-        ],
-        labels: {
-          style: {
-            colors: [
-              "#008FFB",
-              "#00E396",
-              "#FEB019",
-              "#FF4560",
-              "#775DD0",
-              "#546E7A",
-              "#26a69a",
-              "#D10CE8"
-            ],
-            fontSize: "12px"
-          }
-        }
-      }
+      colors:['#b88c8c', '#ddadad', '#d6c7c7', '#9fb9bf', '#aec8ce']
     };
+  
   }
 }
