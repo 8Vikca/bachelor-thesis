@@ -90,11 +90,12 @@ namespace bakalarska_praca.Controllers
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
                 .ToList();
             var srcDictionary = new Dictionary<string, int>();
+            var categoryDictionary = new Dictionary<string, int>();
             if (selectedData.Count == 0)
             {
                 return counter;
             }
-            for (int i = 0; i < selectedData.Count; i++)        //pocitanie SRC IP 
+            for (int i = 0; i < selectedData.Count; i++)        //pocitanie SRC IP a Category
             {
                 if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))
                 {
@@ -123,13 +124,27 @@ namespace bakalarska_praca.Controllers
                     default:
                         break;
                 }
+                if (!categoryDictionary.ContainsKey(selectedData[i].Category))
+                {
+                    categoryDictionary.Add(selectedData[i].Category, 1);
+                }
+                else
+                {
+                    categoryDictionary[selectedData[i].Category] += 1;
+                }
             }
             counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
             srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o=> o.Key, o=> o.Value);
+            categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
             foreach (var item in srcDictionary)
             {
                 counter.LabelSrc.Add(item.Key);
                 counter.CounterSrc.Add(item.Value);
+            }
+            foreach (var item in categoryDictionary)
+            {
+                counter.LabelCategory.Add(item.Key);
+                counter.CounterCategory.Add(item.Value);
             }
             return counter;
         }

@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
-import { countReset } from "console";
 
 import {
   ApexNonAxisChartSeries,
@@ -24,7 +23,7 @@ export type ChartOptions = {
 })
 export class IpChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
-  @Input() ipGraphSeries: Counter = {};
+  @Input() ipChartSeries: Counter = {};
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
@@ -36,12 +35,12 @@ export class IpChartComponent implements OnChanges{
     
   initializeChart() {   
     this.chartOptions = {
-      series: this.ipGraphSeries.counterSrc,
+      series: this.ipChartSeries.counterSrc,
       chart: {
         width: 380,
         type: "pie"
       },
-      labels: this.ipGraphSeries.labelSrc,
+      labels: this.ipChartSeries.labelSrc,
       responsive: [
         {
           breakpoint: 480,
@@ -55,7 +54,7 @@ export class IpChartComponent implements OnChanges{
           }
         }
       ],
-      colors:['#b88c8c', '#ddadad', '#d6c7c7', '#9fb9bf', '#aec8ce']
+      colors:['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
     };
   
   }

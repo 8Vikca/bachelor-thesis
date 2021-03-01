@@ -7,8 +7,8 @@
     padding: 0;
   }
 #chart {
-    height: fit-content;
-    width: fit-content;
+    height: fit-content!important;
+    width: fit-content!important;
     //margin-top: 10px;
     zoom: 1.1;
     @media (max-width: $large) {

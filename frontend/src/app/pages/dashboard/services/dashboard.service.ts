@@ -25,7 +25,7 @@ export class DashboardService {
   loadIPGraphData(params: HttpParams): Observable<Attack[]> {   
     return this.http.get<Attack[]>("https://localhost:44386/graphData", {params: params});     
   }
-  loadCounterSrc(params: HttpParams): Observable<Counter[]> {   
+  loadCounter(params: HttpParams): Observable<Counter[]> {   
     return this.http.get<Counter[]>("https://localhost:44386/counter", {params: params});     
   }
 

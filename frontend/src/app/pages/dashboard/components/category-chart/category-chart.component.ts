@@ -35,7 +35,7 @@ export type ChartOptions = {
 export class CategoryChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-  @Input() ipGraphSeries: Counter = {};
+  @Input() categoryChartSeries: Counter = {};
 
   constructor() {
     this.initializeChart();
@@ -46,12 +46,13 @@ export class CategoryChartComponent implements OnChanges{
     
   initializeChart() {   
     this.chartOptions = {
-      series: this.ipGraphSeries.counterSrc,
+      series: this.categoryChartSeries.counterCategory,
       chart: {
         width: 380,
+        height: 214.69,
         type: "pie"
       },
-      labels: this.ipGraphSeries.labelSrc,
+      labels: this.categoryChartSeries.labelCategory,
       responsive: [
         {
           breakpoint: 480,
@@ -65,7 +66,7 @@ export class CategoryChartComponent implements OnChanges{
           }
         }
       ],
-      colors:['#b88c8c', '#ddadad', '#d6c7c7', '#9fb9bf', '#aec8ce']
+      colors:['#52524e', '#9a9b94', '#d4d6c8', '#dfdfdf', '#e9e9e5']
     };
   
   }
