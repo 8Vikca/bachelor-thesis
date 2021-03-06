@@ -10,6 +10,7 @@ namespace bakalarska_praca.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [RequireHttps]
     public class SearchController : ControllerBase      //controller na pracu s databazou
     {
         ConnectionToNest SearchAPI;         //premenna na pristup ku klentovi NEST
@@ -21,6 +22,8 @@ namespace bakalarska_praca.Controllers
 
 
         }
+        //[HttpGet,Authorize]
+
 
         [HttpGet("/dataElastic")]
         public void GetDataFromElastic() //List<Attack>
@@ -48,13 +51,20 @@ namespace bakalarska_praca.Controllers
             }
         }
 
-
         [HttpGet("/allData")]
         public List<Attack> GetAllData()
         {
+            var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).ToList();
+            return selectedData;
+        }
 
 
-            return _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).ToList();    //vratenie vsetkych dat z lokalnej databazy vo forme listu objektov
+        [HttpGet("/timelineData")]
+        public List<Attack> GetTimelineData(DateTime startDate, DateTime endDate)
+        {
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                                .OrderByDescending(o => o.Timestamp).ToList();
+            return selectedData;
         }
 
         [HttpGet("/recentData")]

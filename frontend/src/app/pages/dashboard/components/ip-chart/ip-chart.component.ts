@@ -55,6 +55,7 @@ export class IpChartComponent implements OnChanges{
         }
       ],
       colors:['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
+      //['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
     };
   
   }

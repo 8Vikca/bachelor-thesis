@@ -14,12 +14,14 @@ import { TablesRoutingModule } from './tables-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AttacksTableComponent } from './components';
 import { TableService } from './services';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 
 @NgModule({
   declarations: [
     TablePageComponent,
-    AttacksTableComponent   
+    AttacksTableComponent,
+    SearchBoxComponent   
   ],
   imports: [
     CommonModule,

@@ -20,6 +20,7 @@ export class DashboardPageComponent {
   public severityTableData: Attack[];
   public recentTableData: Attack[];    //Observable<Attack[]>
   public ipGraphData: Attack[];
+  public timelineData: Attack[];
   public counters: Counter[];
   params = new HttpParams();
   variableDate = new Date;
@@ -30,6 +31,7 @@ export class DashboardPageComponent {
     this.getSeverityTableData(this.params);
     this.getIPGraphData(this.params);
     this.getCounters(this.params);
+    this.getTimelineData(this.params);
   }
   getSeverityTableData(params: HttpParams): void {
     this.service.loadSeverityTableData(params)
@@ -55,10 +57,16 @@ export class DashboardPageComponent {
         this.counters = result;
       });
   }
+  getTimelineData(params: HttpParams): void {
+    this.service.loadTimelineData(params)
+      .subscribe(result => {
+        this.timelineData = result;
+      });
+  }
 
   public pushDateRange(event: AircalResponse): void {
-    event.startDate.setHours(0, 0, 0, 0);
-    event.endDate.setHours(23, 59, 59, 59);
+    // event.startDate.setHours(0, 0, 0, 0);
+    // event.endDate.setHours(23, 59, 59, 59);
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);

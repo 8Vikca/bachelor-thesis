@@ -9,6 +9,29 @@
   background-color: white;
   position: sticky;
 }
+.severity-box {
+  width: 20px;
+  max-height: 10px!important;
+  border-radius: 32px;
+  text-align: center;
+  padding: 5px 10px!important;
+  font-size: 13px;
+  box-sizing: border-box;
+  margin-right: 20px;
+  height: 10px;
+}
+.critical {
+  background-color: $alert-critical;
+}
+.high {
+  background-color: $alert-high;
+}
+.medium {
+  background-color: $alert-medium;
+}
+.low {
+  background-color: $alert-low;
+}
 
 table {
   width: 100%;

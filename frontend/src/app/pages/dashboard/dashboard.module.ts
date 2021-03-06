@@ -37,6 +37,8 @@ import { NgxAircalModule } from "ngx-aircal";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MomentModule } from 'ngx-moment';
 import { AlertCounterComponent } from './components/alert-counter/alert-counter.component';
+import { TimelineChartComponent } from './components/timeline-chart/timeline-chart.component';
+import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/ngx-daterange-picker.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { AlertCounterComponent } from './components/alert-counter/alert-counter.
     DatePickerAircalComponent,
     RecentDataTableComponent,
     AlertCounterComponent,
+    TimelineChartComponent,
+    NgxDaterangePickerComponent,
   ],
   imports: [
     CommonModule,
