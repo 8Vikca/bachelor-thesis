@@ -27,7 +27,6 @@ C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Nest.pdb
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Nest.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Buffers.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Diagnostics.DiagnosticSource.xml
-C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csprojAssemblyReference.cache
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csproj.CoreCompileInputs.cache
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csproj.CopyComplete
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\ESearchAPI.dll
@@ -40,7 +39,6 @@ C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Memory.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.dll
-C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.DataProtection.dll
@@ -68,7 +66,6 @@ C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Newtonsoft.Json.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Text.Encodings.Web.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.xml
-C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.DataProtection.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.DataProtection.Abstractions.xml
@@ -95,3 +92,22 @@ C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Net.Http.He
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csprojAssemblyReference.cache
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.AccessControl.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Cryptography.Xml.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Permissions.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.Core.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.AccessControl.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Cryptography.Xml.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Permissions.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Principal.Windows.xml

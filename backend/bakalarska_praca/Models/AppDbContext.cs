@@ -13,13 +13,14 @@ namespace bakalarska_praca.Models
 
         }
         public DbSet<Attack> Attacks { get; set; }
+        public DbSet<Login> Logins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 1, Message = "Error Based SQL Injection Detected", Category="SQL" ,Proto = "TCP", Severity = 3, SeverityCategory="low", Timestamp = new DateTime(2021, 2, 10, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.40.183" });
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 2, Message = "Possible ICMP flood PING DoS", Category = "ICMP" ,Proto = "TCP", Severity = 10, SeverityCategory = "critical", Timestamp = new DateTime(2021, 2, 11, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.50.11", Dest_ip = "192.168.40.183" });
-            modelBuilder.Entity<Attack>().HasData(new Attack { Id = 3, Message = "Error Based SQL Injectio n Detected", Category = "SQL", Proto = "UDP", Severity = 3, SeverityCategory = "low", Timestamp = new DateTime(2021, 2, 12, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.50.11", Dest_ip = "192.168.40.183" });
+            modelBuilder.Entity<Attack>().HasData(new Attack { Id = 3, Message = "Error Based SQL Injection Detected", Category = "SQL", Proto = "UDP", Severity = 3, SeverityCategory = "low", Timestamp = new DateTime(2021, 2, 12, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.50.11", Dest_ip = "192.168.40.183" });
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 4, Message = "Possible ICMP flood PING DoS", Category = "ICMP", Proto = "TCP", Severity = 4, SeverityCategory = "medium", Timestamp = new DateTime(2021, 2, 13, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.60.11", Dest_ip = "192.168.40.183" });
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 5, Message = "Error Based SQL Injection Detected", Category = "SQL", Proto = "TCP", Severity = 4, SeverityCategory = "medium", Timestamp = new DateTime(2021, 2, 14, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.60.11", Dest_ip = "192.168.40.183" });
             modelBuilder.Entity<Attack>().HasData(new Attack { Id = 6, Message = "Possible TCP SYN DoS", Category = "SYN", Proto = "TCP", Severity = 5, SeverityCategory = "low", Timestamp = new DateTime(2021, 2, 15, 15, 17, 49).ToUniversalTime(), Src_ip = "192.168.40.11", Dest_ip = "192.168.60.183" });

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services';
 import { routes } from '../../../../consts';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-auth-page',
@@ -18,9 +19,17 @@ export class AuthPageComponent {
     private router: Router
   ) { }
 
-  public sendLoginForm(): void {
-    this.service.login();
+  // getCounters(params: HttpParams): void {
+  //   this.service.loadCounter(params)
+  //     .subscribe(result => {
+  //       this.counters = result;
+  //     });
+  // }
 
+  public sendLoginForm(loginForm: any): void {  //form: Form
+    console.log();
+    debugger
+    this.service.login();
     this.router.navigate([this.routers.DASHBOARD]).then();
   }
 

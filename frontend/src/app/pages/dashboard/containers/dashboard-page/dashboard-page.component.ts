@@ -29,7 +29,6 @@ export class DashboardPageComponent {
   public ngOnInit() {
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
-    this.getIPGraphData(this.params);
     this.getCounters(this.params);
     this.getTimelineData(this.params);
   }
@@ -43,12 +42,6 @@ export class DashboardPageComponent {
     this.service.loadRecentTableData(params)
       .subscribe(result => {
         this.recentTableData = result;
-      });
-  }
-  getIPGraphData(params: HttpParams): void {
-    this.service.loadIPGraphData(params)
-      .subscribe(result => {
-        this.ipGraphData = result;
       });
   }
   getCounters(params: HttpParams): void {
@@ -70,7 +63,6 @@ export class DashboardPageComponent {
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
-    this.getIPGraphData(this.params);
     this.getCounters(this.params);
   }
 

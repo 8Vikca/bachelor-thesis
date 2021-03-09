@@ -2,108 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bakalarska_praca.Models;
+using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using bakalarska_praca.Models;
 
 namespace bakalarska_praca.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [RequireHttps]
     public class DashboardController : ControllerBase
     {
-        private readonly AppDbContext _context;
-
-        public DashboardController(AppDbContext context)
+        private readonly AppDbContext _appDbContext;
+        public DashboardServices dashboardService;
+        public DashboardController(AppDbContext appdbContext)
         {
-            _context = context;
+            dashboardService = new DashboardServices(appdbContext);
+            _appDbContext = appdbContext;
+
+
+        }
+        //[HttpGet,Authorize]
+
+        [HttpGet("/timelineData")]
+        public List<Attack> GetTimelineData(DateTime startDate, DateTime endDate)
+        {
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                                .OrderByDescending(o => o.Timestamp).ToList();
+            return selectedData;
         }
 
-        // GET: api/Dashboard
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Attack>>> GetAttacks()
+        [HttpGet("/recentData")]
+        public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)
         {
-            return await _context.Attacks.ToListAsync();
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                                .OrderByDescending(o => o.Timestamp)
+                                .Take(10).ToList();
+            return selectedData;
         }
 
-        // GET: api/Dashboard/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Attack>> GetAttack(int id)
+        [HttpGet("/severityData")]
+        public List<Attack> GetSeverityData(DateTime startDate, DateTime endDate)
         {
-            var attack = await _context.Attacks.FindAsync(id);
-
-            if (attack == null)
-            {
-                return NotFound();
-            }
-
-            return attack;
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+                .OrderByDescending(o => o.Severity)
+                                .Take(10).ToList();
+            return selectedData;
         }
 
-        // PUT: api/Dashboard/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAttack(int id, Attack attack)
+        [HttpGet("/counter")]
+        public Counter GetCounter(DateTime startDate, DateTime endDate)
         {
-            if (id != attack.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(attack).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AttackExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Dashboard
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Attack>> PostAttack(Attack attack)
-        {
-            _context.Attacks.Add(attack);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAttack", new { id = attack.Id }, attack);
-        }
-
-        // DELETE: api/Dashboard/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Attack>> DeleteAttack(int id)
-        {
-            var attack = await _context.Attacks.FindAsync(id);
-            if (attack == null)
-            {
-                return NotFound();
-            }
-
-            _context.Attacks.Remove(attack);
-            await _context.SaveChangesAsync();
-
-            return attack;
-        }
-
-        private bool AttackExists(int id)
-        {
-            return _context.Attacks.Any(e => e.Id == id);
+            var counter = new Counter();
+            counter = dashboardService.LoadCounters(startDate, endDate);
+            return counter;
         }
     }
 }
