@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace bakalarska_praca.Controllers
     [Route("[controller]")]
     [ApiController]
     [RequireHttps]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;

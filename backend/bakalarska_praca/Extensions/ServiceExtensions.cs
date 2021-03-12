@@ -36,7 +36,7 @@ namespace bakalarska_praca.Extensions
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }
             )
-            .AddJwtBearer(options =>
+            .AddJwtBearer(options =>        //validate received token from client
              {
                  options.TokenValidationParameters = new TokenValidationParameters
                  {
@@ -44,9 +44,9 @@ namespace bakalarska_praca.Extensions
                      ValidateAudience = true,                         //receiver is valid 
                      ValidateLifetime = true,                         //token has not expired
                      ValidateIssuerSigningKey = true,                 //signing key is valid and trusted by server
-                     ValidIssuer = "http://localhost:5000",
-                     ValidAudience = "http://localhost:5000",
-                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                     ValidIssuer = "http://localhost:44386",
+                     ValidAudience = "http://localhost:44386",
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GD9mf1w&Bjd1pun=opS#")),
                  };
              });
         }

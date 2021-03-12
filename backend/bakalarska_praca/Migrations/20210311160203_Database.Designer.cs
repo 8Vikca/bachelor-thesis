@@ -10,23 +10,23 @@ using bakalarska_praca.Models;
 namespace bakalarska_praca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210301091720_mockData")]
-    partial class mockData
+    [Migration("20210311160203_Database")]
+    partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("bakalarska_praca.Models.Attack", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -86,7 +86,7 @@ namespace bakalarska_praca.Migrations
                             Id = 3,
                             Category = "SQL",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injectio n Detected",
+                            Message = "Error Based SQL Injection Detected",
                             Proto = "UDP",
                             Severity = 3,
                             SeverityCategory = "low",
@@ -333,6 +333,33 @@ namespace bakalarska_praca.Migrations
                             Src_ip = "192.168.70.11",
                             Timestamp = new DateTime(2021, 3, 1, 20, 17, 49, 0, DateTimeKind.Utc)
                         });
+                });
+
+            modelBuilder.Entity("bakalarska_praca.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Logins");
                 });
 #pragma warning restore 612, 618
         }

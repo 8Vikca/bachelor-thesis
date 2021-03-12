@@ -13,7 +13,7 @@ namespace bakalarska_praca.Models
 
         }
         public DbSet<Attack> Attacks { get; set; }
-        public DbSet<Login> Logins { get; set; }
+        public DbSet<User> Logins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

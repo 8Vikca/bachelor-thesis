@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bakalarska_praca.Migrations
 {
-    public partial class mockData : Migration
+    public partial class Database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +25,23 @@ namespace bakalarska_praca.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Attacks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logins",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logins", x => x.ID);
                 });
 
             migrationBuilder.InsertData(
@@ -51,7 +68,7 @@ namespace bakalarska_praca.Migrations
                     { 6, "SYN", "192.168.60.183", "Possible TCP SYN DoS", "TCP", 5, "low", "192.168.40.11", new DateTime(2021, 2, 15, 14, 17, 49, 0, DateTimeKind.Utc) },
                     { 5, "SQL", "192.168.40.183", "Error Based SQL Injection Detected", "TCP", 4, "medium", "192.168.60.11", new DateTime(2021, 2, 14, 14, 17, 49, 0, DateTimeKind.Utc) },
                     { 4, "ICMP", "192.168.40.183", "Possible ICMP flood PING DoS", "TCP", 4, "medium", "192.168.60.11", new DateTime(2021, 2, 13, 14, 17, 49, 0, DateTimeKind.Utc) },
-                    { 3, "SQL", "192.168.40.183", "Error Based SQL Injectio n Detected", "UDP", 3, "low", "192.168.50.11", new DateTime(2021, 2, 12, 14, 17, 49, 0, DateTimeKind.Utc) },
+                    { 3, "SQL", "192.168.40.183", "Error Based SQL Injection Detected", "UDP", 3, "low", "192.168.50.11", new DateTime(2021, 2, 12, 14, 17, 49, 0, DateTimeKind.Utc) },
                     { 2, "ICMP", "192.168.40.183", "Possible ICMP flood PING DoS", "TCP", 10, "critical", "192.168.50.11", new DateTime(2021, 2, 11, 14, 17, 49, 0, DateTimeKind.Utc) },
                     { 11, "UDP", "192.168.40.183", "Possible UDP DoS", "TCP", 6, "medium", "192.168.40.11", new DateTime(2021, 2, 20, 14, 17, 49, 0, DateTimeKind.Utc) },
                     { 23, "SYN", "192.168.40.183", "Possible TCP SYN DoS", "TCP", 9, "critical", "192.168.70.11", new DateTime(2021, 3, 1, 20, 17, 49, 0, DateTimeKind.Utc) }
@@ -62,6 +79,9 @@ namespace bakalarska_praca.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Attacks");
+
+            migrationBuilder.DropTable(
+                name: "Logins");
         }
     }
 }

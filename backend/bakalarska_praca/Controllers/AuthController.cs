@@ -5,8 +5,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -18,28 +20,25 @@ namespace bakalarska_praca.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private AuthServices authService;
-        public AuthController(AppDbContext appdbContext)
+        private AuthServices _authService;
+        //private IMapper _mapper;
+        public AuthController(AppDbContext appdbContext)        // IMapper mapper
         {
             _appDbContext = appdbContext;
-            authService = new AuthServices(appdbContext);
+            _authService = new AuthServices(appdbContext);
+            //_mapper = mapper;
 
         }
 
+        [AllowAnonymous]
         [HttpPost("/login")]
-        public IActionResult Login([FromBody] Login userModel) //
+        public IActionResult Login([FromBody] Authenticate userModel) //
         {
-            if (userModel == null)
-            {
-                return BadRequest("Invalid client request");
-            }
-            //var user = _appDbContext.Logins.Where(o => o.Email == userModel.Email).FirstOrDefault();
-            
-            //if (user != null && )
+            var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
-            if (userModel.Email == "johndoe" && userModel.Password == "def@123")           //zmenit na kontrolu z databaze
+            if (userModel.Email == "admin@flatlogic.com" && userModel.Password == "admin")           //zmenit na kontrolu hesla
             {
-                string tokenString = authService.GenerateToken();
+                string tokenString = _authService.GenerateToken();
                 return Ok(new { Token = tokenString });
             }
             else
@@ -47,18 +46,40 @@ namespace bakalarska_praca.Controllers
                 return Unauthorized();
             }
         }
-//        [HttpPost("login")]
-//        [ServiceFilter(typeof(ValidationFilterAttribute))]
-//        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto
-//user)
-//        {
-//            if (!await _authManager.ValidateUser(user))
-//            {
-//                _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong
-//               user name or password.");
-//            return Unauthorized();
-//            }
-//            return Ok(new { Token = await _authManager.CreateToken() });
-//        }
+        //[HttpPost("register")]
+        //public IActionResult Register([FromBody] Register model)
+        //{
+        //    // map model to entity
+        //    var user = _mapper.Map<User>(model);
+
+        //    try
+        //    {
+        //        // create user
+        //        _authService.Create(user, model.Password);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // return error message if there was an exception
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
+
+
+
+
+        //        [HttpPost("login")]
+        //        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        //        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto
+        //user)
+        //        {
+        //            if (!await _authManager.ValidateUser(user))
+        //            {
+        //                _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong
+        //               user name or password.");
+        //            return Unauthorized();
+        //            }
+        //            return Ok(new { Token = await _authManager.CreateToken() });
+        //        }
     }
 }

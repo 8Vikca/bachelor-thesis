@@ -9,6 +9,7 @@ import { User } from '../../models';
 })
 export class LoginFormComponent implements OnInit {
   @Output() loginEmitter = new EventEmitter<any>();
+  invalidLogin: boolean;
   public form: FormGroup;
   public flatlogicEmail = 'admin@flatlogic.com';
   public flatlogicPassword = 'admin';
@@ -27,7 +28,10 @@ export class LoginFormComponent implements OnInit {
       //   'password': this.form.value.password
       // }
       this.loginEmitter.emit(this.form.value); //credentials
-      debugger
+      this.invalidLogin=false;
+    }
+    else {
+      this.invalidLogin=true;
     }
   }
 }

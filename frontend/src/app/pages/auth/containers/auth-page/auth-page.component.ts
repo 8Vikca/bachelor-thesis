@@ -27,15 +27,18 @@ export class AuthPageComponent {
   // }
 
   public sendLoginForm(loginForm: any): void {  //form: Form
-    console.log();
-    debugger
-    this.service.login();
-    this.router.navigate([this.routers.DASHBOARD]).then();
+    this.service.login(loginForm).subscribe(response => {
+      const token = (<any>response).token;
+      localStorage.setItem("token", token);
+      this.router.navigate([this.routers.DASHBOARD]);   //.then();
+    })
+    
+    
   }
 
-  public sendSignForm(): void {
-    this.service.sign();
+  // public sendSignForm(): void {
+  //   this.service.sign();
 
-    this.router.navigate([this.routers.DASHBOARD]).then();
-  }
+  //   this.router.navigate([this.routers.DASHBOARD]).then();
+  // }
 }

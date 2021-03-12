@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Attack } from '../../dashboard/models';
 
 import { User } from '../models';
 
@@ -12,19 +11,16 @@ export class AuthService {
   constructor(private http: HttpClient) {
 
   }
-  public login(): void {
-    localStorage.setItem('token', 'token');
-  }
-  
-  // sendCredentials(): Observable<Attack[]> {
-  //   return this.http.post("https://localhost:44386/login", credentials);
-  // }
-  public sign(): void {
-    localStorage.setItem('token', 'token');
+  public login(credentials: any): Observable<any> {
+      return this.http.post<any>("https://localhost:44386/login", credentials); 
   }
 
+  // public sign(): void {
+  //   localStorage.setItem('token', 'token');
+  // }
+
   public signOut(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem("jwt");
   }
 
   public getUser(): Observable<User> {

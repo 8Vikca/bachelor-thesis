@@ -17,10 +17,11 @@
 
     <ng-container matColumnDef="severity">
         <th mat-header-cell *matHeaderCellDef>Severity</th>
-        <td mat-cell *matCellDef="let element" class="severity-box" 
-        [ngClass]="{'critical': (element.SeverityCategory==='critical'),'high': (element.SeverityCategory==='high'),'medium': (element.SeverityCategory==='medium'),
-        'low': (element.SeverityCategory==='low') }">
-        {{element.severity}}</td> 
+        <td mat-cell *matCellDef="let element">
+            <button disabled class="severity-box">{{element.severity}}</button>
+        </td> 
+        <!-- [ngClass]="{'critical': (element.SeverityCategory==='critical'),'high': (element.SeverityCategory==='high'),'medium': (element.SeverityCategory==='medium'),
+        'low': (element.SeverityCategory==='low') }" -->
          
     </ng-container>
 

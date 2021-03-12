@@ -93,7 +93,6 @@ C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.ComponentModel.Annotations.dll
-C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csprojAssemblyReference.cache
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
@@ -111,3 +110,15 @@ C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Acces
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Cryptography.Xml.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Permissions.xml
 C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Rewrite.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.AspNetCore.Rewrite.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.IO.Pipelines.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.ValueTuple.dll
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.IO.Pipelines.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\bin\Debug\System.ValueTuple.xml
+C:\Users\matus\OneDrive\BP\BP\backend\ESearchAPI\obj\Debug\SearchAPI.csprojAssemblyReference.cache
