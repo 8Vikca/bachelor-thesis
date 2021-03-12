@@ -81,16 +81,16 @@ export class DailyLineChartComponent implements OnInit, AfterViewInit {
           type: 'line',
           data: data.mobile,
         },
-        {
-          name: 'Desktop',
-          type: 'area',
-          data: data.desktop
-        },
-        {
-          name: 'Tablet',
-          type: 'line',
-          data: data.tablet
-        }
+        // {
+        //   name: 'Desktop',
+        //   type: 'area',
+        //   data: data.desktop
+        // },
+        // {
+        //   name: 'Tablet',
+        //   type: 'line',
+        //   data: data.tablet
+        // }
       ],
       colors: [colors.BLUE, colors.LIGHT_BLUE, colors.YELLOW],
       chart: {
@@ -172,16 +172,16 @@ export class DailyLineChartComponent implements OnInit, AfterViewInit {
               type: 'line',
               data: this.dailyLineChartData.dailyData.mobile,
             },
-            {
-              name: 'Desktop',
-              type: 'area',
-              data: this.dailyLineChartData.dailyData.desktop,
-            },
-            {
-              name: 'Tablet',
-              type: 'line',
-              data: this.dailyLineChartData.dailyData.tablet,
-            }
+            // {
+            //   name: 'Desktop',
+            //   type: 'area',
+            //   data: this.dailyLineChartData.dailyData.desktop,
+            // },
+            // {
+            //   name: 'Tablet',
+            //   type: 'line',
+            //   data: this.dailyLineChartData.dailyData.tablet,
+            // }
           ]
         };
         break;
@@ -189,16 +189,16 @@ export class DailyLineChartComponent implements OnInit, AfterViewInit {
         this.chartOptions = {
           ...this.chartOptions,
           series: [
-            {
-              name: 'Mobile',
-              type: 'line',
-              data: this.dailyLineChartData.weeklyData.mobile,
-            },
-            {
-              name: 'Desktop',
-              type: 'area',
-              data: this.dailyLineChartData.weeklyData.desktop,
-            },
+            // {
+            //   name: 'Mobile',
+            //   type: 'line',
+            //   data: this.dailyLineChartData.weeklyData.mobile,
+            // },
+            // {
+            //   name: 'Desktop',
+            //   type: 'area',
+            //   data: this.dailyLineChartData.weeklyData.desktop,
+            // },
             {
               name: 'Tablet',
               type: 'line',

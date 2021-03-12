@@ -15,16 +15,19 @@ namespace bakalarska_praca.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("bakalarska_praca.Models.Attack", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dest_ip")
                         .HasColumnType("nvarchar(max)");
@@ -37,6 +40,9 @@ namespace bakalarska_praca.Migrations
 
                     b.Property<int>("Severity")
                         .HasColumnType("int");
+
+                    b.Property<string>("SeverityCategory")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Src_ip")
                         .HasColumnType("nvarchar(max)");
@@ -52,233 +58,306 @@ namespace bakalarska_praca.Migrations
                         new
                         {
                             Id = 1,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
                             Severity = 3,
+                            SeverityCategory = "low",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 10, 13, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 10, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 2,
+                            Category = "ICMP",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
+                            Message = "Possible ICMP flood PING DoS",
                             Proto = "TCP",
-                            Severity = 3,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 11, 13, 17, 49, 0, DateTimeKind.Utc)
+                            Severity = 10,
+                            SeverityCategory = "critical",
+                            Src_ip = "192.168.50.11",
+                            Timestamp = new DateTime(2021, 2, 11, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 3,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injectio n Detected",
-                            Proto = "TCP",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "UDP",
                             Severity = 3,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 12, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.50.11",
+                            Timestamp = new DateTime(2021, 2, 12, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 4,
+                            Category = "ICMP",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
+                            Message = "Possible ICMP flood PING DoS",
                             Proto = "TCP",
                             Severity = 4,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 13, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "medium",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 2, 13, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 5,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
                             Severity = 4,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 14, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "medium",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 2, 14, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 6,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
+                            Category = "SYN",
+                            Dest_ip = "192.168.60.183",
+                            Message = "Possible TCP SYN DoS",
                             Proto = "TCP",
                             Severity = 5,
+                            SeverityCategory = "low",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 15, 13, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 15, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 7,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
                             Severity = 5,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 16, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 2, 16, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 8,
+                            Category = "ICMP",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
+                            Message = "Possible ICMP flood PING DoS",
+                            Proto = "UDP",
                             Severity = 4,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 17, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "medium",
+                            Src_ip = "192.168.20.11",
+                            Timestamp = new DateTime(2021, 2, 17, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 9,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
                             Severity = 4,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 18, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.30.11",
+                            Timestamp = new DateTime(2021, 2, 18, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 10,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
                             Severity = 2,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 19, 13, 17, 49, 0, DateTimeKind.Utc)
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.20.11",
+                            Timestamp = new DateTime(2021, 2, 19, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 11,
+                            Category = "UDP",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
+                            Message = "Possible UDP DoS",
                             Proto = "TCP",
                             Severity = 6,
+                            SeverityCategory = "medium",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 20, 13, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 20, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 12,
+                            Category = "ICMP",
                             Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
+                            Message = "Possible ICMP flood PING DoS",
                             Proto = "TCP",
                             Severity = 7,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 21, 13, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 5,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 22, 13, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 4,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 23, 13, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 2,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 24, 13, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 2,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 25, 14, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 1,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 26, 14, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 4,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 27, 14, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 5,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 28, 14, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 6,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2020, 10, 29, 14, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 6,
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 2, 21, 9, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 6,
+                            SeverityCategory = "low",
                             Src_ip = "192.168.40.11",
                             Timestamp = new DateTime(2021, 2, 21, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = 23,
+                            Id = 13,
+                            Category = "SQL",
                             Dest_ip = "192.168.40.183",
                             Message = "Error Based SQL Injection Detected",
                             Proto = "TCP",
-                            Severity = 6,
+                            Severity = 5,
+                            SeverityCategory = "medium",
+                            Src_ip = "192.168.20.11",
+                            Timestamp = new DateTime(2021, 2, 22, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "UDP",
+                            Severity = 7,
+                            SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 2, 21, 20, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 23, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Category = "SYN",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible TCP SYN DoS",
+                            Proto = "TCP",
+                            Severity = 2,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 2, 24, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 1,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.30.11",
+                            Timestamp = new DateTime(2021, 2, 25, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Category = "ICMP",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible ICMP flood PING DoS",
+                            Proto = "UDP",
+                            Severity = 4,
+                            SeverityCategory = "medium",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 2, 26, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 9,
+                            SeverityCategory = "critical",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 2, 27, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Category = "UDP",
+                            Dest_ip = "192.168.50.183",
+                            Message = "Possible UDP DoS",
+                            Proto = "TCP",
+                            Severity = 2,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 2, 28, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "TCP",
+                            Severity = 8,
+                            SeverityCategory = "high",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 2, 9, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Category = "ICMP",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible ICMP flood PING DoS",
+                            Proto = "TCP",
+                            Severity = 7,
+                            SeverityCategory = "high",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 2, 8, 9, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "UDP",
+                            Severity = 1,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 3, 1, 14, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Category = "SYN",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible TCP SYN DoS",
+                            Proto = "TCP",
+                            Severity = 9,
+                            SeverityCategory = "critical",
+                            Src_ip = "192.168.70.11",
+                            Timestamp = new DateTime(2021, 3, 1, 20, 17, 49, 0, DateTimeKind.Utc)
                         });
+                });
+
+            modelBuilder.Entity("bakalarska_praca.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Logins");
                 });
 #pragma warning restore 612, 618
         }

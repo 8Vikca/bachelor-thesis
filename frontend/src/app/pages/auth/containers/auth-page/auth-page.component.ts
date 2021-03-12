@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services';
 import { routes } from '../../../../consts';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-auth-page',
@@ -18,15 +19,26 @@ export class AuthPageComponent {
     private router: Router
   ) { }
 
-  public sendLoginForm(): void {
-    this.service.login();
+  // getCounters(params: HttpParams): void {
+  //   this.service.loadCounter(params)
+  //     .subscribe(result => {
+  //       this.counters = result;
+  //     });
+  // }
 
-    this.router.navigate([this.routers.DASHBOARD]).then();
+  public sendLoginForm(loginForm: any): void {  //form: Form
+    this.service.login(loginForm).subscribe(response => {
+      const token = (<any>response).token;
+      localStorage.setItem("token", token);
+      this.router.navigate([this.routers.DASHBOARD]);   //.then();
+    })
+    
+    
   }
 
-  public sendSignForm(): void {
-    this.service.sign();
+  // public sendSignForm(): void {
+  //   this.service.sign();
 
-    this.router.navigate([this.routers.DASHBOARD]).then();
-  }
+  //   this.router.navigate([this.routers.DASHBOARD]).then();
+  // }
 }

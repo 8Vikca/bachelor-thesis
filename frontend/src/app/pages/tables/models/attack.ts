@@ -6,5 +6,5 @@ export interface Attack {
     src_ip: string;
     dest_ip: string;
     proto: string;
-
+    severityCategory: string;
 }

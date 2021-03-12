@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^11.2.1",
     "@angular/platform-browser-dynamic": "^11.2.1",
     "@angular/router": "^11.2.1",
+    "@auth0/angular-jwt": "^5.0.2",
     "acorn": "^8.0.5",
     "angular-in-memory-web-api": "^0.11.0",
     "apexcharts": "^3.25.0",

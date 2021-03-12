@@ -1,12 +1,9 @@
-<mat-card>
-    <div>
-        <mat-toolbar class="page-header gap" role="heading">
-            <h5>Top Offense Categories</h5>
-        </mat-toolbar>
-    </div>
-    <div id="chart">
-        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-            [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis"
-            [legend]="chartOptions.legend" [colors]="chartOptions.colors" [grid]="chartOptions.grid"></apx-chart>
-    </div>
-</mat-card>
+<div class="chart-wrapper">
+    <mat-toolbar class="page-header header" role="heading">
+        <h5>Top Offense Categories</h5>
+    </mat-toolbar>
+</div>
+<div id="chart">
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+    [responsive]="chartOptions.responsive" [colors]= "chartOptions.colors"></apx-chart>
+</div>

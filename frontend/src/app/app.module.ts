@@ -14,7 +14,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
 import {HttpClientModule} from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import {JwtModule} from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -37,6 +41,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     HammerModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44386"],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
 

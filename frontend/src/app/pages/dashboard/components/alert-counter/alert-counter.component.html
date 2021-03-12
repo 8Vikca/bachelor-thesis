@@ -1,23 +1,27 @@
-<div>
-    <mat-card class=" counter-wrapper total">
-        <div class="alert">
-            Alerts
-        </div>
-        <div class="category">
-            total
-        </div>
-        
+<div ngModel="alertCounters" class="counter-wrapper">
+    <mat-card class=" total">
+        <div class="alert">Alerts</div>
+        <div class="category">total</div>
+        <div class="counter">{{alertCounters.alertsTotal}}</div>
     </mat-card>
-    <mat-card class="counter-wrapper low">
-        Alerts low
+    <mat-card class="low">
+        <div class="alert">Alerts</div>
+        <div class="category">low</div>
+        <div class="counter">{{alertCounters.alertsLow}}</div>
     </mat-card>
-    <mat-card class="counter-wrapper medium">
-        Alerts medium
+    <mat-card class="medium">
+        <div class="alert">Alerts</div>
+        <div class="category">medium</div>
+        <div class="counter">{{alertCounters.alertsMedium}}</div>
     </mat-card>
-    <mat-card class="counter-wrapper high">
-        Alerts high
+    <mat-card class="high">
+        <div class="alert">Alerts</div>
+        <div class="category">high</div>
+        <div class="counter">{{alertCounters.alertsHigh}}</div>
     </mat-card>
-    <mat-card class="counter-wrapper critical">
-        Alerts critical
+    <mat-card class="critical">
+        <div class="alert">Alerts</div>
+        <div class="category">critical</div>
+        <div class="counter">{{alertCounters.alertsCritical}}</div>
     </mat-card>
 </div>

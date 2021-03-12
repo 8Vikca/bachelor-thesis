@@ -3,23 +3,17 @@
 @import 'src/app/styles/variables';
 
 .gap {
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   margin-top: -40px;
   color: #888888;
   background-color: white;
   position: sticky;
-  top: 0px;
 }
 
 
 table {
   width: 100%;
   margin-top: -25px;
-}
-
-.example-container {
-  height: 400px;
-  overflow: auto;
 }
 
 tr.queue-detail-row {
@@ -35,8 +29,13 @@ tr.queue-element-row:not(.queue-expanded-row):active {
 }
 
 .queue-element-row {
-  border-bottom-width: 0;
-  zoom: 0.9;
+  zoom: 0.8;
+  @media (min-width: 2100px) {
+    zoom: 1!important;
+  }
+  @media (min-width: 2600px) {
+    zoom: 1.3!important;
+  }
 }
 
 .queue-element-detail {
@@ -48,15 +47,13 @@ tr.queue-element-row:not(.queue-expanded-row):active {
 
 .table-wrapper {
   position: relative;
-  background-color: #fbf9f9;
+  background-color: #ffffff;
   width: auto;
   overflow: auto;
   padding: 0;
-  height: 262px;
   padding-left: 0;
   padding-right: 0;
-  margin: 16px 16px 32px 16px;
-  box-shadow: 0 3px 11px 0 $shadow-white, 0 3px 3px -2px $shadow-grey, 0 1px 8px 0 $shadow-dark-grey;
+  height: 242px;
 }
 
 

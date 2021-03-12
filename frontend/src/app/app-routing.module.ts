@@ -12,22 +12,10 @@ const routes: Routes = [
     component: DashboardPageComponent
   },
   {
-    path: 'typography',
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
-  },
-  {
     path: 'tables',
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
-  },
-  {
-    path: 'notification',
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule)
   },
   {
     path: 'ui',

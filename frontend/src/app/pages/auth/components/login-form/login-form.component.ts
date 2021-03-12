@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-login-form',
@@ -7,7 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  @Output() sendLoginForm = new EventEmitter<void>();
+  @Output() loginEmitter = new EventEmitter<any>();
+  invalidLogin: boolean;
   public form: FormGroup;
   public flatlogicEmail = 'admin@flatlogic.com';
   public flatlogicPassword = 'admin';
@@ -21,7 +23,15 @@ export class LoginFormComponent implements OnInit {
 
   public login(): void {
     if (this.form.valid) {
-      this.sendLoginForm.emit();
+      // const credentials = {
+      //   'email': this.form.value.email,
+      //   'password': this.form.value.password
+      // }
+      this.loginEmitter.emit(this.form.value); //credentials
+      this.invalidLogin=false;
+    }
+    else {
+      this.invalidLogin=true;
     }
   }
 }

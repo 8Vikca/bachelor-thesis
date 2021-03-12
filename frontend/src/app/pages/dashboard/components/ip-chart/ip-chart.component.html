@@ -1,6 +1,6 @@
-<mat-card>
-    <div>
-        <mat-toolbar class="page-header gap" role="heading">
+
+    <div class="chart-wrapper">
+        <mat-toolbar class="page-header header" role="heading">
             <h5>Top IP Sources</h5>
         </mat-toolbar>
     </div>
@@ -8,4 +8,3 @@
         <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
             [responsive]="chartOptions.responsive" [colors]= "chartOptions.colors"></apx-chart>
     </div>
-</mat-card>

@@ -6,7 +6,6 @@ import {
   ApexChart,
   ChartComponent
 } from "ng-apexcharts";
-import { colors } from "src/app/consts";
 import { Attack, Counter } from "../../models";
 
 export type ChartOptions = {
@@ -24,14 +23,8 @@ export type ChartOptions = {
 })
 export class IpChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
-  @Input() ipGraphData: Attack[] = [];
-  @Input() ipGraphSeries: Counter = {
-    counterSrc : [],
-    labelSrc : []
-  };
+  @Input() ipChartSeries: Counter = {};
   public chartOptions: Partial<ChartOptions>;
-  dataLabel: string[] = [];
-  dataCounter: number[] = [];
 
   constructor() {
     this.initializeChart();
@@ -41,14 +34,13 @@ export class IpChartComponent implements OnChanges{
   }
     
   initializeChart() {   
-    debugger
     this.chartOptions = {
-      series: this.ipGraphSeries.counterSrc,
+      series: this.ipChartSeries.counterSrc,
       chart: {
         width: 380,
         type: "pie"
       },
-      labels: this.ipGraphSeries.labelSrc,
+      labels: this.ipChartSeries.labelSrc,
       responsive: [
         {
           breakpoint: 480,
@@ -62,7 +54,8 @@ export class IpChartComponent implements OnChanges{
           }
         }
       ],
-      colors:['#F44336', '#E91E63', '#9C27B0', '#798DFE', '#9C27D0', '#9D22D0','#9C27D0','#9C27D0','#9C27D0']
+      colors:['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
+      //['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
     };
   
   }

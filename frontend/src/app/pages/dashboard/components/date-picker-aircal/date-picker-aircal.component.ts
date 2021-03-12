@@ -25,6 +25,8 @@ export class DatePickerAircalComponent implements OnInit {
     allowUserInputField:true,
     closeOnOutsideClick:true,
     arrowBias: 'left',
+    selectionShortcutVisible: true,
+    selectionShortcuts: { "0.days": "Today", "-1.days": "Yesterday", "1.months": "Last Week", "6.months": "Last Month"},
     startDate: new Date(),  //(this.today.setDate(this.today.getDate()-1)
     endDate: new Date()   
   });
