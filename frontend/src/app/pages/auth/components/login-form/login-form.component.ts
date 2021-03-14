@@ -23,11 +23,7 @@ export class LoginFormComponent implements OnInit {
 
   public login(): void {
     if (this.form.valid) {
-      // const credentials = {
-      //   'email': this.form.value.email,
-      //   'password': this.form.value.password
-      // }
-      this.loginEmitter.emit(this.form.value); //credentials
+      this.loginEmitter.emit(this.form.value); 
       this.invalidLogin=false;
     }
     else {

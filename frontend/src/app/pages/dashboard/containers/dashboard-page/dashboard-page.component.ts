@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-
+import { Observable, interval } from 'rxjs';
 import { DashboardService } from '../../services';
 import {
   Attack,
@@ -33,13 +32,27 @@ export class DashboardPageComponent {
     this.getTimelineData(this.params);
   }
   getSeverityTableData(params: HttpParams): void {
+
     this.service.loadSeverityTableData(params)
       .subscribe(result => {
         this.severityTableData = result;
       });
+    //   Observable
+    // .interval(2*60*1000)
+    // .timeInterval()
+    // .flatMap(() => this.service.loadSeverityTableData(params)
+    // .subscribe(result => {
+    //   this.severityTableData = result;
+    // });
+    // this.interval = setInterval(() => {
+    //   this.service.loadRecentTableData(params)  
+    //   .subscribe(result => {
+    //     this.recentTableData = result;
+    //   });}, 1 * 30 * 1000);
+    //   debugger
   }
   getRecentTableData(params: HttpParams): void {
-    this.service.loadRecentTableData(params)
+    this.service.loadRecentTableData(params) 
       .subscribe(result => {
         this.recentTableData = result;
       });
@@ -56,10 +69,16 @@ export class DashboardPageComponent {
         this.timelineData = result;
       });
   }
+ 
+  // const nodeInterval =  NodeJS.Timeout = setInterval(() => {
+  //   // do something
+  // }, 1000);
+
+  setInterval(){
+    this.getRecentTableData(this.params);
+  };
 
   public pushDateRange(event: AircalResponse): void {
-    // event.startDate.setHours(0, 0, 0, 0);
-    // event.endDate.setHours(23, 59, 59, 59);
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);

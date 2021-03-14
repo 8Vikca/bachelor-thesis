@@ -15,9 +15,10 @@ export class AuthService {
       return this.http.post<any>("https://localhost:44386/login", credentials); 
   }
 
-  // public sign(): void {
-  //   localStorage.setItem('token', 'token');
-  // }
+  public sign(credentials: any): Observable<any> {
+    return this.http.post<any>("https://localhost:44386/register", credentials); 
+    //localStorage.setItem('token', 'token');
+  }
 
   public signOut(): void {
     localStorage.removeItem("jwt");

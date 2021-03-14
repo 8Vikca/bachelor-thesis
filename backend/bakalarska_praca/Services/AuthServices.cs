@@ -64,7 +64,7 @@ namespace bakalarska_praca.Services
             user.PasswordSalt = passwordSalt;
 
             _appDbContext.Logins.Add(user);
-            //_appDbContext.Logins.SaveChanges();
+            _appDbContext.SaveChanges();
 
             return user;
         }

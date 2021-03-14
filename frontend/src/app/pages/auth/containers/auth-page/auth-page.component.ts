@@ -19,12 +19,6 @@ export class AuthPageComponent {
     private router: Router
   ) { }
 
-  // getCounters(params: HttpParams): void {
-  //   this.service.loadCounter(params)
-  //     .subscribe(result => {
-  //       this.counters = result;
-  //     });
-  // }
 
   public sendLoginForm(loginForm: any): void {  //form: Form
     this.service.login(loginForm).subscribe(response => {
@@ -32,13 +26,14 @@ export class AuthPageComponent {
       localStorage.setItem("token", token);
       this.router.navigate([this.routers.DASHBOARD]);   //.then();
     })
-    
-    
   }
 
-  // public sendSignForm(): void {
-  //   this.service.sign();
-
-  //   this.router.navigate([this.routers.DASHBOARD]).then();
-  // }
+  public sendSignForm(signForm: any): void {
+    debugger
+    this.service.sign(signForm).subscribe(response => {
+      const token = (<any>response).token;
+      localStorage.setItem("token", token);
+      //this.router.navigate([this.routers.DASHBOARD]);;
+    })
+  }
 }

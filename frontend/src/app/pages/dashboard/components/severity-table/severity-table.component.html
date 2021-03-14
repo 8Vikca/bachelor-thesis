@@ -4,43 +4,40 @@
             <h5>Most Severe Offenses</h5>
         </mat-toolbar>
     </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
-    <ng-container  matColumnDef="timestamp">
-        <th mat-header-cell *matHeaderCellDef>Timestamp</th>
-        <td mat-cell *matCellDef="let element">{{element.timestamp | date:'medium'}}</td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
+        <ng-container matColumnDef="timestamp">
+            <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+            <td mat-cell *matCellDef="let element">{{element.timestamp | date:'medium'}}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="message">
-        <th mat-header-cell *matHeaderCellDef>Message</th>
-        <td mat-cell *matCellDef="let element">{{element.message}}</td>
-    </ng-container>
+        <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef>Message</th>
+            <td mat-cell *matCellDef="let element">{{element.message}}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="severity">
-        <th mat-header-cell *matHeaderCellDef>Severity</th>
-        <td mat-cell *matCellDef="let element">
-            <button disabled class="severity-box">{{element.severity}}</button>
-        </td> 
-        <!-- [ngClass]="{'critical': (element.SeverityCategory==='critical'),'high': (element.SeverityCategory==='high'),'medium': (element.SeverityCategory==='medium'),
-        'low': (element.SeverityCategory==='low') }" -->
-         
-    </ng-container>
+        <ng-container matColumnDef="severity">
+            <th mat-header-cell *matHeaderCellDef>Severity</th>
+            <td mat-cell *matCellDef="let element">
+                <button disabled class="severity-box" [ngClass]="{'critical': element.severity == '9' || element.severity == '10', 
+                'high': element.severity == '7' || element.severity == '8', 'medium': element.severity == '4' || element.severity == '5' || element.severity == '6', 
+                'low': element.severity == '1' || element.severity == '2' || element.severity == '3'}">{{element.severity}}</button>
+            </td>
+        </ng-container>
 
-    <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-            <div class="row queue-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
-                <div class="row queue-element-detail">
-                    {{element.proto}}
-                  </div>
-            </div>
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="row queue-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+                    <div class="row queue-element-detail">
+                        {{element.src_ip}} &#8658; {{element.dest_ip}}
+                    </div>
+                </div>
+            </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-        class="queue-element-row"
-        [class.queue-expanded-row]="expandedElement === element"
-        (click)="element.isExpanded = !element.isExpanded">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="queue-detail-row"></tr>
-</table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="queue-element-row"
+            [class.queue-expanded-row]="expandedElement === element" (click)="element.isExpanded = !element.isExpanded">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="queue-detail-row"></tr>
+    </table>
 </mat-card>

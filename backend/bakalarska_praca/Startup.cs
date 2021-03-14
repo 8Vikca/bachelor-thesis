@@ -32,18 +32,17 @@ namespace bakalarska_praca
                 options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
                 options.HttpsPort = 44386;
             });
-            //services.AddHsts(options =>
-            //{
-            //    options.Preload = true;
-            //    options.IncludeSubDomains = true;
-            //    options.MaxAge = TimeSpan.FromDays(365);          
-            //    options.ExcludedHosts.Add("example.com");
-            //    options.ExcludedHosts.Add("www.example.com");
-            //});
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(365);
+                //options.ExcludedHosts.Add("example.com");
+                //options.ExcludedHosts.Add("www.example.com");
+            });
             services.ConfigureCors();
             services.ConfigureIISIntegration();
-            services.ConfigureAuth();
-       
+            services.ConfigureAuth();    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,26 +53,18 @@ namespace bakalarska_praca
                 app.UseDeveloperExceptionPage();
             }
 
-            var options = new RewriteOptions().AddRedirect("redirect-rule/(.*)", "redirected/$1")
-            .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
-                skipRemainingRules: true).AddRedirectToHttps(301, 44386);
-
+            var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);        //redirect to https
             app.UseRewriter(options);
 
-            app.UseStaticFiles();
-            app.UseCors("CorsPolicy");
+            app.UseStaticFiles();       
+            app.UseCors("CorsPolicy");                                  //povolenie http poziadaviek
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
 
-            //app.UseCors(builder => builder          //povolenie http poziadaviek
-            // .AllowAnyOrigin()
-            // .AllowAnyMethod()
-            // .AllowAnyHeader());
-
             app.UseHttpsRedirection();
-           // app.UseHsts();
+            app.UseHsts();
             app.UseRouting();
 
             app.UseAuthentication();

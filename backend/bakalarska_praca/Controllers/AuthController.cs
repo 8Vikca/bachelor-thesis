@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -26,17 +25,16 @@ namespace bakalarska_praca.Controllers
         {
             _appDbContext = appdbContext;
             _authService = new AuthServices(appdbContext);
-            //_mapper = mapper;
+           // _mapper = mapper;
 
         }
 
-        [AllowAnonymous]
         [HttpPost("/login")]
         public IActionResult Login([FromBody] Authenticate userModel) //
         {
             var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
-            if (userModel.Email == "admin@flatlogic.com" && userModel.Password == "admin")           //zmenit na kontrolu hesla
+            if (user != null)           //zmenit na kontrolu hesla
             {
                 string tokenString = _authService.GenerateToken();
                 return Ok(new { Token = tokenString });
@@ -46,24 +44,32 @@ namespace bakalarska_praca.Controllers
                 return Unauthorized();
             }
         }
-        //[HttpPost("register")]
-        //public IActionResult Register([FromBody] Register model)
-        //{
-        //    // map model to entity
-        //    var user = _mapper.Map<User>(model);
 
-        //    try
-        //    {
-        //        // create user
-        //        _authService.Create(user, model.Password);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // return error message if there was an exception
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
+        [Authorize]
+        [HttpPost("/register")]
+        public IActionResult Register([FromBody] Register model)
+        {
+            // map model to entity
+           // var user = _mapper.Map<User>(model);
+            var user = new User()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email
+            };
+
+            try
+            {
+                // create user
+                _authService.Create(user, model.Password);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
 
 
