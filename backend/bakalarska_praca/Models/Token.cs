@@ -9,7 +9,7 @@ namespace bakalarska_praca.Models
     public class Token
     {
         [JsonProperty("token")]
-        public string TokenJWT { get; set; }
+        public string AccessToken { get; set; }
 
         [JsonProperty("refreshToken")]
         public string RefreshToken { get; set; }

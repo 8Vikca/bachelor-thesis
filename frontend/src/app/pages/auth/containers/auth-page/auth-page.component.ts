@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services';
 import { routes } from '../../../../consts';
 import { Form } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-auth-page',
@@ -23,7 +25,9 @@ export class AuthPageComponent {
   public sendLoginForm(loginForm: any): void {  //form: Form
     this.service.login(loginForm).subscribe(response => {
       const token = (<any>response).token;
+      const refreshToken = (<any>response).refreshToken;
       localStorage.setItem("token", token);
+      localStorage.setItem("refreshToken", refreshToken);
       this.router.navigate([this.routers.DASHBOARD]);   //.then();
     })
   }
@@ -32,7 +36,9 @@ export class AuthPageComponent {
     debugger
     this.service.sign(signForm).subscribe(response => {
       const token = (<any>response).token;
+      const refreshToken = (<any>response).refreshToken;
       localStorage.setItem("token", token);
+      localStorage.setItem("refreshToken", refreshToken);
       //this.router.navigate([this.routers.DASHBOARD]);;
     })
   }

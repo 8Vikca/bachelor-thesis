@@ -5,7 +5,8 @@ import { Observable, of } from 'rxjs';
 import {
   DailyLineChartData,
   Attack,
-  Counter
+  Counter,
+  Timeline
 } from '../models';
 
 
@@ -28,8 +29,8 @@ export class DashboardService {
   loadCounter(params: HttpParams): Observable<Counter[]> {   
     return this.http.get<Counter[]>("https://localhost:44386/counter", {params: params});     
   }
-  loadTimelineData(params: HttpParams): Observable<Attack[]> { 
-    return this.http.get<Attack[]>("https://localhost:44386/timelineData", {params: params});  
+  loadTimelineData(params: HttpParams): Observable<Timeline[]> { 
+    return this.http.get<Timeline[]>("https://localhost:44386/timelineData", {params: params});  
   }
 
   

@@ -20,12 +20,13 @@ namespace bakalarska_praca.Controllers
     {
         private readonly AppDbContext _appDbContext;
         private AuthServices _authService;
-        //private IMapper _mapper;
+        private TokenServices _tokenService;
+
         public AuthController(AppDbContext appdbContext)        // IMapper mapper
         {
             _appDbContext = appdbContext;
             _authService = new AuthServices(appdbContext);
-           // _mapper = mapper;
+            _tokenService = new TokenServices(appdbContext);
 
         }
 
@@ -34,23 +35,34 @@ namespace bakalarska_praca.Controllers
         {
             var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
-            if (user != null)           //zmenit na kontrolu hesla
-            {
-                string tokenString = _authService.GenerateToken();
-                return Ok(new { Token = tokenString });
-            }
-            else
+            if (user == null)           //zmenit na kontrolu hesla
             {
                 return Unauthorized();
             }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, userModel.Email),
+                //new Claim(ClaimTypes.Role, "Manager")
+            };
+            var accessToken = _tokenService.GenerateAccessToken(claims);
+            var refreshToken = _tokenService.GenerateRefreshToken();
+
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+
+            _appDbContext.SaveChanges();
+            return Ok(new
+            {
+                Token = accessToken,
+                RefreshToken = refreshToken
+            });
+
         }
 
-        [Authorize]
-        [HttpPost("/register")]
+        [HttpPost("/register"), Authorize]
         public IActionResult Register([FromBody] Register model)
         {
-            // map model to entity
-           // var user = _mapper.Map<User>(model);
             var user = new User()
             {
                 FirstName = model.FirstName,
@@ -70,22 +82,5 @@ namespace bakalarska_praca.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
-
-
-
-        //        [HttpPost("login")]
-        //        [ServiceFilter(typeof(ValidationFilterAttribute))]
-        //        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto
-        //user)
-        //        {
-        //            if (!await _authManager.ValidateUser(user))
-        //            {
-        //                _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong
-        //               user name or password.");
-        //            return Unauthorized();
-        //            }
-        //            return Ok(new { Token = await _authManager.CreateToken() });
-        //        }
     }
 }

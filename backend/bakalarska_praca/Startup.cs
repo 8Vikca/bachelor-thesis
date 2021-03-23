@@ -1,4 +1,4 @@
-using bakalarska_praca.Extensions;
+ using bakalarska_praca.Extensions;
 using bakalarska_praca.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -5,6 +5,7 @@ import {
   Attack,
   Counter,
   DailyLineChartData,
+  Timeline,
 } from '../../models';
 import { HttpParams } from '@angular/common/http';
 import { AircalResponse } from 'ngx-aircal';
@@ -19,11 +20,10 @@ export class DashboardPageComponent {
   public severityTableData: Attack[];
   public recentTableData: Attack[];    //Observable<Attack[]>
   public ipGraphData: Attack[];
-  public timelineData: Attack[];
+  public timelineData: Timeline[];
   public counters: Counter[];
   params = new HttpParams();
   variableDate = new Date;
-  //params2 = new HttpParams().set("startDate", this.startDate.toISOString()).set("endDate", this.date.toISOString());
 
   public ngOnInit() {
     this.getRecentTableData(this.params);
@@ -32,7 +32,6 @@ export class DashboardPageComponent {
     this.getTimelineData(this.params);
   }
   getSeverityTableData(params: HttpParams): void {
-
     this.service.loadSeverityTableData(params)
       .subscribe(result => {
         this.severityTableData = result;
@@ -83,6 +82,7 @@ export class DashboardPageComponent {
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getCounters(this.params);
+    this.getTimelineData(this.params);
   }
 
 

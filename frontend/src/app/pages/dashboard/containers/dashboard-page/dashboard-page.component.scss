@@ -57,7 +57,13 @@
     width: 100% !important;
   }
 }
-
+.timeline {
+  height: 305px;
+  @media (max-width: $normal) {
+    flex-wrap: wrap;
+    width: 100% !important;
+  }
+}
 
 
 .chart {

@@ -10,7 +10,7 @@ import {
   ApexXAxis,
   ApexTooltip
 } from "ng-apexcharts";
-import { Attack } from '../../models';
+import { Attack, Timeline } from '../../models';
 import { dataSeries } from "./data-series";
 
 @Component({
@@ -29,10 +29,11 @@ export class TimelineChartComponent implements OnChanges{
   public xaxis: ApexXAxis;
   public tooltip: ApexTooltip;
 
-  @Input() timelineData: Attack[] = [];
+  @Input() timelineData: Timeline[] = [];
 
   constructor() {
     this.initChartData();
+    debugger
   }
   ngOnChanges(): void {
     this.initChartData();
@@ -41,10 +42,9 @@ export class TimelineChartComponent implements OnChanges{
   public initChartData(): void {
     let ts2 = 1484418600000;
     let dates = [];
-    for (let i = 0; i < 20; i++) {
-      ts2 = ts2 + 86400000;
-      dates.push([ts2, dataSeries[1][i].value]);
-    }
+     this.timelineData.forEach(element => {
+      dates.push([element.timestamp, element.value])  
+    }); 
     this.series = [
       {
         name: "Incidents",
@@ -53,16 +53,19 @@ export class TimelineChartComponent implements OnChanges{
       }
     ];
     this.chart = {
-      type: "area",
+      type: "bar",
       stacked: false,
       height: 350,
       zoom: {
         type: "x",
         enabled: true,
-        autoScaleYaxis: true
+        autoScaleYaxis: true,
       },
       toolbar: {
-        autoSelected: "zoom"
+        autoSelected: "pan",
+        tools: {
+          download: false,
+        }
       }
     };
     this.dataLabels = {
@@ -86,23 +89,34 @@ export class TimelineChartComponent implements OnChanges{
     //   }
     // };
     this.yaxis = {
-      labels: {
-        formatter: function(val) {
-          return (val / 1000000).toFixed(0);
-        }
-      },
+      // labels: {
+      //   formatter: function(val) {
+      //     return (val).toFixed(0);
+      //   }
+      // },
       title: {
         text: "Total"
       }
     };
     this.xaxis = {
-      type: "datetime"
+      type: "datetime",
+      labels: {
+      datetimeFormatter: {
+        year: 'yyyy',
+        month: 'MMM \'yy',
+        day: 'dd MMM',
+        hour: 'HH:mm'
+      }
+    }
     };
     this.tooltip = {
       shared: false,
+      x: {
+        format: "MMM dd, HH:mm",
+      },
       y: {
         formatter: function(val) {
-          return (val / 1000000).toFixed(0);
+          return (val).toFixed(0);
         }
       }
     };

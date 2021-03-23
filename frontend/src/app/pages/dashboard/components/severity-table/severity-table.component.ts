@@ -28,7 +28,6 @@ export class SeverityTableComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     this.dataSource = new MatTableDataSource<Attack>(this.severityTableData);
-    debugger
   }
 
 
