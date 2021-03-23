@@ -26,8 +26,8 @@ export class NgxDaterangePickerComponent implements OnInit {
     this.alwaysShowCalendars = true;
     this.autoApply = true;
     this.selected = {
-      startDate: moment().set({hours: 0, minutes: 0}),
-      endDate: moment().set({hours: 23, minutes: 59})
+      startDate: moment().set({hours: 0, minutes: 0, seconds:0, milliseconds:0}),
+      endDate: moment().set({hours: 23, minutes: 59, seconds:59, milliseconds:999})
     };
   }
   ngOnInit(): void {

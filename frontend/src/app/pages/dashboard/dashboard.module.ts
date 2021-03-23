@@ -32,7 +32,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Daterangepicker } from 'ng2-daterangepicker';
-import { DatePickerAircalComponent } from './components/date-picker-aircal/date-picker-aircal.component';
 import { NgxAircalModule } from "ngx-aircal";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MomentModule } from 'ngx-moment';
@@ -48,7 +47,6 @@ import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/n
     SeverityTableComponent,
     CategoryChartComponent,
     IpChartComponent,
-    DatePickerAircalComponent,
     RecentDataTableComponent,
     AlertCounterComponent,
     TimelineChartComponent,

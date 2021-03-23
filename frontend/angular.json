@@ -27,12 +27,11 @@
               "./node_modules/font-awesome/scss/font-awesome.scss",
               "./node_modules/ngx-toastr/toastr.css",
               "src/custom-theme.scss",
-              "./node_modules/ng2-daterangepicker/assets/daterangepicker.css"     
+              "./node_modules/ng2-daterangepicker/assets/daterangepicker.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/apexcharts/dist/apexcharts.min.js"
-
             ]
           },
           "configurations": {
@@ -76,7 +75,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-material-admin:build"
+            "browserTarget": "angular-material-admin:build",
+            "sslKey": "C:/Users/matus/certificate/server.key",
+            "sslCert": "C:/Users/matus/certificate/server.crt",
+            "ssl": true
           },
           "configurations": {
             "production": {

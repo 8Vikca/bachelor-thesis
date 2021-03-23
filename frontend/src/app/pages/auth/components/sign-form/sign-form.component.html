@@ -1,6 +1,10 @@
 <form class="form" [formGroup]="form" (ngSubmit)="sign()">
   <mat-form-field class="form__input">
-    <input matInput placeholder="Full name" formControlName="name">
+    <input matInput placeholder="First name" formControlName="firstName">
+  </mat-form-field>
+  
+  <mat-form-field class="form__input">
+    <input matInput placeholder="Last name" formControlName="lastName">
   </mat-form-field>
 
   <mat-form-field class="form__input">

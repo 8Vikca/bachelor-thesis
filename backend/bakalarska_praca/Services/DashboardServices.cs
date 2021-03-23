@@ -9,7 +9,7 @@ namespace bakalarska_praca.Services
 {
     public class DashboardServices
     {
-        
+
         private readonly AppDbContext _appDbContext;
         public DashboardServices(AppDbContext appdbContext)
         {
@@ -80,6 +80,42 @@ namespace bakalarska_praca.Services
             }
             return counter;
         }
+        public List<Timeline> LoadTimelineData(TimeSpan variety, List<Attack> selectedData)
+        {
+            var timelineData = new List<Timeline>();
+
+            var timelineDictionary = this.fillDictionary(selectedData, variety);
+            foreach (var item in timelineDictionary)
+            {
+                timelineData.Add(new Timeline { Timestamp = item.Key, Value = item.Value });
+            }
+            return timelineData;
+        }
+        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety)
+        {
+            var timelineDictionary = new Dictionary<DateTime, int>();
+            for (int i = 0; i < selectedData.Count; i++)
+            {
+                if (variety.TotalDays <= 1) //data s casom pre max 2 dni
+                {
+                    selectedData[i].Timestamp = selectedData[i].Timestamp.AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                }
+                else
+                {
+                    selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                }
+                if (!timelineDictionary.ContainsKey(selectedData[i].Timestamp))
+                {
+                    timelineDictionary.Add(selectedData[i].Timestamp, 1);
+                }
+                else
+                {
+                    timelineDictionary[selectedData[i].Timestamp] += 1;
+                }
+            }
+            return timelineDictionary;
+        }
+
 
     }
 }

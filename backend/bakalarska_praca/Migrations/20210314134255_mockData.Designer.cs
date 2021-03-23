@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bakalarska_praca.Models;
 
 namespace bakalarska_praca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314134255_mockData")]
+    partial class mockData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -329,54 +331,6 @@ namespace bakalarska_praca.Migrations
                             Severity = 9,
                             SeverityCategory = "critical",
                             Src_ip = "192.168.70.11",
-                            Timestamp = new DateTime(2021, 3, 14, 0, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Category = "SQL",
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "TCP",
-                            Severity = 8,
-                            SeverityCategory = "high",
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 14, 4, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Category = "ICMP",
-                            Dest_ip = "192.168.40.183",
-                            Message = "Possible ICMP flood PING DoS",
-                            Proto = "TCP",
-                            Severity = 7,
-                            SeverityCategory = "high",
-                            Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 14, 9, 17, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Category = "SQL",
-                            Dest_ip = "192.168.40.183",
-                            Message = "Error Based SQL Injection Detected",
-                            Proto = "UDP",
-                            Severity = 1,
-                            SeverityCategory = "low",
-                            Src_ip = "192.168.60.11",
-                            Timestamp = new DateTime(2021, 3, 14, 9, 45, 49, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Category = "SYN",
-                            Dest_ip = "192.168.40.183",
-                            Message = "Possible TCP SYN DoS",
-                            Proto = "TCP",
-                            Severity = 9,
-                            SeverityCategory = "critical",
-                            Src_ip = "192.168.70.11",
                             Timestamp = new DateTime(2021, 3, 14, 20, 17, 49, 0, DateTimeKind.Utc)
                         });
                 });
@@ -402,12 +356,6 @@ namespace bakalarska_praca.Migrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ID");
 

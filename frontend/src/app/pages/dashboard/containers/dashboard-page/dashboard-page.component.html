@@ -13,7 +13,7 @@
             <app-category-chart *ngIf="counters" [categoryChartSeries]="counters"></app-category-chart>
           </mat-card>
           <mat-card id="chart1">
-            <app-ip-chart *ngIf="counters"  [ipChartSeries]="counters"></app-ip-chart>
+            <app-ip-chart *ngIf="counters" [ipChartSeries]="counters"></app-ip-chart>
           </mat-card>
 
         </div>
@@ -23,7 +23,10 @@
         <app-recent-data-table *ngIf="recentTableData" [recentTableData]="recentTableData"></app-recent-data-table>
       </div>
     </div>
-    <app-timeline-chart *ngIf="timelineData" [timelineData]="timelineData"></app-timeline-chart>
+    <!-- <app-timeline-column-chart ></app-timeline-column-chart>  -->
+    <mat-card class="timeline">
+      <app-timeline-chart *ngIf="timelineData" [timelineData]="timelineData"></app-timeline-chart>
+    </mat-card>
     <!-- <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart> -->
   </div>
 

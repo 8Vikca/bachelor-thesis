@@ -12,7 +12,8 @@ export class SignFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
@@ -20,7 +21,8 @@ export class SignFormComponent implements OnInit {
 
   public sign(): void {
     if (this.form.valid) {
-      this.sendSignForm.emit();
+      this.sendSignForm.emit(this.form.value);
+      debugger
     }
   }
 }

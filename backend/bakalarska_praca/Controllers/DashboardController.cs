@@ -22,17 +22,6 @@ namespace bakalarska_praca.Controllers
         {
             dashboardService = new DashboardServices(appdbContext);
             _appDbContext = appdbContext;
-
-
-        }
-        //[HttpGet,Authorize]
-
-        [HttpGet("/timelineData")]
-        public List<Attack> GetTimelineData(DateTime startDate, DateTime endDate)
-        {
-            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
-                                .OrderByDescending(o => o.Timestamp).ToList();
-            return selectedData;
         }
 
         [HttpGet("/recentData")]
@@ -59,6 +48,20 @@ namespace bakalarska_praca.Controllers
             var counter = new Counter();
             counter = dashboardService.LoadCounters(startDate, endDate);
             return counter;
+        }
+
+        [HttpGet("/timelineData")]
+        [AllowAnonymous]
+        public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)
+        {
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
+            if (selectedData.Count == 0)
+            {
+                return null;
+            }
+            var variety = endDate.Date.Subtract(startDate.Date);
+            var timelineData= dashboardService.LoadTimelineData(variety, selectedData);
+            return timelineData;
         }
     }
 }

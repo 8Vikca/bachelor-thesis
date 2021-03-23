@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -21,65 +20,67 @@ namespace bakalarska_praca.Controllers
     {
         private readonly AppDbContext _appDbContext;
         private AuthServices _authService;
-        //private IMapper _mapper;
+        private TokenServices _tokenService;
+
         public AuthController(AppDbContext appdbContext)        // IMapper mapper
         {
             _appDbContext = appdbContext;
             _authService = new AuthServices(appdbContext);
-            //_mapper = mapper;
+            _tokenService = new TokenServices(appdbContext);
 
         }
 
-        [AllowAnonymous]
         [HttpPost("/login")]
         public IActionResult Login([FromBody] Authenticate userModel) //
         {
             var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
-            if (userModel.Email == "admin@flatlogic.com" && userModel.Password == "admin")           //zmenit na kontrolu hesla
-            {
-                string tokenString = _authService.GenerateToken();
-                return Ok(new { Token = tokenString });
-            }
-            else
+            if (user == null)           //zmenit na kontrolu hesla
             {
                 return Unauthorized();
             }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, userModel.Email),
+                //new Claim(ClaimTypes.Role, "Manager")
+            };
+            var accessToken = _tokenService.GenerateAccessToken(claims);
+            var refreshToken = _tokenService.GenerateRefreshToken();
+
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+
+            _appDbContext.SaveChanges();
+            return Ok(new
+            {
+                Token = accessToken,
+                RefreshToken = refreshToken
+            });
+
         }
-        //[HttpPost("register")]
-        //public IActionResult Register([FromBody] Register model)
-        //{
-        //    // map model to entity
-        //    var user = _mapper.Map<User>(model);
 
-        //    try
-        //    {
-        //        // create user
-        //        _authService.Create(user, model.Password);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // return error message if there was an exception
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
+        [HttpPost("/register"), Authorize]
+        public IActionResult Register([FromBody] Register model)
+        {
+            var user = new User()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email
+            };
 
-
-
-
-        //        [HttpPost("login")]
-        //        [ServiceFilter(typeof(ValidationFilterAttribute))]
-        //        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto
-        //user)
-        //        {
-        //            if (!await _authManager.ValidateUser(user))
-        //            {
-        //                _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong
-        //               user name or password.");
-        //            return Unauthorized();
-        //            }
-        //            return Ok(new { Token = await _authManager.CreateToken() });
-        //        }
+            try
+            {
+                // create user
+                _authService.Create(user, model.Password);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

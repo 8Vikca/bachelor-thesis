@@ -17,5 +17,6 @@ namespace bakalarska_praca.Models
         public string Proto { get; set; }
         public string Category { get; set; }
         public string SeverityCategory { get; set; }
+
     }
 }
