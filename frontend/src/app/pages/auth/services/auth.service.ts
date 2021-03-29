@@ -21,12 +21,12 @@ export class AuthService {
   }
   public refresh(credentials: any): Observable<any> {
     return this.http.post<any>("https://localhost:44386/refresh", credentials
-    // , {
-    //   headers: new HttpHeaders({
-    //     "Content-Type": "application/json"
-    //   }),
-    //   observe: 'response'
-    // }
+    , {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      observe: 'response'
+    }
     ); 
   }
 

@@ -1,0 +1,16 @@
+
+<div class="filter">
+    <mat-form-field class="input">
+    
+        <input type="text" placeholder="Filter..." matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="queryInput">
+        <button mat-button *ngIf="queryInput" matSuffix mat-icon-button aria-label="Clear" (click)="queryInput=''" class="clear"></button>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+    
+      </mat-form-field>
+    <button class="btn" (click)="addFilter(queryInput)">Add Filter</button> 
+    <button class="btn search" (click)="sendFilters()">Search</button>
+</div>

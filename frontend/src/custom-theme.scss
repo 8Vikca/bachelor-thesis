@@ -180,9 +180,9 @@ mat-select.mat-select {
   }
 }
 
-.mat-form-field-underline {
-  display: none;
-}
+// .mat-form-field-underline {
+//   display: none;
+// }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -239,8 +239,8 @@ button.mat-fab .mat-button-wrapper {
 
 mat-toolbar.page-header {
   display: flex;
-  justify-content: space-between;
-  padding: 50px 24px 16px 24px;
+  //justify-content: space-between;
+  padding: 50px 24px 30px 24px;
   background: none;
   height: auto;
 

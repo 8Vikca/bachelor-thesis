@@ -1,0 +1,44 @@
+@import 'src/app/styles/colors';
+@import 'src/app/styles/font';
+@import 'src/app/styles/variables';
+
+
+.ng-autocomplete {
+    width: 400px;
+    display: flex;
+    margin-right: -30px;
+}
+.filter {
+  width: 400px;
+  display: flex;
+  margin-right: -30px;
+  zoom: 0.9;
+}
+// .clear {
+  
+// }
+
+.input {
+  background-color: transparent;
+  margin-top: -15px;
+}
+
+.btn {
+    background-color:$navbar-background-color;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2), 0 0 5px 0 rgba(0,0,0,0.19);
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    width: 80px;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 30px;
+  }
+  .search {
+    margin-left: 30px;
+    width: 80px;
+  }

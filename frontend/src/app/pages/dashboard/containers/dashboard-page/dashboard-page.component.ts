@@ -89,6 +89,5 @@ export class DashboardPageComponent {
   public dailyLineChartData$: Observable<DailyLineChartData>;
 
   constructor(private service: DashboardService) {
-    this.dailyLineChartData$ = this.service.loadDailyLineChartData();
   }
 }

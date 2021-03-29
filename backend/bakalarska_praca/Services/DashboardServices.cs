@@ -96,14 +96,38 @@ namespace bakalarska_praca.Services
             var timelineDictionary = new Dictionary<DateTime, int>();
             for (int i = 0; i < selectedData.Count; i++)
             {
-                if (variety.TotalDays <= 1) //data s casom pre max 2 dni
+                switch(variety.TotalDays)
                 {
-                    selectedData[i].Timestamp = selectedData[i].Timestamp.AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                    case double number when (number <= 1):
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
+                            .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        break;
+                    case double number when (number >1 && number <=31):
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute)
+                            .AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        break;
+                    case double number when (number > 31 && number <= 365):
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddDays(-selectedData[i].Timestamp.Day).AddHours(-selectedData[i].Timestamp.Hour)
+                            .AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        break;
+                    case double number when (number > 365):
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddMonths(-selectedData[i].Timestamp.Month).AddDays(-selectedData[i].Timestamp.Day)
+                            .AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
+                            .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        break;
                 }
-                else
-                {
-                    selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
-                }
+                //if (variety.TotalDays <= 1) //data s casom pre max 2 dni
+                //{
+                //    selectedData[i].Timestamp = selectedData[i].Timestamp.AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                //}
+                //else if (variety.TotalDays <= 31)
+                //{
+                //    selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                //}
+                //else
+                //{
+
+                //}
                 if (!timelineDictionary.ContainsKey(selectedData[i].Timestamp))
                 {
                     timelineDictionary.Add(selectedData[i].Timestamp, 1);

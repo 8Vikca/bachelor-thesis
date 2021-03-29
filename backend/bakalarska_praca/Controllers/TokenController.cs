@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bakalarska_praca.Controllers
@@ -17,16 +14,16 @@ namespace bakalarska_praca.Controllers
         private readonly AppDbContext _appDbContext;
         private TokenServices _tokenService;
 
-        public TokenController(AppDbContext appDbContext, TokenServices tokenServices)
+        public TokenController(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
-            _tokenService = tokenServices;
+            _tokenService = new TokenServices(appDbContext);
         }
         [HttpPost]
         [Route("/refresh")]
         public IActionResult Refresh(Token tokenApiModel)
         {
-            if (tokenApiModel is null)
+            if (tokenApiModel.AccessToken == null || tokenApiModel.RefreshToken == null)
             {
                 return BadRequest("Invalid client request");
             }

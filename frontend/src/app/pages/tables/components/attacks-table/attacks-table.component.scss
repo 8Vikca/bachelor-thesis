@@ -2,6 +2,10 @@
 @import 'src/app/styles/font';
 @import 'src/app/styles/variables';
 
+.mat-form-field-underline {
+  display: none!important;
+}
+
 .employee-table-wrapper {
   padding-left: 0;
   padding-right: 0;
@@ -18,6 +22,7 @@
       padding: 0 16px;
     }
   }
+
 
   &__title {
     margin: 0;

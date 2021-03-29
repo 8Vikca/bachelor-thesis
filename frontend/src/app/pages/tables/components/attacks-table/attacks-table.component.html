@@ -3,7 +3,7 @@
     </mat-card-title>
     <mat-card-content class="employee-table__content">
       
-      <mat-table class="employee-table__table" [dataSource]="dataSource">
+      <mat-table class="employee-table__table" [dataSource]="dataSource" matSort>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"
@@ -24,25 +24,25 @@
   
         <!-- Protocol Column -->
         <ng-container matColumnDef="proto">
-          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef> Protocol </mat-header-cell>
+          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Protocol </mat-header-cell>
           <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.proto}} </mat-cell>
         </ng-container>
   
         <!-- Severity Column -->
         <ng-container matColumnDef="severity">
-          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef> Severity </mat-header-cell>
+          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Severity </mat-header-cell>
           <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.severity}} </mat-cell>
         </ng-container>
 
         <!-- Source IP Column -->
         <ng-container matColumnDef="src_ip">
-            <mat-header-cell class="employee-table__table-header" *matHeaderCellDef> Source IP </mat-header-cell>
+            <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Source IP </mat-header-cell>
             <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.src_ip}} </mat-cell>
           </ng-container>
 
           <!-- Destination IP Column -->
         <ng-container matColumnDef="dest_ip">
-            <mat-header-cell class="employee-table__table-header" *matHeaderCellDef> Destination IP </mat-header-cell>
+            <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Destination IP </mat-header-cell>
             <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.dest_ip}} </mat-cell>
           </ng-container>
   

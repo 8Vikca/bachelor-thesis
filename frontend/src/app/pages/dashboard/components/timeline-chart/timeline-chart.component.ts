@@ -33,18 +33,17 @@ export class TimelineChartComponent implements OnChanges{
 
   constructor() {
     this.initChartData();
-    debugger
   }
   ngOnChanges(): void {
     this.initChartData();
   }
 
   public initChartData(): void {
-    let ts2 = 1484418600000;
     let dates = [];
      this.timelineData.forEach(element => {
       dates.push([element.timestamp, element.value])  
     }); 
+    debugger
     this.series = [
       {
         name: "Incidents",

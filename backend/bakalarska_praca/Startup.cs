@@ -1,5 +1,7 @@
- using bakalarska_praca.Extensions;
+using bakalarska_praca.Controllers;
+using bakalarska_praca.Extensions;
 using bakalarska_praca.Models;
+using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -42,7 +44,8 @@ namespace bakalarska_praca
             });
             services.ConfigureCors();
             services.ConfigureIISIntegration();
-            services.ConfigureAuth();    
+            services.ConfigureAuth();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

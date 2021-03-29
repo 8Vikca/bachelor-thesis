@@ -77,7 +77,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 10,
                             SeverityCategory = "critical",
                             Src_ip = "192.168.50.11",
-                            Timestamp = new DateTime(2021, 2, 21, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 20, 9, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -89,7 +89,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 3,
                             SeverityCategory = "low",
                             Src_ip = "192.168.50.11",
-                            Timestamp = new DateTime(2021, 2, 22, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 20, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -125,7 +125,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 2,
                             SeverityCategory = "low",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 2, 25, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 25, 7, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -137,7 +137,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 1,
                             SeverityCategory = "low",
                             Src_ip = "192.168.60.11",
-                            Timestamp = new DateTime(2021, 2, 26, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 2, 25, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -149,7 +149,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 4,
                             SeverityCategory = "medium",
                             Src_ip = "192.168.20.11",
-                            Timestamp = new DateTime(2021, 2, 27, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 5, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -161,7 +161,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 3,
                             SeverityCategory = "low",
                             Src_ip = "192.168.30.11",
-                            Timestamp = new DateTime(2021, 2, 28, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 5, 18, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -173,7 +173,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 2,
                             SeverityCategory = "low",
                             Src_ip = "192.168.20.11",
-                            Timestamp = new DateTime(2021, 3, 1, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 5, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -185,7 +185,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 6,
                             SeverityCategory = "medium",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 2, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 9, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -197,7 +197,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 7,
                             SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 3, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 10, 13, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -209,7 +209,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 5,
                             SeverityCategory = "medium",
                             Src_ip = "192.168.20.11",
-                            Timestamp = new DateTime(2021, 3, 4, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 10, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -221,7 +221,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 7,
                             SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 5, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 11, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -233,7 +233,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 2,
                             SeverityCategory = "low",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 6, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 11, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -245,7 +245,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 1,
                             SeverityCategory = "low",
                             Src_ip = "192.168.30.11",
-                            Timestamp = new DateTime(2021, 3, 7, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 12, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -257,7 +257,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 4,
                             SeverityCategory = "medium",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 8, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 13, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -269,7 +269,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 9,
                             SeverityCategory = "critical",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 9, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 14, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -281,7 +281,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 2,
                             SeverityCategory = "low",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 10, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 15, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -293,7 +293,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 8,
                             SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 11, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 15, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -305,7 +305,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 7,
                             SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 12, 9, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 16, 9, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -317,7 +317,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 1,
                             SeverityCategory = "low",
                             Src_ip = "192.168.60.11",
-                            Timestamp = new DateTime(2021, 3, 13, 14, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 17, 14, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -329,7 +329,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 9,
                             SeverityCategory = "critical",
                             Src_ip = "192.168.70.11",
-                            Timestamp = new DateTime(2021, 3, 14, 0, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 18, 0, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -341,7 +341,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 8,
                             SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 14, 4, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 19, 4, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -353,7 +353,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 7,
                             SeverityCategory = "high",
                             Src_ip = "192.168.40.11",
-                            Timestamp = new DateTime(2021, 3, 14, 9, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 19, 9, 17, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -365,7 +365,7 @@ namespace bakalarska_praca.Migrations
                             Severity = 1,
                             SeverityCategory = "low",
                             Src_ip = "192.168.60.11",
-                            Timestamp = new DateTime(2021, 3, 14, 9, 45, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 20, 9, 45, 49, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -377,7 +377,115 @@ namespace bakalarska_praca.Migrations
                             Severity = 9,
                             SeverityCategory = "critical",
                             Src_ip = "192.168.70.11",
-                            Timestamp = new DateTime(2021, 3, 14, 20, 17, 49, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2021, 3, 21, 20, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Category = "ICMP",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible ICMP flood PING DoS",
+                            Proto = "TCP",
+                            Severity = 7,
+                            SeverityCategory = "high",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 3, 22, 9, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "UDP",
+                            Severity = 1,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 3, 23, 9, 45, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Category = "SYN",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible TCP SYN DoS",
+                            Proto = "TCP",
+                            Severity = 9,
+                            SeverityCategory = "critical",
+                            Src_ip = "192.168.70.11",
+                            Timestamp = new DateTime(2021, 3, 24, 20, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Category = "ICMP",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible ICMP flood PING DoS",
+                            Proto = "TCP",
+                            Severity = 7,
+                            SeverityCategory = "high",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 3, 25, 9, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "UDP",
+                            Severity = 1,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 3, 26, 9, 45, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Category = "SYN",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible TCP SYN DoS",
+                            Proto = "TCP",
+                            Severity = 9,
+                            SeverityCategory = "critical",
+                            Src_ip = "192.168.70.11",
+                            Timestamp = new DateTime(2021, 3, 28, 23, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Category = "ICMP",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible ICMP flood PING DoS",
+                            Proto = "TCP",
+                            Severity = 7,
+                            SeverityCategory = "high",
+                            Src_ip = "192.168.40.11",
+                            Timestamp = new DateTime(2021, 3, 29, 8, 17, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Category = "SQL",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Error Based SQL Injection Detected",
+                            Proto = "UDP",
+                            Severity = 1,
+                            SeverityCategory = "low",
+                            Src_ip = "192.168.60.11",
+                            Timestamp = new DateTime(2021, 3, 29, 17, 45, 49, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Category = "SYN",
+                            Dest_ip = "192.168.40.183",
+                            Message = "Possible TCP SYN DoS",
+                            Proto = "TCP",
+                            Severity = 9,
+                            SeverityCategory = "critical",
+                            Src_ip = "192.168.70.11",
+                            Timestamp = new DateTime(2021, 3, 30, 19, 17, 49, 0, DateTimeKind.Utc)
                         });
                 });
 
