@@ -17,11 +17,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
   },
-  {
-    path: 'ui',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/ui-elements/ui-elements.module').then(m => m.UiElementsModule)
-  },
+  // {
+  //   path: 'ui',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => import('./pages/ui-elements/ui-elements.module').then(m => m.UiElementsModule)
+  // },
   {
     path: '404',
     component: NotFoundComponent

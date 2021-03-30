@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -11,6 +12,7 @@ import { map, startWith } from 'rxjs/operators';
 export class FilterComponent implements OnInit {
   queryInput: string = "";
   filters: string[] = [];
+  appliedFilters: string = "";
   @ViewChild('searchInput') filterInput: ElementRef;
   @Output() filterEmitter = new EventEmitter<any>();
   
@@ -37,11 +39,17 @@ export class FilterComponent implements OnInit {
   public addFilter(queryInput:any): void {
     this.filters.push(queryInput);
     this.queryInput = '';
+    this.appliedFilters += queryInput + "         ";
   }
 
   public sendFilters(): void {
     this.filterEmitter.emit(this.filters);
   }
+  public clearFilters(): void {
+    this.appliedFilters = '';
+    this.filters = [];
+    debugger
+  }  
   
   
   

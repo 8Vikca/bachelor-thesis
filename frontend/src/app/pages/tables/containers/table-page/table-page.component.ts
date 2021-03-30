@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { TableService } from '../../services';
 import { Attack } from '../../models';
 import { HttpParams } from '@angular/common/http';
-import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 
 
 @Component({
@@ -13,13 +12,14 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 })
 export class TablePageComponent implements OnInit {
   public employeeTableData: Attack[];  
-  params = new HttpParams();
+  params: HttpParams;
 
   constructor(private service: TableService) {
   }
 
   public ngOnInit() {
-    this.getData();
+    //this.getData();
+    this.getFilteredData(this.params);
   }
 
   getData(): void {
@@ -29,7 +29,6 @@ export class TablePageComponent implements OnInit {
       });
   }
   getFilteredData(params: HttpParams): void {
-    debugger
     this.service.loadFilteredData(params)
       .subscribe(result => {
         this.employeeTableData = result;
@@ -38,6 +37,7 @@ export class TablePageComponent implements OnInit {
   }
 
   public sendFilters(event: any): void {
+    this.params = new HttpParams();
     event.forEach(element => {
       this.params= this.params.append('filter', element);
     });

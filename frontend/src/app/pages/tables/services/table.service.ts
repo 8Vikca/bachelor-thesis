@@ -16,7 +16,6 @@ export class TableService {
      return this.http.get<Attack[]>("https://localhost:44386/allData");     
    }
    loadFilteredData(params: HttpParams): Observable<Attack[]> {   
-     debugger
     return this.http.get<Attack[]>("https://localhost:44386/filteredData", {params: params});     
   }
 

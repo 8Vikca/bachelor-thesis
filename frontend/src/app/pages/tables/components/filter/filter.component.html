@@ -1,5 +1,6 @@
 
 <div class="filter">
+  <div class="inputButtons">
     <mat-form-field class="input">
     
         <input type="text" placeholder="Filter..." matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="queryInput">
@@ -13,4 +14,10 @@
       </mat-form-field>
     <button class="btn" (click)="addFilter(queryInput)">Add Filter</button> 
     <button class="btn search" (click)="sendFilters()">Search</button>
+    <button class="btn clear" (click)="clearFilters()">Clear</button>
+  </div>
+    <input class="applied" disabled [(ngModel)]="appliedFilters">    
 </div>
+
+  
+

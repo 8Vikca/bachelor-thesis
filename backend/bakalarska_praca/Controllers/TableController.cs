@@ -27,18 +27,24 @@ namespace bakalarska_praca.Controllers
             return selectedData;
         }
         [HttpGet("/filteredData")] //Authorize
-        public List<Attack> GetFilteredData([FromQuery]string[] filter)   //[FromBody] string[] filters
+        public List<Attack> GetFilteredData([FromQuery] string[] filter)   //[FromBody] string[] filters
         {
+            if (filter.Length == 0)
+            {
+                var allData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(100).ToList();
+                return allData;
+            }
             List<Filter> filters = new List<Filter>();
             foreach (var item in filter)
             {
-                string[] splitItems=item.Split(' ');
-                filters.Add(new Filter { Parameter = splitItems[0], Value = splitItems[2]});
+                string[] splitItems = item.Split(' ');
+                filters.Add(new Filter { Parameter = splitItems[0], Value = splitItems[2] });
             }
             var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).ToList();
 
             foreach (var item in filters)
             {
+                item.Value = item.Value.ToUpper();
                 try
                 {
                     switch (item.Parameter)
@@ -58,10 +64,8 @@ namespace bakalarska_praca.Controllers
                         case string a when a.Contains("Severity"):
                             selectedData = selectedData.Where(o => o.Severity == int.Parse(item.Value)).ToList();
                             break;
-
-
                         default:
-                            break;
+                            return null;
                     }
                 }
                 catch (Exception e)
@@ -69,9 +73,9 @@ namespace bakalarska_praca.Controllers
 
                     throw new Exception(e.Message);
                 }
-                
+
             }
-            
+
             return selectedData;
         }
     }
