@@ -14,14 +14,20 @@ import { TablesRoutingModule } from './tables-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AttacksTableComponent } from './components';
 import { TableService } from './services';
-import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { MatSortModule } from '@angular/material/sort';
+import { FilterComponent } from './components/filter/filter.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DashboardModule} from '../dashboard/dashboard.module';
 
 
 @NgModule({
   declarations: [
     TablePageComponent,
     AttacksTableComponent,
-    SearchBoxComponent   
+    FilterComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +41,14 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     MatToolbarModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    SharedModule   
+    SharedModule  ,
+    MatSortModule,
+    AutocompleteLibModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DashboardModule
   ],
   providers: [
     TableService

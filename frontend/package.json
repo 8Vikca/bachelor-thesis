@@ -24,6 +24,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "acorn": "^8.0.5",
     "angular-in-memory-web-api": "^0.11.0",
+    "angular-ng-autocomplete": "^2.0.5",
     "apexcharts": "^3.25.0",
     "chart.js": "^2.9.4",
     "echarts": "^4.9.0",

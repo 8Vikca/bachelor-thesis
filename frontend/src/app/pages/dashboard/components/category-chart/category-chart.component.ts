@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
 import { colors } from 'src/app/consts/colors';
 import { Attack, Counter } from "../../models";
 import {
@@ -32,12 +32,15 @@ export type ChartOptions = {
   templateUrl: './category-chart.component.html',
   styleUrls: ['./category-chart.component.scss']
 })
-export class CategoryChartComponent implements OnChanges{
+export class CategoryChartComponent implements OnInit, OnChanges{
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   @Input() categoryChartSeries: Counter = {};
 
   constructor() {
+    this.initializeChart();
+  }
+  ngOnInit(): void {
     this.initializeChart();
   }
   ngOnChanges(): void {

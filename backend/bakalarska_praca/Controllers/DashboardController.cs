@@ -51,7 +51,6 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/timelineData")]
-        [AllowAnonymous]
         public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)
         {
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();

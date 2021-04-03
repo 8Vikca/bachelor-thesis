@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Attack } from '../models/attack';
 import { Observable} from 'rxjs';
@@ -15,6 +15,8 @@ export class TableService {
   loadAllTableData(): Observable<Attack[]> {   
      return this.http.get<Attack[]>("https://localhost:44386/allData");     
    }
-
+   loadFilteredData(params: HttpParams): Observable<Attack[]> {   
+    return this.http.get<Attack[]>("https://localhost:44386/filteredData", {params: params});     
+  }
 
 }

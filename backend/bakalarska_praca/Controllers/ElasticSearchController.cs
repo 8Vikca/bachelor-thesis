@@ -5,7 +5,7 @@ using System.Linq;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Mvc;
-using SearchAPI;
+
 
 namespace bakalarska_praca.Controllers
 {
