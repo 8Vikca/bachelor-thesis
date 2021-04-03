@@ -11,7 +11,6 @@ import {
   ApexTooltip
 } from "ng-apexcharts";
 import { Attack, Timeline } from '../../models';
-import { dataSeries } from "./data-series";
 
 @Component({
   selector: 'app-timeline-chart',
@@ -52,7 +51,7 @@ export class TimelineChartComponent implements OnChanges{
       }
     ];
     this.chart = {
-      type: "bar",
+      type: "line",
       stacked: false,
       height: 350,
       zoom: {
@@ -109,9 +108,12 @@ export class TimelineChartComponent implements OnChanges{
     }
     };
     this.tooltip = {
-      shared: false,
       x: {
         format: "MMM dd, HH:mm",
+        formatter: function(val) {
+          console.log(val);
+          return (val).toFixed(0);
+        }
       },
       y: {
         formatter: function(val) {

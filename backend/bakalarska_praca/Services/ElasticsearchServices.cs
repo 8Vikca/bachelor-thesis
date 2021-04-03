@@ -1,7 +1,6 @@
 ﻿using bakalarska_praca.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using SearchAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

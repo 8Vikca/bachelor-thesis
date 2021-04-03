@@ -75,7 +75,7 @@ namespace bakalarska_praca.Controllers
                 }
 
             }
-
+            selectedData = selectedData.Take(100).ToList();
             return selectedData;
         }
     }

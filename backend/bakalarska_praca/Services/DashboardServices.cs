@@ -1,5 +1,4 @@
 ﻿using bakalarska_praca.Models;
-using SearchAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

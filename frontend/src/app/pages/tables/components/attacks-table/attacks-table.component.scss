@@ -2,6 +2,31 @@
 @import 'src/app/styles/font';
 @import 'src/app/styles/variables';
 
+
+.severity-box {
+  width: 30%;
+  height: 35px;
+  border-radius: 12px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+.critical {
+  background-color: $alert-critical;
+  border: $alert-critical;
+}
+.high {
+  background-color: $alert-high;
+  border: $alert-high;
+}
+.medium {
+  background-color: $alert-medium;
+  border: $alert-medium;
+}
+.low {
+  background-color: $alert-low;
+  border: $alert-low;
+}
 .mat-form-field-underline {
   display: none!important;
 }

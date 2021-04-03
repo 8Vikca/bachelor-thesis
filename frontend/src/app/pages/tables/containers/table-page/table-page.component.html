@@ -1,6 +1,7 @@
 <app-layout>
     <mat-toolbar  class="page-header" role="heading">
       <app-filter (filterEmitter)="sendFilters($event)"></app-filter>     
+      <!-- <app-ngx-daterange-picker (dateEmitter)="pushDateRange($event)"></app-ngx-daterange-picker> -->
     </mat-toolbar>
     <div class="tables-wrapper">
     <app-attacks-table *ngIf="employeeTableData" [employeeTableData]="employeeTableData"></app-attacks-table>

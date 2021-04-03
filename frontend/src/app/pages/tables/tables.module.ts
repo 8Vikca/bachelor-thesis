@@ -20,13 +20,14 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DashboardModule} from '../dashboard/dashboard.module';
 
 
 @NgModule({
   declarations: [
     TablePageComponent,
     AttacksTableComponent,
-    FilterComponent   
+    FilterComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +47,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    DashboardModule
   ],
   providers: [
     TableService

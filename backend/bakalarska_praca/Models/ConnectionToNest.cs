@@ -1,9 +1,12 @@
-﻿using System;
-using Nest;
+﻿using Nest;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace SearchAPI
+namespace bakalarska_praca.Models
 {
-    public class ConnectionToNest       //trieda na pristup ku klientovi NEST
+    public class ConnectionToNest
     {
         public ElasticClient Client { get; }
         public ConnectionToNest()
@@ -14,5 +17,4 @@ namespace SearchAPI
             this.Client = new ElasticClient(settings);
         }
     }
-
 }

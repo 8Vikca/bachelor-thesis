@@ -32,9 +32,11 @@ export class AttacksTableComponent implements OnInit, AfterViewInit {
   public ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Attack>(this.employeeTableData);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   ngOnChanges() {
     this.dataSource = new MatTableDataSource<Attack>(this.employeeTableData);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

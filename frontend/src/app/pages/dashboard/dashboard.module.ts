@@ -81,7 +81,8 @@ import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/n
     MomentModule
   ],
   exports: [
-    DailyLineChartComponent
+    DailyLineChartComponent,
+    NgxDaterangePickerComponent
   ],
   providers: [
     DashboardService

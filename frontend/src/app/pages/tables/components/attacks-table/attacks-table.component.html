@@ -1,53 +1,63 @@
 <mat-card class="employee-table-wrapper">
-    <mat-card-title class="employee-table-wrapper__header">
-    </mat-card-title>
-    <mat-card-content class="employee-table__content">
-      
-      <mat-table class="employee-table__table" [dataSource]="dataSource" matSort>
+  <mat-card-title class="employee-table-wrapper__header">
+  </mat-card-title>
+  <mat-card-content class="employee-table__content">
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"
-            >
-        </mat-row>
-  
-        <!-- Timestamp Column -->
-        <ng-container matColumnDef="timestamp" >
-          <mat-header-cell class="employee-table__table-header"  *matHeaderCellDef mat-sort-header> Timestamp </mat-header-cell>
-          <mat-cell class="employee-table__table-body"  *matCellDef="let dataSource"> {{dataSource.timestamp | date:'medium'}} </mat-cell>
-        </ng-container>
-  
-        <!-- Message Column -->
-        <ng-container matColumnDef="message">
-          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Message </mat-header-cell>
-          <mat-cell class="employee-table__table-body"*matCellDef="let dataSource"> {{dataSource.message}} </mat-cell>
-        </ng-container>
-  
-        <!-- Protocol Column -->
-        <ng-container matColumnDef="proto">
-          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Protocol </mat-header-cell>
-          <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.proto}} </mat-cell>
-        </ng-container>
-  
-        <!-- Severity Column -->
-        <ng-container matColumnDef="severity">
-          <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Severity </mat-header-cell>
-          <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.severity}} </mat-cell>
-        </ng-container>
+    <mat-table class="employee-table__table" [dataSource]="dataSource" matSort>
 
-        <!-- Source IP Column -->
-        <ng-container matColumnDef="src_ip">
-            <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Source IP </mat-header-cell>
-            <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.src_ip}} </mat-cell>
-          </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
 
-          <!-- Destination IP Column -->
-        <ng-container matColumnDef="dest_ip">
-            <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Destination IP </mat-header-cell>
-            <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.dest_ip}} </mat-cell>
-          </ng-container>
-  
-      </mat-table>
-    </mat-card-content>
-    <mat-paginator class="pagination" [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
-  </mat-card>
-  
+      <!-- Timestamp Column -->
+      <ng-container matColumnDef="timestamp">
+        <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Timestamp
+        </mat-header-cell>
+        <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.timestamp |
+          date:'medium'}} </mat-cell>
+      </ng-container>
+
+      <!-- Message Column -->
+      <ng-container matColumnDef="message">
+        <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Message
+        </mat-header-cell>
+        <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.message}} </mat-cell>
+      </ng-container>
+
+      <!-- Protocol Column -->
+      <ng-container matColumnDef="proto">
+        <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Protocol
+        </mat-header-cell>
+        <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.proto}} </mat-cell>
+      </ng-container>
+
+      <!-- Severity Column -->
+      <ng-container matColumnDef="severity">
+        <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Severity
+        </mat-header-cell>
+        <mat-cell class="employee-table__table-body" *matCellDef="let dataSource">
+          <button disabled class="severity-box"
+            [ngClass]="{'critical': dataSource.severity == '9' || dataSource.severity == '10', 
+            'high': dataSource.severity == '7' || dataSource.severity == '8', 'medium': dataSource.severity == '4' || dataSource.severity == '5' || dataSource.severity == '6', 
+            'low': dataSource.severity == '1' || dataSource.severity == '2' || dataSource.severity == '3'}">{{dataSource.severity}}</button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Source IP Column -->
+      <ng-container matColumnDef="src_ip">
+        <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Source IP
+        </mat-header-cell>
+        <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.src_ip}} </mat-cell>
+      </ng-container>
+
+      <!-- Destination IP Column -->
+      <ng-container matColumnDef="dest_ip">
+        <mat-header-cell class="employee-table__table-header" *matHeaderCellDef mat-sort-header> Destination IP
+        </mat-header-cell>
+        <mat-cell class="employee-table__table-body" *matCellDef="let dataSource"> {{dataSource.dest_ip}} </mat-cell>
+      </ng-container>
+
+    </mat-table>
+  </mat-card-content>
+  <mat-paginator class="pagination" [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>

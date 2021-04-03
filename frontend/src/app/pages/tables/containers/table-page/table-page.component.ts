@@ -43,6 +43,9 @@ export class TablePageComponent implements OnInit {
     });
     this.getFilteredData(this.params);
   }
+  public pushDateRange(event:any): void {
+    this.params = this.params.append("startDate", event.startDate.toISOString()).append("endDate", event.endDate.toISOString());
+  }
 };
 
 
