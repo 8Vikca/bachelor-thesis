@@ -14,18 +14,19 @@ namespace bakalarska_praca.Controllers
     [RequireHttps]
     public class ElasticSearchController : ControllerBase
     {
-        ConnectionToNest elasticSearchAPI;         //premenna na pristup ku klentovi NEST
+        ConnectionToNest _elasticSearchAPI;         //premenna na pristup ku klentovi NEST
         private readonly AppDbContext _appDbContext;
-        public ElasticSearchController(AppDbContext appdbContext)
+        public ElasticSearchController(AppDbContext appdbContext, ConnectionToNest elasticSearchAPI)
         {
             _appDbContext = appdbContext;
+            _elasticSearchAPI = elasticSearchAPI;
         }
 
 
         [HttpGet("/dataElastic")]
         public void GetDataFromElastic()
         {
-            var scanResults = elasticSearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
+            var scanResults = _elasticSearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
                             .From(0)
                             .Size(2000)
                             .Index("attack")
@@ -44,7 +45,7 @@ namespace bakalarska_praca.Controllers
 
                 }
                 _appDbContext.SaveChanges();
-                var clearIndex = elasticSearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
+                var clearIndex = _elasticSearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
             }
         }
     }

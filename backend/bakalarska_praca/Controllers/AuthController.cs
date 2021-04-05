@@ -60,7 +60,7 @@ namespace bakalarska_praca.Controllers
 
         }
 
-        [HttpPost("/register"), Authorize]
+        [HttpPost("/register")]     //, Authorize
         public IActionResult Register([FromBody] Register model)
         {
             var user = new User()
