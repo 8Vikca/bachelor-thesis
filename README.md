@@ -12,7 +12,7 @@
 ## Backend
 
 Build any .NET Core sample using the .NET Core CLI, which is installed with the .NET Core SDK. Then run `dotnet build` command from the CLI in the directory of any sample.
-These will install any needed dependencies, build the project, and run the project respectively.
+These will install any needed dependencies, build the project, and run the project respectively. Run `dotnet ef database update` to update LocalDb.
 
 ### Launch application
 
