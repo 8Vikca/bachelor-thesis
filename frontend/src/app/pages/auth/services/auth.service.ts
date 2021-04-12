@@ -20,8 +20,7 @@ export class AuthService {
     //localStorage.setItem('token', 'token');
   }
   public refresh(credentials: any): Observable<any> {
-    return this.http.post<any>("https://localhost:44386/refresh", credentials
-    , {
+    return this.http.post<any>("https://localhost:44386/refresh", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),

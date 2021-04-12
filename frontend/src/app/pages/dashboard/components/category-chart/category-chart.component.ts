@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
-import { colors } from 'src/app/consts/colors';
-import { Attack, Counter } from "../../models";
+import { Counter } from "../../models";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
@@ -8,16 +7,16 @@ import {
   ChartComponent
 } from "ng-apexcharts";
 
-type ApexXAxis = {
-  type?: "category" | "datetime" | "numeric";
-  categories?: any;
-  labels?: {
-    style?: {
-      colors?: string | string[];
-      fontSize?: string;
-    };
-  };
-};
+// type ApexXAxis = {
+//   type?: "category" | "datetime" | "numeric";
+//   categories?: any;
+//   labels?: {
+//     style?: {
+//       colors?: string | string[];
+//       fontSize?: string;
+//     };
+//   };
+// };
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;

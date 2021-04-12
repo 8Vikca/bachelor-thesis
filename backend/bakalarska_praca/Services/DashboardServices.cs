@@ -82,38 +82,41 @@ namespace bakalarska_praca.Services
         public List<Timeline> LoadTimelineData(TimeSpan variety, List<Attack> selectedData)
         {
             var timelineData = new List<Timeline>();
-
-            var timelineDictionary = this.fillDictionary(selectedData, variety);
+            string option;
+            var timelineDictionary = this.fillDictionary(selectedData, variety, out option);
             foreach (var item in timelineDictionary)
             {
-                timelineData.Add(new Timeline { Timestamp = item.Key, Value = item.Value });
+                timelineData.Add(new Timeline { Timestamp = item.Key, Value = item.Value, Option = option });
             }
             return timelineData;
         }
-        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety)
+        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety, out string option)
         {
+            option = "";
             var timelineDictionary = new Dictionary<DateTime, int>();
             for (int i = 0; i < selectedData.Count; i++)
             {
                 switch(variety.TotalDays)
                 {
-                    case double number when (number <= 1):
+                    case double number when number <= 1:
                         selectedData[i].Timestamp = selectedData[i].Timestamp.AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
                             .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        option = "hours";
                         break;
-                    case double number when (number >1 && number <=31):
+                    case double number when number >1 :   //&& number <=31
                         selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute)
                             .AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        option = "days";
                         break;
-                    case double number when (number > 31 && number <= 365):
-                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddDays(-selectedData[i].Timestamp.Day).AddHours(-selectedData[i].Timestamp.Hour)
-                            .AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
-                        break;
-                    case double number when (number > 365):
-                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddMonths(-selectedData[i].Timestamp.Month).AddDays(-selectedData[i].Timestamp.Day)
-                            .AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
-                            .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
-                        break;
+                    //case double number when (number > 31 && number <= 365):
+                    //    selectedData[i].Timestamp = selectedData[i].Timestamp.AddDays(-selectedData[i].Timestamp.Day).AddHours(-selectedData[i].Timestamp.Hour)
+                    //        .AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                    //    break;
+                    //case double number when (number > 365):
+                    //    selectedData[i].Timestamp = selectedData[i].Timestamp.AddMonths(-selectedData[i].Timestamp.Month).AddDays(-selectedData[i].Timestamp.Day)
+                    //        .AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
+                    //        .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                    //    break;
                 }
                 //if (variety.TotalDays <= 1) //data s casom pre max 2 dni
                 //{
@@ -138,7 +141,5 @@ namespace bakalarska_praca.Services
             }
             return timelineDictionary;
         }
-
-
     }
 }

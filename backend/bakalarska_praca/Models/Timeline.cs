@@ -9,6 +9,6 @@ namespace bakalarska_praca.Models
     {
         public DateTime  Timestamp { get; set; } = new DateTime();
         public int Value { get; set; }
-        public string LabelFormat { get; set; }
+        public string Option { get; set; }
     }
 }

@@ -17,7 +17,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardPageComponent } from './containers';
 import {
-  DailyLineChartComponent,
+  AlertCounterComponent,
+  TimelineChartComponent,
+  CategoryChartComponent,
   SeverityTableComponent,
   IpChartComponent,
   RecentDataTableComponent,
@@ -27,7 +29,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { DashboardService } from './services';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { CategoryChartComponent } from './components/category-chart/category-chart.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,15 +36,12 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { NgxAircalModule } from "ngx-aircal";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MomentModule } from 'ngx-moment';
-import { AlertCounterComponent } from './components/alert-counter/alert-counter.component';
-import { TimelineChartComponent } from './components/timeline-chart/timeline-chart.component';
 import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/ngx-daterange-picker.component';
 
 
 @NgModule({
   declarations: [
     DashboardPageComponent,
-    DailyLineChartComponent,
     SeverityTableComponent,
     CategoryChartComponent,
     IpChartComponent,
@@ -81,11 +79,10 @@ import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/n
     MomentModule
   ],
   exports: [
-    DailyLineChartComponent,
     NgxDaterangePickerComponent
   ],
   providers: [
-    DashboardService
+    DashboardService,
   ]
 })
 export class DashboardModule { }

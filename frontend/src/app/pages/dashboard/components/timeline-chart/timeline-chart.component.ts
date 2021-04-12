@@ -39,10 +39,16 @@ export class TimelineChartComponent implements OnChanges{
 
   public initChartData(): void {
     let dates = [];
+    console.log(this.timelineData);
+    let option = "";
+    if(this.timelineData.length !=0) {
+      option = this.timelineData[0].option;
+    }
+    debugger
      this.timelineData.forEach(element => {
       dates.push([element.timestamp, element.value])  
     }); 
-    debugger
+ 
     this.series = [
       {
         name: "Incidents",
@@ -87,11 +93,11 @@ export class TimelineChartComponent implements OnChanges{
     //   }
     // };
     this.yaxis = {
-      // labels: {
-      //   formatter: function(val) {
-      //     return (val).toFixed(0);
-      //   }
-      // },
+      labels: {
+        formatter: function(val) {
+          return (val).toFixed(0);
+        }
+      },
       title: {
         text: "Total"
       }
@@ -111,15 +117,35 @@ export class TimelineChartComponent implements OnChanges{
       x: {
         format: "MMM dd, HH:mm",
         formatter: function(val) {
-          console.log(val);
-          return (val).toFixed(0);
+          let utcDate = new Date(val);
+          if(option == "hours") {
+            let utcString = utcDate.toLocaleString();
+            return (utcString);
+          } else {
+            let utcString = utcDate.toLocaleDateString()
+            return (utcString);
+          }
+          //console.log(val);
+          // return (val).toFixed(0);
         }
       },
       y: {
         formatter: function(val) {
-          return (val).toFixed(0);
+          return (val).toFixed();
         }
       }
     };
   }
 }
+
+//       x: {
+//         formatter: function(val) {
+//           let utcDate = new Date(val);
+//           if(option == "hours") {
+//             let utcString = utcDate.toLocaleString();
+//             return (utcString);
+//           } else {
+//             let utcString = utcDate.toLocaleDateString()
+//             return (utcString);
+//           }
+          

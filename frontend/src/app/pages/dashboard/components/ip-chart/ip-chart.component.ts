@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild } from "@angular/core";
+import { Component, Input, OnChanges, ViewChild } from "@angular/core";
 
 import {
   ApexNonAxisChartSeries,
@@ -6,15 +6,16 @@ import {
   ApexChart,
   ChartComponent
 } from "ng-apexcharts";
-import { Attack, Counter } from "../../models";
+import { ChartOptions } from "..";
+import { Counter } from "../../models";
 
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
-  colors: string[];
-};
+// export type ChartOptions = {
+//   series: ApexNonAxisChartSeries;
+//   chart: ApexChart;
+//   responsive: ApexResponsive[];
+//   labels: any;
+//   colors: string[];
+// };
 
 @Component({
   selector: 'app-ip-chart',
