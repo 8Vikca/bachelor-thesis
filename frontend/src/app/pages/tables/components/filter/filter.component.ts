@@ -10,9 +10,10 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  removable = true;
+  visible = true;
   queryInput: string = "";
   filters: string[] = [];
-  appliedFilters: string = "";
   @ViewChild('searchInput') filterInput: ElementRef;
   @Output() filterEmitter = new EventEmitter<any>();
   
@@ -39,17 +40,22 @@ export class FilterComponent implements OnInit {
   public addFilter(queryInput:any): void {
     this.filters.push(queryInput);
     this.queryInput = '';
-    this.appliedFilters += queryInput + "         ";
   }
 
   public sendFilters(): void {
+    console.log(this.filters);
     this.filterEmitter.emit(this.filters);
   }
   public clearFilters(): void {
-    this.appliedFilters = '';
-    this.filters = [];
-    debugger
+    console.log(this.filters);
+    this.filters.splice(0, this.filters.length);
+    console.log(this.filters);
+    //this.filters = [];
   }  
+  public clearOneFilter(index: any): void {
+      this.filters.splice(index,1);
+      console.log(this.filters);
+  }
   
   
   

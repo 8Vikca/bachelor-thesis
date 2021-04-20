@@ -21,7 +21,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DashboardModule} from '../dashboard/dashboard.module';
-
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -41,11 +41,12 @@ import {DashboardModule} from '../dashboard/dashboard.module';
     MatToolbarModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    SharedModule  ,
+    SharedModule,
     MatSortModule,
     AutocompleteLibModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatChipsModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardModule

@@ -15,6 +15,9 @@ import { AuthModule } from './pages/auth/auth.module';
 import {HttpClientModule} from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import {JwtModule} from '@auth0/angular-jwt';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -40,6 +43,9 @@ export function tokenGetter() {
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
+    MatSelectModule,
+
     HammerModule,
     JwtModule.forRoot({
       config: {

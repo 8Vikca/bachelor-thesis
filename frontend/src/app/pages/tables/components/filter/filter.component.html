@@ -1,23 +1,37 @@
-
 <div class="filter">
   <div class="inputButtons">
     <mat-form-field class="input">
-    
-        <input type="text" placeholder="Filter..." matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="queryInput">
-        <button mat-button *ngIf="queryInput" matSuffix mat-icon-button aria-label="Clear" (click)="queryInput=''" class="clear"></button>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-    
-      </mat-form-field>
-    <button class="btn" (click)="addFilter(queryInput)">Add Filter</button> 
-    <button class="btn search" (click)="sendFilters()">Search</button>
-    <button class="btn clear" (click)="clearFilters()">Clear</button>
+
+      <input type="text" placeholder="Filter..." matInput [formControl]="myControl" [matAutocomplete]="auto"
+        [(ngModel)]="queryInput">
+      <button mat-button *ngIf="queryInput" matSuffix mat-icon-button aria-label="Clear" (click)="queryInput=''"
+        class="clear">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+
+    </mat-form-field>
+    <button mat-mini-fab (click)="addFilter(queryInput)" class="btn">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="clearFilters()" class="btn">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="sendFilters()" class="btn">
+      <mat-icon>filter_list</mat-icon>
+    </button>
   </div>
-    <input class="applied" disabled [(ngModel)]="appliedFilters">    
+  <div class="group" [(ngModel)]="filters">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let item of filters; let i = index" [removable]="removable"
+        (removed)="clearOneFilter(i)">
+        {{item}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
 </div>
-
-  
-

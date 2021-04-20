@@ -13,7 +13,6 @@ namespace bakalarska_praca.Models
         {
             var settings = new ConnectionSettings(new Uri("http://localhost:9200"))
                 .DefaultIndex("logs");
-
             this.Client = new ElasticClient(settings);
         }
     }
