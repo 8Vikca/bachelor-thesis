@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { Observable, interval } from 'rxjs';
 import { DashboardService } from '../../services';
 import {
   Attack,
   Counter,
-  DailyLineChartData,
   Timeline,
 } from '../../models';
 import { HttpParams } from '@angular/common/http';
 import { AircalResponse } from 'ngx-aircal';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -17,15 +16,15 @@ import { AircalResponse } from 'ngx-aircal';
 })
 export class DashboardPageComponent {
 
-  public severityTableData: Attack[];
-  public recentTableData: Attack[];   
-  public ipGraphData: Attack[];
-  public timelineData: Timeline[];
-  public counters: Counter[];
+  public severityTableData: Attack[] = [];
+  public recentTableData: Attack[] = [];
+  public ipGraphData: Attack[] = [];
+  public timelineData: Timeline[] = [];
+  public counters: Counter[] = [];
   params = new HttpParams();
   variableDate = new Date;
 
-  constructor(private service: DashboardService) {
+  constructor(private service: DashboardService, public dialog: MatDialog) {
   }
 
   public ngOnInit() {
@@ -43,7 +42,7 @@ export class DashboardPageComponent {
   }
 
   getRecentTableData(params: HttpParams): void {
-    this.service.loadRecentTableData(params) 
+    this.service.loadRecentTableData(params)
       .subscribe(result => {
         this.recentTableData = result;
       });
@@ -62,15 +61,24 @@ export class DashboardPageComponent {
         this.timelineData = result;
       });
   }
- 
+
   public pushDateRange(event: AircalResponse): void {
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getCounters(this.params);
     this.getTimelineData(this.params);
+    // if (this.recentTableData.length == 0) {
+    //   this.dialog.open(NoDataDialog);
+    // }
   }
 }
+
+@Component({
+  selector: 'noDataDialog',
+  templateUrl: 'noDataDialog.html',
+})
+export class NoDataDialog { }
    //   Observable
     // .interval(2*60*1000)
     // .timeInterval()

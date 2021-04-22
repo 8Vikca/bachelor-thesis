@@ -44,7 +44,6 @@ export class TimelineChartComponent implements OnChanges{
     if(this.timelineData.length !=0) {
       option = this.timelineData[0].option;
     }
-    debugger
      this.timelineData.forEach(element => {
       dates.push([element.timestamp, element.value])  
     }); 

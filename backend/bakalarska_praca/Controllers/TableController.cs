@@ -27,11 +27,11 @@ namespace bakalarska_praca.Controllers
             return selectedData;
         }
         [HttpGet("/filteredData")] //Authorize
-        public List<Attack> GetFilteredData([FromQuery] string[] filter)   //[FromBody] string[] filters
+        public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)   //[FromBody] string[] filters
         {
             if (filter.Length == 0)
             {
-                var allData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(100).ToList();
+                var allData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).Take(100).ToList();
                 return allData;
             }
             List<Filter> filters = new List<Filter>();
@@ -40,7 +40,7 @@ namespace bakalarska_praca.Controllers
                 string[] splitItems = item.Split(' ');
                 filters.Add(new Filter { Parameter = splitItems[0], Value = splitItems[2] });
             }
-            var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).ToList();
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
 
             foreach (var item in filters)
             {

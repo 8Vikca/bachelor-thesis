@@ -229,12 +229,14 @@ button.mat-fab .mat-button-wrapper {
 .mat-card {
   color: $card-font-color;
   margin: 16px;
+  //background-color: $card-background-color;
 }
 
 .mat-card-title p {
   font-size: 21px;
   font-weight: 400;
   color: $card-title-font-color;
+  //background-color: $card-background-color;
 }
 
 mat-toolbar.page-header {

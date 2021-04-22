@@ -17,6 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {JwtModule} from '@auth0/angular-jwt';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 export function tokenGetter() {
@@ -27,7 +28,6 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NotFoundComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -40,12 +40,12 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
     MatSelectModule,
-
     HammerModule,
     JwtModule.forRoot({
       config: {

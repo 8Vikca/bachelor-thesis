@@ -38,13 +38,11 @@ export class TablePageComponent implements OnInit {
 
   public sendFilters(event: any): void {
     this.params = new HttpParams();
-    event.forEach(element => {
+    this.params = this.params.set("startDate", event.startDate).set("endDate", event.endDate);
+    event.filters.forEach(element => {
       this.params= this.params.append('filter', element);
     });
     this.getFilteredData(this.params);
-  }
-  public pushDateRange(event:any): void {
-    this.params = this.params.append("startDate", event.startDate.toISOString()).append("endDate", event.endDate.toISOString());
   }
 };
 

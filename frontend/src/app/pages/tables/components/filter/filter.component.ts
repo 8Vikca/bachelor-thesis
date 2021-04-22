@@ -1,6 +1,7 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { AircalResponse } from 'ngx-aircal';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -15,7 +16,9 @@ export class FilterComponent implements OnInit {
   queryInput: string = "";
   filters: string[] = [];
   @ViewChild('searchInput') filterInput: ElementRef;
-  @Output() filterEmitter = new EventEmitter<any>();
+  @Output() filterEmitter = new EventEmitter<{startDate: string , endDate: string, filters: string[]}>();
+  startDate: string = "";
+  endDate: string = "";
   
   constructor() { }
 
@@ -43,8 +46,7 @@ export class FilterComponent implements OnInit {
   }
 
   public sendFilters(): void {
-    console.log(this.filters);
-    this.filterEmitter.emit(this.filters);
+    this.filterEmitter.emit({startDate: this.startDate, endDate: this.endDate, filters: this.filters});
   }
   public clearFilters(): void {
     console.log(this.filters);
@@ -57,7 +59,19 @@ export class FilterComponent implements OnInit {
       console.log(this.filters);
   }
   
-  
+  public pushDateRange(event: AircalResponse): void {
+    this.startDate = event.startDate.toISOString();
+    this.endDate = event.endDate.toISOString();
+    //this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
+    // this.getRecentTableData(this.params);
+    // this.getSeverityTableData(this.params);
+    // this.getCounters(this.params);
+    // this.getTimelineData(this.params);
+    // if (this.recentTableData.length == 0) {
+    //   this.dialog.open(NoDataDialog);
+    // }
+  //}
+}
   
   
   // Filter = "Filter...";

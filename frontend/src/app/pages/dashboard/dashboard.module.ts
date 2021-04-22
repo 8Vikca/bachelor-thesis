@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DashboardPageComponent } from './containers';
+import { DashboardPageComponent, NoDataDialog } from './containers';
 import {
   AlertCounterComponent,
   TimelineChartComponent,
@@ -37,6 +37,7 @@ import { NgxAircalModule } from "ngx-aircal";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { MomentModule } from 'ngx-moment';
 import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/ngx-daterange-picker.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/n
     AlertCounterComponent,
     TimelineChartComponent,
     NgxDaterangePickerComponent,
+    NoDataDialog
   ],
   imports: [
     CommonModule,
@@ -69,6 +71,7 @@ import { NgxDaterangePickerComponent } from './components/ngx-daterange-picker/n
     SharedModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatFormFieldModule,
