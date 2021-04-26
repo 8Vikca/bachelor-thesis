@@ -15,6 +15,7 @@
   margin-right: -30px;
   zoom: 0.9;
   width: 100%;
+
 }
 .inputButtons {
   flex-direction: row;
@@ -26,7 +27,7 @@
   font-size: 16px;
   width:60%;
   min-width: auto;
-  display:block;
+  display:flex;
 }
 .input {
   background-color: transparent;
@@ -62,4 +63,7 @@
     height: 30px;
     padding: 0px 8px 0px 8px;
     margin-right: 10px;
+  }
+  .date {
+    margin-bottom: 20px;
   }

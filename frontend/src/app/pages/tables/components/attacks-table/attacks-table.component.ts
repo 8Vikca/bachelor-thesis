@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./attacks-table.component.scss']
 })
 export class AttacksTableComponent implements OnInit, AfterViewInit {
-  @Input() employeeTableData: Attack[] = [];
+  @Input() tableData: Attack[] = [];
   public displayedColumns: string[] = ['timestamp', 'message', 'severity', 'proto', 'src_ip', 'dest_ip'];
   public dataSource: MatTableDataSource<Attack>;
   public selection = new SelectionModel<Attack>(true, []);
@@ -30,12 +30,12 @@ export class AttacksTableComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Attack>(this.employeeTableData);
+    this.dataSource = new MatTableDataSource<Attack>(this.tableData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
   ngOnChanges() {
-    this.dataSource = new MatTableDataSource<Attack>(this.employeeTableData);
+    this.dataSource = new MatTableDataSource<Attack>(this.tableData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

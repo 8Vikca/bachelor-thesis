@@ -11,36 +11,39 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./table-page.component.scss']
 })
 export class TablePageComponent implements OnInit {
-  public employeeTableData: Attack[];  
+  public tableData: Attack[] = [];
   params: HttpParams;
 
   constructor(private service: TableService) {
   }
 
   public ngOnInit() {
-    //this.getData();
-    this.getFilteredData(this.params);
+    this.getData();
+    //this.getFilteredData(this.params);
   }
 
   getData(): void {
     this.service.loadAllTableData()
       .subscribe(result => {
-        this.employeeTableData = result;
+        this.tableData = result;
       });
   }
   getFilteredData(params: HttpParams): void {
     this.service.loadFilteredData(params)
       .subscribe(result => {
-        this.employeeTableData = result;
+        this.tableData = result;
       });
 
   }
 
   public sendFilters(event: any): void {
+    if (event.startDate == "" || event.endDate == "") {
+      this.getData();
+    }
     this.params = new HttpParams();
     this.params = this.params.set("startDate", event.startDate).set("endDate", event.endDate);
     event.filters.forEach(element => {
-      this.params= this.params.append('filter', element);
+      this.params = this.params.append('filter', element);
     });
     this.getFilteredData(this.params);
   }

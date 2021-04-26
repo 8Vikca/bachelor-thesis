@@ -25,17 +25,16 @@
 .chart-wrapper {
   display: flex;
   flex-direction: row;
-  @media (max-width: $normal) {
+  @media (max-width: 1750px) {
     flex-wrap: wrap;
     width: 100% !important;
-    order: 3!important;
   }
 }
 .left-column-container {
   width: 60%;
   @media (max-width: $normal) {
     flex-wrap: wrap;
-    width: 100% !important;
+    width: 60% !important;
   }
 }
 .right-column-container {
@@ -50,6 +49,7 @@
 
 #chart1 {
   width: 100%;
+  min-width: 400px;
   height: 268px;
   align-items: center;
   @media (max-width: $normal) {

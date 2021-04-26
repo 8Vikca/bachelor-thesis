@@ -39,9 +39,8 @@ export class TimelineChartComponent implements OnChanges{
 
   public initChartData(): void {
     let dates = [];
-    console.log(this.timelineData);
     let option = "";
-    if(this.timelineData.length !=0) {
+    if(this.timelineData.length !=0 && this.timelineData.length != undefined) {
       option = this.timelineData[0].option;
     }
      this.timelineData.forEach(element => {

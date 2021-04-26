@@ -20,7 +20,7 @@ namespace bakalarska_praca.Controllers
             _appDbContext = appdbContext;
         }
 
-        [HttpGet("/allData"), Authorize]
+        [HttpGet("/allData")]
         public List<Attack> GetAllData()
         {
             var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(100).ToList();

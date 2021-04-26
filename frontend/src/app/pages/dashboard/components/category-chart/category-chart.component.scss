@@ -7,8 +7,8 @@
     padding: 0;
   }
 #chart {
-    height: fit-content!important;
-    width: fit-content!important;
+    //height: fit-content!important;
+    //width: fit-content!important;
     //margin-top: 10px;
     zoom: 1.1;
     @media (max-width: $large) {
@@ -18,9 +18,10 @@
     }
   }
   .chart-wrapper {
-    position: relative;
+    display: flex;
+    //position: relative;
     align-content: center;
-    background-color: #ffffff;
+    //background-color: #ffffff;
     width: fit-content;
     padding-left: 0;
     padding-right: 0;

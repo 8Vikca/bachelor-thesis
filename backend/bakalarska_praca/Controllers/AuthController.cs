@@ -42,7 +42,8 @@ namespace bakalarska_praca.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, userModel.Email),
+                new Claim(ClaimTypes.Name, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
                 //new Claim(ClaimTypes.Role, "Manager")
             };
             var accessToken = _tokenService.GenerateAccessToken(claims);
@@ -55,7 +56,8 @@ namespace bakalarska_praca.Controllers
             return Ok(new
             {
                 Token = accessToken,
-                RefreshToken = refreshToken
+                RefreshToken = refreshToken,
+                Claims = claims
             });
 
         }

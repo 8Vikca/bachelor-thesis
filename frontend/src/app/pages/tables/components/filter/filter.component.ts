@@ -19,6 +19,7 @@ export class FilterComponent implements OnInit {
   @Output() filterEmitter = new EventEmitter<{startDate: string , endDate: string, filters: string[]}>();
   startDate: string = "";
   endDate: string = "";
+  openCalendar= false;
   
   constructor() { }
 
@@ -39,6 +40,9 @@ export class FilterComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
+  public openChild(){
+    this.openCalendar = true;
+  }
 
   public addFilter(queryInput:any): void {
     this.filters.push(queryInput);
@@ -51,12 +55,13 @@ export class FilterComponent implements OnInit {
   public clearFilters(): void {
     console.log(this.filters);
     this.filters.splice(0, this.filters.length);
-    console.log(this.filters);
-    //this.filters = [];
+    this.startDate = "";
+    this.endDate = "";
+    this.sendFilters();
+
   }  
   public clearOneFilter(index: any): void {
       this.filters.splice(index,1);
-      console.log(this.filters);
   }
   
   public pushDateRange(event: AircalResponse): void {
@@ -72,6 +77,7 @@ export class FilterComponent implements OnInit {
     // }
   //}
 }
+
   
   
   // Filter = "Filter...";
