@@ -62,20 +62,21 @@ namespace bakalarska_praca.Controllers
 
         }
 
-        [HttpPost("/register")]     //, Authorize
+        [HttpPost("/register"), Authorize]     //, Authorize
         public IActionResult Register([FromBody] Register model)
         {
             var user = new User()
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Email = model.Email
+                Email = model.Email,
+                Role = model.Role
             };
 
             try
             {
                 // create user
-                _authService.Create(user, model.Password);
+                //_authService.Create(user, model.Password);
                 return Ok();
             }
             catch (Exception ex)

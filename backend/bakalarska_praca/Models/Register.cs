@@ -20,5 +20,8 @@ namespace bakalarska_praca.Models
         [Required]
         public string Password { get; set; }
 
+        [Required]
+        public string Role { get; set; }
+
     }
 }

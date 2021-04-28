@@ -1,0 +1,5 @@
+@import "src/app/styles/colors";
+
+::ng-deep mat-tab-group.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: $navbar-background-color;
+}

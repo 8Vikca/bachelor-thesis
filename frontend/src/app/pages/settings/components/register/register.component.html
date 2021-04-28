@@ -1,0 +1,71 @@
+<!-- <mat-card> -->
+    <form class="form" [formGroup]="form" (ngSubmit)="sign()" >
+    <mat-grid-list cols="1" rowHeight="500px">
+        <mat-grid-tile>
+            <div class="example-container">
+                <h4 style="text-align: center;"> Create New User</h4>
+              <mat-form-field appearance="fill" class="width-50">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="width-50 ml-2">
+                <mat-label>Surname</mat-label>
+                <input matInput formControlName="lastName">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label>Email address</mat-label>
+                <input matInput placeholder="Ex. pat@example.com" type="email" formControlName="email">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label>Enter password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" type="password" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill" class="width-50">
+                <mat-label>Select Role</mat-label>
+                <mat-select name="role" formControlName="role">
+                  <mat-option *ngFor="let role of roles" [value]="role.value">
+                    {{role.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="form-actions">
+                <button class="form-actions__create btn" mat-raised-button color="primary" type="submit">Create account</button>
+            </div>
+            </div>
+        </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+<!-- </mat-card> -->
+
+
+
+    <!-- <form class="form" [formGroup]="form" (ngSubmit)="sign()" >
+        <div>
+            <mat-form-field class="form__input" appearance="outline">
+                <input matInput placeholder="First name" formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field class="form__input" appearance="outline">
+                <input matInput placeholder="Last name" formControlName="lastName">
+            </mat-form-field>
+        </div>
+        
+
+        <mat-form-field class="form__input" appearance="outline">
+            <input matInput placeholder="Email Address" type="email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field class="form__input" appearance="outline">
+            <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+
+        <div class="form-actions">
+            <button class="form-actions__create btn" mat-raised-button color="primary" type="submit">Create your
+                account</button>
+        </div>
+    </form> -->

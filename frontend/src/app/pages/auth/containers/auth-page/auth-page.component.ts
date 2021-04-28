@@ -33,7 +33,6 @@ export class AuthPageComponent {
   }
 
   public sendSignForm(signForm: any): void {
-    debugger
     this.service.sign(signForm).subscribe(response => {
       const token = (<any>response).token;
       const refreshToken = (<any>response).refreshToken;
