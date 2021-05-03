@@ -11,7 +11,7 @@ export class SettingsService {
   
   public sign(credentials: any): Observable<any> {
     debugger
-    return this.http.post<any>("https://localhost:44386/register", credentials); 
+    return this.http.post<any>("https://localhost:44386/register", credentials, { observe: 'response' }); 
     //localStorage.setItem('token', 'token');
   }
 }

@@ -1,10 +1,9 @@
-
-    <div class="chart-wrapper">
-        <mat-toolbar class="page-header header" role="heading">
-            <h5>Top IP Sources</h5>
-        </mat-toolbar>
-    </div>
-    <div id="chart">
-        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
-            [responsive]="chartOptions.responsive" [colors]= "chartOptions.colors"></apx-chart>
-    </div>
+<div class="chart-wrapper">
+    <mat-toolbar class="page-header header" role="heading">
+        <h5>Top IP Sources</h5>
+    </mat-toolbar>
+</div>
+<div id="chart" *ngIf="ipChartSeries">
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+        [responsive]="chartOptions.responsive" [colors]="chartOptions.colors" [autoUpdateSeries]="true"></apx-chart>
+</div>

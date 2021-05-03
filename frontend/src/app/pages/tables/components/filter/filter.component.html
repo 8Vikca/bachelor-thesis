@@ -2,7 +2,6 @@
   <app-ngx-daterange-picker (dateEmitter)="pushDateRange($event)" class="date"></app-ngx-daterange-picker>
   <div class="inputButtons">
     <mat-form-field class="input">
-
       <input type="text" placeholder="Filter..." matInput [formControl]="myControl" [matAutocomplete]="auto"
         [(ngModel)]="queryInput" (keydown.enter)="addFilter(queryInput)">
       <button mat-button *ngIf="queryInput" matSuffix mat-icon-button aria-label="Clear" (click)="queryInput=''"
@@ -14,7 +13,6 @@
           {{option}}
         </mat-option>
       </mat-autocomplete>
-
     </mat-form-field>
     <button mat-mini-fab (click)="addFilter(queryInput)" class="btn">
       <mat-icon>add</mat-icon>

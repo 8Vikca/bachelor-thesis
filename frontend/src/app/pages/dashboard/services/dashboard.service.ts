@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import {
   Attack,
+  ChartCounter,
   Counter,
   Timeline
 } from '../models';
@@ -22,8 +23,8 @@ export class DashboardService {
    loadRecentTableData(params: HttpParams): Observable<Attack[]> { 
     return this.http.get<Attack[]>("https://localhost:44386/recentData", {params: params});  
   }
-  loadIPGraphData(params: HttpParams): Observable<Attack[]> {   
-    return this.http.get<Attack[]>("https://localhost:44386/graphData", {params: params});     
+  loadChartData(params: HttpParams): Observable<ChartCounter[]> {   
+    return this.http.get<ChartCounter[]>("https://localhost:44386/ipChartData", {params: params});     
   }
   loadCounter(params: HttpParams): Observable<Counter[]> {   
     return this.http.get<Counter[]>("https://localhost:44386/counter", {params: params});     

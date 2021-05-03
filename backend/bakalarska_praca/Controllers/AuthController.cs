@@ -44,7 +44,8 @@ namespace bakalarska_praca.Controllers
             {
                 new Claim(ClaimTypes.Name, user.FirstName),
                 new Claim(ClaimTypes.Surname, user.LastName),
-                //new Claim(ClaimTypes.Role, "Manager")
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.Email, user.Email),
             };
             var accessToken = _tokenService.GenerateAccessToken(claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
@@ -62,7 +63,7 @@ namespace bakalarska_praca.Controllers
 
         }
 
-        [HttpPost("/register"), Authorize]     //, Authorize
+        [HttpPost("/register"), Authorize(Roles = "admin")]     //, Authorize
         public IActionResult Register([FromBody] Register model)
         {
             var user = new User()

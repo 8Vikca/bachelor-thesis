@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Role {
   value: string;
@@ -17,9 +16,8 @@ export class RegisterComponent implements OnInit {
   public form: FormGroup;
   hide = true;
   // selectedValue: string;
-  durationInSeconds = 10;
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor() {}
 
   public ngOnInit(): void {
     this.form = new FormGroup({
@@ -39,25 +37,10 @@ export class RegisterComponent implements OnInit {
   public sign(): void {
     if (this.form.valid) {
       this.sendRegisterForm.emit(this.form.value);
-      this.openSnackBar();
-
       this.form.reset();
     }
   }
-  openSnackBar() {
-    this._snackBar.openFromComponent(RegisterSnackbarComponent, {
-      duration: this.durationInSeconds * 1000,
-    });
-  }
+  
 }
 
-@Component({
-  selector: 'register-snackbar',
-  templateUrl: 'register-snackbar.html',
-  styles: [`
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `],
-})
-export class RegisterSnackbarComponent {}
+

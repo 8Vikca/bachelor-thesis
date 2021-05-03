@@ -9,11 +9,10 @@ import { Counter } from '../../models';
 })
 export class AlertCounterComponent implements OnInit {
   @Input() alertCounters: Counter = {
-    counterSrc : null,
-    labelSrc : null,
-    alertsCritical: null, alertsHigh: null, alertsLow: null, alertsMedium: null, alertsTotal: null,
+    alertsCritical: 0, alertsHigh: 0, alertsLow: 0, alertsMedium: 0, alertsTotal: 0,
   };
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
 
 import { User } from '../models';
@@ -8,9 +9,16 @@ import { User } from '../models';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
   }
+
+  currentUser: User = {
+    name:null,
+    surname: null,
+    role: null,
+    email: null
+  }
+
   public login(credentials: any): Observable<any> {
       return this.http.post<any>("https://localhost:44386/login", credentials); 
   }
@@ -35,9 +43,17 @@ export class AuthService {
   }
 
   public getUser(): Observable<User> {
+    const token = localStorage.getItem("token");
+    const decodedToken = this.jwtHelper.decodeToken(token);
+      this.currentUser.name = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+      this.currentUser.surname = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'];
+      this.currentUser.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+      this.currentUser.role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     return of({
-      name: 'John',
-      lastName: 'Smith'
+      name: this.currentUser.name,
+      surname: this.currentUser.surname,
+      role: this.currentUser.role,
+      email: this.currentUser.email
     });
   }
 }

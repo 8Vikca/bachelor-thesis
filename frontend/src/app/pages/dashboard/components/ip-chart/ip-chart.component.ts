@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, ViewChild } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
 
 import {
   ApexNonAxisChartSeries,
@@ -28,8 +28,10 @@ export class IpChartComponent implements OnChanges{
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
-    this.initializeChart();
+    // this.initializeChart();
+    setTimeout(this.initializeChart,1)
   }
+ 
   ngOnChanges(): void {
     this.initializeChart();
   }

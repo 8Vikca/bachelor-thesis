@@ -1,4 +1,5 @@
 ﻿using bakalarska_praca.Models;
+using bakalarska_praca.Models.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,13 @@ namespace bakalarska_praca.Services
             var counter = new Counter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
                 .ToList();
-            var srcDictionary = new Dictionary<string, int>();
-            var categoryDictionary = new Dictionary<string, int>();
             if (selectedData.Count == 0)
             {
                 return counter;
             }
+            var srcDictionary = new Dictionary<string, int>();
+            var categoryDictionary = new Dictionary<string, int>();
+            
             for (int i = 0; i < selectedData.Count; i++)        //pocitanie SRC IP a Category
             {
                 if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))
@@ -77,6 +79,53 @@ namespace bakalarska_praca.Services
                 counter.LabelCategory.Add(item.Key);
                 counter.CounterCategory.Add(item.Value);
             }
+            return counter;
+        }
+        public ChartCounter LoadChartCounter(DateTime startDate, DateTime endDate)
+        {
+            var counter = new ChartCounter();
+            var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
+               .ToList();
+            if (selectedData.Count == 0)
+            {
+                return counter;
+            }
+            var srcDictionary = new Dictionary<string, int>();
+            var categoryDictionary = new Dictionary<string, int>();
+           
+            for (int i = 0; i < selectedData.Count; i++)        //pocitanie SRC IP a Category
+            {
+                if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))
+                {
+                    srcDictionary.Add(selectedData[i].Src_ip, 1);
+                }
+                else
+                {
+                    srcDictionary[selectedData[i].Src_ip] += 1;
+                }
+
+                if (!categoryDictionary.ContainsKey(selectedData[i].Category))
+                {
+                    categoryDictionary.Add(selectedData[i].Category, 1);
+                }
+                else
+                {
+                    categoryDictionary[selectedData[i].Category] += 1;
+                }
+            }
+            srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
+            categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
+            foreach (var item in srcDictionary)
+            {
+                counter.LabelSrc.Add(item.Key);
+                counter.CounterSrc.Add(item.Value);
+            }
+            foreach (var item in categoryDictionary)
+            {
+                counter.LabelCategory.Add(item.Key);
+                counter.CounterCategory.Add(item.Value);
+            }
+
             return counter;
         }
         public List<Timeline> LoadTimelineData(TimeSpan variety, List<Attack> selectedData)

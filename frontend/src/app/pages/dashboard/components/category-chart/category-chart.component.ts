@@ -34,7 +34,9 @@ export type ChartOptions = {
 export class CategoryChartComponent implements OnInit, OnChanges{
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-  @Input() categoryChartSeries: Counter = {};
+  @Input() categoryChartSeries: Counter = {
+    counterCategory : [], labelCategory : []
+  };
 
   constructor() {
     this.initializeChart();

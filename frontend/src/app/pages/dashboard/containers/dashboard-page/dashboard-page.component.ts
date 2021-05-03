@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DashboardService } from '../../services';
 import {
   Attack,
+  ChartCounter,
   Counter,
   Timeline,
 } from '../../models';
@@ -18,7 +19,7 @@ export class DashboardPageComponent {
 
   public severityTableData: Attack[] = [];
   public recentTableData: Attack[] = [];
-  public ipGraphData: Attack[] = [];
+  public chartData: ChartCounter[] = [];
   public timelineData: Timeline[] = [];
   public counters: Counter[] = [];
   params = new HttpParams();
@@ -59,6 +60,13 @@ export class DashboardPageComponent {
     this.service.loadTimelineData(params)
       .subscribe(result => {
         this.timelineData = result;
+      });
+  }
+
+  getChartData(params: HttpParams): void {
+    this.service.loadChartData(params)
+      .subscribe(result => {
+        this.chartData = result;
       });
   }
 
