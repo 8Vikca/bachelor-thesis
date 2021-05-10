@@ -1,4 +1,5 @@
 ﻿using bakalarska_praca.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,16 @@ namespace bakalarska_praca.Services
     public class TokenServices
     {
         private readonly AppDbContext _appDbContext;
-        public TokenServices(AppDbContext appdbContext)
+        private readonly string secret;
+        public TokenServices(AppDbContext appdbContext, IConfiguration config)
         {
             _appDbContext = appdbContext;
+            secret = config.GetValue<string>("ServiceConfiguration:JwtSettings:Secret");
         }
 
         public string GenerateAccessToken(IEnumerable<Claim> claims)
         {
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GD9mf1w&Bjd1pun=opS#"));
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokenOptions = new JwtSecurityToken(
@@ -50,7 +53,7 @@ namespace bakalarska_praca.Services
                 ValidateAudience = false, //you might want to validate the audience and issuer depending on your use case
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GD9mf1w&Bjd1pun=opS#")),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
                 ValidateLifetime = false //here we are saying that we don't care about the token's expiration date
             };
             var tokenHandler = new JwtSecurityTokenHandler();

@@ -28,8 +28,8 @@ export class IpChartComponent implements OnChanges{
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
-    // this.initializeChart();
-    setTimeout(this.initializeChart,1)
+    this.initializeChart();
+    // setTimeout(this.initializeChart,1)
   }
  
   ngOnChanges(): void {

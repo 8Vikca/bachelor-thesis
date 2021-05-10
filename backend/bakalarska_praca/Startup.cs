@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Net;
 
 namespace bakalarska_praca
 {
@@ -29,11 +30,12 @@ namespace bakalarska_praca
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //vytvorenie lokalnej databazy
-            services.AddHttpsRedirection(options =>         
+            services.AddHttpsRedirection(options =>
             {
-                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.RedirectStatusCode = (int)HttpStatusCode.PermanentRedirect;
                 options.HttpsPort = 44386;
             });
+          
             services.AddHsts(options =>
             {
                 options.Preload = true;
@@ -55,9 +57,15 @@ namespace bakalarska_praca
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);        //redirect to https
-            app.UseRewriter(options);
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+            app.UseHttpsRedirection();
+            //var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);        //redirect to https
+            //app.UseRewriter(options);
 
             app.UseStaticFiles();       
             app.UseCors("CorsPolicy");                                  //povolenie http poziadaviek
@@ -66,8 +74,7 @@ namespace bakalarska_praca
                 ForwardedHeaders = ForwardedHeaders.All
             });
 
-            app.UseHttpsRedirection();
-            app.UseHsts();
+            
             app.UseRouting();
 
             app.UseAuthentication();

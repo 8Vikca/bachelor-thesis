@@ -4,6 +4,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { Attack } from '../../models/attack';
 import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class AttacksTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private _snackBar: MatSnackBar) {
 
   }
   ngAfterViewInit(): void {
@@ -36,6 +37,13 @@ export class AttacksTableComponent implements OnInit, AfterViewInit {
   }
   ngOnChanges() {
     this.dataSource = new MatTableDataSource<Attack>(this.tableData);
+    // if (this.tableData.length == 0) {
+    //   let snackBarRef = this._snackBar.open('No data to show', null, {
+    //     duration: 2500,
+    //     horizontalPosition: 'center',
+    //     verticalPosition: 'top'
+    //   });
+    // }
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

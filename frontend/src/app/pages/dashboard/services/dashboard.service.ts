@@ -24,7 +24,7 @@ export class DashboardService {
     return this.http.get<Attack[]>("https://localhost:44386/recentData", {params: params});  
   }
   loadChartData(params: HttpParams): Observable<ChartCounter[]> {   
-    return this.http.get<ChartCounter[]>("https://localhost:44386/ipChartData", {params: params});     
+    return this.http.get<ChartCounter[]>("https://localhost:44386/chartData", {params: params});     
   }
   loadCounter(params: HttpParams): Observable<Counter[]> {   
     return this.http.get<Counter[]>("https://localhost:44386/counter", {params: params});     

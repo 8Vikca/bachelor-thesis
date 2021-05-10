@@ -64,46 +64,10 @@ export class FilterComponent implements OnInit {
       this.filters.splice(index,1);
   }
   
-  public pushDateRange(event: AircalResponse): void {
+  public pushDates(event: AircalResponse): void {
     this.startDate = event.startDate.toISOString();
     this.endDate = event.endDate.toISOString();
-    //this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
-    // this.getRecentTableData(this.params);
-    // this.getSeverityTableData(this.params);
-    // this.getCounters(this.params);
-    // this.getTimelineData(this.params);
-    // if (this.recentTableData.length == 0) {
-    //   this.dialog.open(NoDataDialog);
-    // }
-  //}
 }
-
-  
-  
-  // Filter = "Filter...";
-  // keyword = 'name';
-  // data = [
-  //    {
-  //      id: 1,
-  //      name: 'Category = '
-  //    },
-  //    {
-  //      id: 2,
-  //      name: 'Severity = '
-  //    },
-  //    {
-  //     id: 3,
-  //     name: 'Protocol = '
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'Source_IP = '
-  //   },
-  //   {
-  //     id: 5,
-  //     name: 'Dest_IP = '
-  //   }
-  // ];
 
 
   // selectEvent(item) {

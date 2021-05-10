@@ -6,10 +6,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using bakalarska_praca.Models;
+using bakalarska_praca.Models.Auth;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace bakalarska_praca.Controllers
@@ -22,16 +24,15 @@ namespace bakalarska_praca.Controllers
         private AuthServices _authService;
         private TokenServices _tokenService;
 
-        public AuthController(AppDbContext appdbContext)        // IMapper mapper
+        public AuthController(AppDbContext appdbContext, IConfiguration config)
         {
             _appDbContext = appdbContext;
             _authService = new AuthServices(appdbContext);
-            _tokenService = new TokenServices(appdbContext);
-
+            _tokenService = new TokenServices(appdbContext, config);
         }
 
         [HttpPost("/login")]
-        public IActionResult Login([FromBody] Authenticate userModel) //
+        public IActionResult Login([FromBody] Authenticate userModel)
         {
             var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
@@ -63,7 +64,7 @@ namespace bakalarska_praca.Controllers
 
         }
 
-        [HttpPost("/register"), Authorize(Roles = "admin")]     //, Authorize
+        [HttpPost("/register"), Authorize(Roles = "admin")]
         public IActionResult Register([FromBody] Register model)
         {
             var user = new User()
@@ -83,6 +84,44 @@ namespace bakalarska_praca.Controllers
             catch (Exception ex)
             {
                 // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpPost("/updateUser"), Authorize]
+        public IActionResult UpdateUser([FromBody] UpdateUser model)
+        {
+            try
+            {
+                var user = _appDbContext.Logins.Where(o => o.Email == model.Email).Single();
+                user.FirstName = model.Name;
+                user.LastName = model.Surname;
+                _appDbContext.Logins.Update(user);
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            return Ok();
+        }
+        [HttpPost("/updatePassword"), Authorize]
+        public IActionResult UpdatePassword([FromBody] UpdateUser model)
+        {
+            try
+            {
+                var result = _authService.PasswordVerification(model);
+                if (result == false)           
+                {
+                    return Unauthorized();
+                }
+                else
+                {
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(new { message = ex.Message });
             }
         }

@@ -31,7 +31,7 @@ export type ChartOptions = {
   templateUrl: './category-chart.component.html',
   styleUrls: ['./category-chart.component.scss']
 })
-export class CategoryChartComponent implements OnInit, OnChanges{
+export class CategoryChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   @Input() categoryChartSeries: Counter = {
@@ -41,9 +41,9 @@ export class CategoryChartComponent implements OnInit, OnChanges{
   constructor() {
     this.initializeChart();
   }
-  ngOnInit(): void {
-    this.initializeChart();
-  }
+  // ngOnInit(): void {
+  //   this.initializeChart();
+  // }
   ngOnChanges(): void {
     this.initializeChart();
   }

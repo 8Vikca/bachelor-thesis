@@ -7,7 +7,7 @@ import { Form } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from '../../models';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth-page',
@@ -24,7 +24,7 @@ export class AuthPageComponent {
     private _snackBar: MatSnackBar
   ) { }
 
-  public sendLoginForm(loginForm: any): void {  //form: Form
+  public sendLoginForm(loginForm: any): void { 
     this.service.login(loginForm).subscribe(response => {
       const token = (<any>response).token;
       const refreshToken = (<any>response).refreshToken;
@@ -36,18 +36,19 @@ export class AuthPageComponent {
       let snackBarRef = this._snackBar.open('Incorrect email or password', null, { 
         duration: 2500,
         horizontalPosition: 'center',
-        verticalPosition: 'top'
+        verticalPosition: 'top',
+        panelClass: ['mat-toolbar', 'mat-warn']
       }); 
     });
   }
 
-  public sendSignForm(signForm: any): void {
-    this.service.sign(signForm).subscribe(response => {
-      const token = (<any>response).token;
-      const refreshToken = (<any>response).refreshToken;
-      localStorage.setItem("token", token);
-      localStorage.setItem("refreshToken", refreshToken);
-      //this.router.navigate([this.routers.DASHBOARD]);;
-    })
-  }
+  // public sendSignForm(signForm: any): void {
+  //   this.service.sign(signForm).subscribe(response => {
+  //     const token = (<any>response).token;
+  //     const refreshToken = (<any>response).refreshToken;
+  //     localStorage.setItem("token", token);
+  //     localStorage.setItem("refreshToken", refreshToken);
+  //     //this.router.navigate([this.routers.DASHBOARD]);;
+  //   })
+  // }
 }

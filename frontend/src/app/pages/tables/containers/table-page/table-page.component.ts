@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { TableService } from '../../services';
 import { Attack } from '../../models';
 import { HttpParams } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class TablePageComponent implements OnInit {
   public tableData: Attack[] = [];
   params: HttpParams;
 
-  constructor(private service: TableService) {
+
+  constructor(private service: TableService, private _snackBar: MatSnackBar) {
   }
 
   public ngOnInit() {
@@ -46,6 +48,15 @@ export class TablePageComponent implements OnInit {
       this.params = this.params.append('filter', element);
     });
     this.getFilteredData(this.params);
+    debugger
+    if (this.tableData.length == 0) {
+        let snackBarRef = this._snackBar.open('No data to show', null, {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbar']
+        });
+      }
   }
 };
 

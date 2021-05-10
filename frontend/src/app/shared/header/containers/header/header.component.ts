@@ -20,11 +20,11 @@ export class HeaderComponent {
 
   constructor(
     private userService: AuthService,
-    private emailService: EmailService,
+    //private emailService: EmailService,
     private router: Router
   ) {
     this.user$ = this.userService.getUser();
-    this.emails$ = this.emailService.loadEmails();
+    //this.emails$ = this.emailService.loadEmails();
   }
 
   public openMenu(): void {

@@ -1,5 +1,5 @@
 <div class="filter">
-  <app-ngx-daterange-picker (dateEmitter)="pushDateRange($event)" class="date"></app-ngx-daterange-picker>
+  <app-ngx-daterange-picker (dateEmitter)="pushDates($event)" class="date"></app-ngx-daterange-picker>
   <div class="inputButtons">
     <mat-form-field class="input">
       <input type="text" placeholder="Filter..." matInput [formControl]="myControl" [matAutocomplete]="auto"
@@ -23,9 +23,6 @@
     <button mat-mini-fab (click)="sendFilters()" class="btn">
       <mat-icon>filter_list</mat-icon>
     </button>
-    <!-- <button mat-mini-fab class="btn">
-      <mat-icon>calendar_today</mat-icon>
-    </button> -->
 
 
   </div>

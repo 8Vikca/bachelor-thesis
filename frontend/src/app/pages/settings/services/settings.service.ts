@@ -10,8 +10,13 @@ export class SettingsService {
   constructor(private http: HttpClient) { }
   
   public sign(credentials: any): Observable<any> {
-    debugger
     return this.http.post<any>("https://localhost:44386/register", credentials, { observe: 'response' }); 
-    //localStorage.setItem('token', 'token');
+  }
+  public updateUser(userInfo: any): Observable<any> {
+    return this.http.post<any>("https://localhost:44386/updateUser", userInfo, { observe: 'response' }); 
+  }
+  public updatePassword(userPassword: any): Observable<any> {
+    debugger
+    return this.http.post<any>("https://localhost:44386/updatePassword", userPassword, { observe: 'response' }); 
   }
 }

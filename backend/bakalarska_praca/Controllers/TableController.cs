@@ -23,10 +23,10 @@ namespace bakalarska_praca.Controllers
         [HttpGet("/allData")]
         public List<Attack> GetAllData()
         {
-            var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(100).ToList();
+            var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(1000).ToList();
             return selectedData;
         }
-        [HttpGet("/filteredData")] //Authorize
+        [HttpGet("/filteredData"), Authorize] 
         public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)   //[FromBody] string[] filters
         {
             if (filter.Length == 0)
@@ -75,7 +75,7 @@ namespace bakalarska_praca.Controllers
                 }
 
             }
-            selectedData = selectedData.Take(100).ToList();
+            selectedData = selectedData.Take(1000).ToList();
             return selectedData;
         }
     }

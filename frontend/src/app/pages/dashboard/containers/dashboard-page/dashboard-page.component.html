@@ -9,10 +9,10 @@
         <app-alert-counter *ngIf="counters" [alertCounters]="counters"></app-alert-counter>
         <div class="chart-wrapper">
           <mat-card id="chart1">
-            <app-category-chart *ngIf="counters" [categoryChartSeries]="counters"></app-category-chart>
+            <app-category-chart *ngIf="chartData" [categoryChartSeries]="chartData"></app-category-chart>
           </mat-card>
           <mat-card id="chart1">
-            <app-ip-chart *ngIf="counters" [ipChartSeries]="counters"></app-ip-chart>
+            <app-ip-chart *ngIf="chartData" [ipChartSeries]="chartData"></app-ip-chart>
           </mat-card>
 
         </div>

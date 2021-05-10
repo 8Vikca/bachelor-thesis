@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 @NgModule({
@@ -23,7 +25,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     SettingsPageComponent,
     RegisterComponent,
     SettingsComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -42,7 +43,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,   
     MatIconModule, 
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule
   ]
 })
 export class SettingsModule { }

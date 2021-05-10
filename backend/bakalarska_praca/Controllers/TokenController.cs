@@ -4,6 +4,7 @@ using bakalarska_praca.Models;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace bakalarska_praca.Controllers
 {
@@ -14,10 +15,10 @@ namespace bakalarska_praca.Controllers
         private readonly AppDbContext _appDbContext;
         private TokenServices _tokenService;
 
-        public TokenController(AppDbContext appDbContext)
+        public TokenController(AppDbContext appDbContext, IConfiguration config)
         {
             _appDbContext = appDbContext;
-            _tokenService = new TokenServices(appDbContext);
+            _tokenService = new TokenServices(appDbContext, config);
         }
         [HttpPost]
         [Route("/refresh")]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bakalarska_praca.Models;
+using bakalarska_praca.Models.Dashboard;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,9 +28,10 @@ namespace bakalarska_praca.Controllers
         [HttpGet("/recentData")]
         public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)
         {
+
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
-                                .OrderByDescending(o => o.Timestamp)
-                                .Take(10).ToList();
+                             .OrderByDescending(o => o.Timestamp)
+                             .Take(10).ToList();
             return selectedData;
         }
 
@@ -50,6 +52,14 @@ namespace bakalarska_praca.Controllers
             return counter;
         }
 
+        [HttpGet("/chartData")]
+        public ChartCounter GetChartData(DateTime startDate, DateTime endDate)
+        {
+            var counter = new ChartCounter();
+            counter = dashboardService.LoadChartCounter(startDate, endDate);
+            return counter;
+        }
+
         [HttpGet("/timelineData")]
         public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)
         {
@@ -59,7 +69,7 @@ namespace bakalarska_praca.Controllers
                 return null;
             }
             var variety = endDate.Date.Subtract(startDate.Date);
-            var timelineData= dashboardService.LoadTimelineData(variety, selectedData);
+            var timelineData = dashboardService.LoadTimelineData(variety, selectedData);
             return timelineData;
         }
     }

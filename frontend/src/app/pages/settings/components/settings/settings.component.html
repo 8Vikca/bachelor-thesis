@@ -1,1 +1,108 @@
-<p>settings works!</p>
+<h4 class="header"> Change my settings</h4>
+<div class="wrapper">
+    <mat-accordion class="example-headers-align">
+        <form [formGroup]="personalForm" (ngSubmit)="updateInfo()">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Personal data
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Update your personal information
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput formControlName="firstName">
+                </mat-form-field>
+
+                <mat-form-field> 
+                    <mat-label>Last name</mat-label>
+                    <input matInput formControlName="lastName">
+                </mat-form-field>
+
+                <!-- #docregion action-bar -->
+                <mat-action-row>
+                    <button mat-button color="primary" type="submit">Update</button>
+                </mat-action-row>
+                <!-- #enddocregion action-bar -->
+            </mat-expansion-panel>
+        </form>
+        <form [formGroup]="securityForm" (ngSubmit)="updatePassword()">
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Security
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Update your password
+                        <mat-icon>lock</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                    <mat-label>Current password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" type="password" formControlName="currentPassword">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>New password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" type="password" formControlName="newPassword">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-action-row>
+                    <button mat-button color="primary" type="submit">Update</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </form>
+    </mat-accordion>
+</div>
+
+<!-- <form class="form" [formGroup]="form" (ngSubmit)="sign()">
+    <mat-grid-list cols="1" rowHeight="500px">
+        <mat-grid-tile>
+            <div class="example-container">
+                <h4 style="text-align: center;"> Create New User</h4>
+                <mat-form-field appearance="fill" class="width-50">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="width-50 ml-2">
+                    <mat-label>Surname</mat-label>
+                    <input matInput formControlName="lastName">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill" class="width-100">
+                    <mat-label>Email address</mat-label>
+                    <input matInput placeholder="Ex. pat@example.com" type="email" formControlName="email">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill" class="width-100">
+                    <mat-label>Enter password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" type="password" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div class="error" *ngIf="form.controls.password.invalid">
+                    <p class="text-danger">8 to 30 characters, 1 digit, 1 lowercase, 1 uppercase</p>
+                </div>
+                <br>
+                
+                <div class="form-actions">
+                    <button class="form-actions__create btn" mat-raised-button color="primary" type="submit">Create
+                        account</button>
+                </div> 
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form> -->

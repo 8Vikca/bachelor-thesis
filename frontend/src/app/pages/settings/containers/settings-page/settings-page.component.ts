@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { routes } from 'src/app/consts';
+import { User } from 'src/app/pages/auth/models';
+import { AuthService } from 'src/app/pages/auth/services';
+import { UpdateUser } from '../../models/updateUser';
 import { SettingsService } from '../../services/settings.service';
 
 @Component({
@@ -9,26 +13,83 @@ import { SettingsService } from '../../services/settings.service';
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.scss']
 })
-export class SettingsPageComponent implements OnInit {
+export class SettingsPageComponent {
   public routers: typeof routes = routes;
   durationInSeconds = 5;
+  public user$: Observable<User>
 
   constructor(
-    private service: SettingsService, private router: Router, private _snackBar: MatSnackBar) { }
-
-  ngOnInit(): void {
+    private service: SettingsService, private router: Router, private _snackBar: MatSnackBar, private userService: AuthService) {
+    this.user$ = this.userService.getUser();
   }
 
+
+  public sendUpdate(updateUser: UpdateUser) {
+    if (updateUser.currentPassword != null || updateUser.newPassword != null) {
+      this.sendPassword(updateUser);
+    } else {
+      this.service.updateUser(updateUser).subscribe(response => {
+        if (response.status == 200) {
+          let snackBarRef = this._snackBar.open('User info updated', null, {
+            duration: 2500,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar']
+          });
+          //this.router.navigate([this.routers.DASHBOARD]);
+        }
+      },
+        (err) => {
+          let snackBarRef = this._snackBar.open('{{err}}', null, {
+            duration: 2500,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar']
+          });
+        });
+    }
+  }
+  public sendPassword(updateUser: UpdateUser) {
+    this.service.updatePassword(updateUser).subscribe(response => {
+      if (response.status == 200) {
+        let snackBarRef = this._snackBar.open('Password changed', null, {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbar']
+        });
+      }
+      this.router.navigate([this.routers.SETTINGS]);
+    },
+      (err) => {
+        let snackBarRef = this._snackBar.open('Incorrect password', null, {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbar']
+        });
+      });
+  }
 
   public sendRegisterForm(signForm: any): void {
     this.service.sign(signForm).subscribe(response => {
       if (response.status == 200) {
-        this.openRegisterSnackBar();
-        this.router.navigate([this.routers.DASHBOARD]);
+        let snackBarRef = this._snackBar.open('User created', null, {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbar']
+        });
+        this.router.navigate([this.routers.SETTINGS]);
       }
     },
       (err) => {
-        this.openNoAuthSnackBar();
+        let snackBarRef = this._snackBar.open('You are not authorized to create user!', null, {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbar']
+        });
       });
     // else {
     //   console.log("nope");
@@ -38,35 +99,4 @@ export class SettingsPageComponent implements OnInit {
     // }
     //})
   }
-  openRegisterSnackBar() {
-    this._snackBar.openFromComponent(RegisterSnackbarComponent, {
-      duration: this.durationInSeconds * 1000,
-    });
-  }
-  openNoAuthSnackBar() {
-    this._snackBar.openFromComponent(NoAuthSnackbarComponent, {
-      duration: this.durationInSeconds * 1000,
-    });
-  }
 }
-@Component({
-  selector: 'register-snackbar',
-  templateUrl: 'register-snackbar.html',
-  styles: [`
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `],
-})
-export class RegisterSnackbarComponent { }
-
-@Component({
-  selector: 'noAuth-snackbar',
-  templateUrl: 'noAuth-snackbar.html',
-  styles: [`
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `],
-})
-export class NoAuthSnackbarComponent { }

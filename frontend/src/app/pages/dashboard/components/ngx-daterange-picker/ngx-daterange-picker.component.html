@@ -1,7 +1,7 @@
 <input type="text" class="calendar"
-    ngxDaterangepickerMd [(ngModel)]="selected" [showCustomRangeLabel]="true"
+    ngxDaterangepickerMd  [showCustomRangeLabel]="true" [ngModel]= "selected"
     [autoApply]="true"
     [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}" (datesUpdated)="datesUpdated($event)"
-    (choosedDate)="datesUpdated($event)"
     [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
     [showClearButton]="true" placeholder="Select please..."/>
+    <!-- (choosedDate)="datesUpdated($event)" -->

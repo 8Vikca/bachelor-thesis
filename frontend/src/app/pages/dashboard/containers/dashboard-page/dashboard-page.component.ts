@@ -9,6 +9,8 @@ import {
 import { HttpParams } from '@angular/common/http';
 import { AircalResponse } from 'ngx-aircal';
 import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -24,8 +26,11 @@ export class DashboardPageComponent {
   public counters: Counter[] = [];
   params = new HttpParams();
   variableDate = new Date;
+  choosedDate = {startDate: null, endDate: null};
+  
 
-  constructor(private service: DashboardService, public dialog: MatDialog) {
+  constructor(private service: DashboardService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+    
   }
 
   public ngOnInit() {
@@ -33,6 +38,15 @@ export class DashboardPageComponent {
     this.getSeverityTableData(this.params);
     this.getCounters(this.params);
     this.getTimelineData(this.params);
+    this.getChartData(this.params);
+    if (this.severityTableData.length == 0) {
+      let snackBarRef = this._snackBar.open('No data to show', null, {
+        duration: 2500,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        
+      });
+    }
   }
 
   getSeverityTableData(params: HttpParams): void {
@@ -72,13 +86,19 @@ export class DashboardPageComponent {
 
   public pushDateRange(event: AircalResponse): void {
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
+    debugger
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getCounters(this.params);
     this.getTimelineData(this.params);
-    // if (this.recentTableData.length == 0) {
-    //   this.dialog.open(NoDataDialog);
-    // }
+    this.getChartData(this.params);
+    if (this.severityTableData.length == 0) {
+      let snackBarRef = this._snackBar.open('No data to show', null, {
+        duration: 2500,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+    }
   }
 }
 
@@ -87,6 +107,7 @@ export class DashboardPageComponent {
   templateUrl: 'noDataDialog.html',
 })
 export class NoDataDialog { }
+
    //   Observable
     // .interval(2*60*1000)
     // .timeInterval()

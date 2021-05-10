@@ -1,4 +1,5 @@
 ﻿using bakalarska_praca.Models;
+using bakalarska_praca.Models.Auth;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -15,7 +16,6 @@ namespace bakalarska_praca.Services
     public class AuthServices
     {
         private readonly AppDbContext _appDbContext;
-       // private readonly ServiceConfiguration _appSettings;
         public AuthServices(AppDbContext appdbContext)
         {
             _appDbContext = appdbContext;
@@ -32,6 +32,25 @@ namespace bakalarska_praca.Services
             if (!VerifyPasswordHash(userModel.Password, user.PasswordHash, user.PasswordSalt))
                 return null;
             return user;
+        }
+        public bool PasswordVerification(UpdateUser userModel)
+        {
+            if (string.IsNullOrEmpty(userModel.Email) || string.IsNullOrEmpty(userModel.CurrentPassword))
+                return false;
+            var user = _appDbContext.Logins.SingleOrDefault(x => x.Email == userModel.Email);
+            if (user == null)
+                return false;
+            if (!VerifyPasswordHash(userModel.CurrentPassword, user.PasswordHash, user.PasswordSalt))
+                return false;
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(userModel.NewPassword, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            _appDbContext.Logins.Update(user);
+            _appDbContext.SaveChanges();
+            return true;
         }
 
         public User Create(User user, string password)
