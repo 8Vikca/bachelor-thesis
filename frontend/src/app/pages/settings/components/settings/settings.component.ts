@@ -17,6 +17,7 @@ export class SettingsComponent implements OnInit {
   public emailForm: FormGroup;
   public securityForm: FormGroup;
   hide = true;
+  hide2 = true;
   updateUser: UpdateUser = {name: null, surname: null, email: null, currentPassword: null, newPassword:null};
 
   constructor() {
@@ -29,7 +30,7 @@ export class SettingsComponent implements OnInit {
     });
     this.securityForm = new FormGroup({
       currentPassword: new FormControl(''),
-      newPassword: new FormControl(''), // , [Validators.required,]Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)
+      newPassword: new FormControl('', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]),
     });
     this.personalForm.setValue({firstName: this.user.name, lastName: this.user.surname});
  
@@ -54,6 +55,7 @@ export class SettingsComponent implements OnInit {
       this.updateUser.newPassword = this.securityForm.controls['newPassword'].value;      
       this.updateUser.email = this.user.email;
       this.sendUpdate.emit(this.updateUser);
+      this.securityForm.reset();
     }
   }
 

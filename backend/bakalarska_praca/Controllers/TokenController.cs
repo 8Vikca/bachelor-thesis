@@ -32,7 +32,7 @@ namespace bakalarska_praca.Controllers
             string refreshToken = tokenApiModel.RefreshToken;
             var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);
             var username = principal.Identity.Name; //this is mapped to the Name claim by default
-            var user = _appDbContext.Logins.SingleOrDefault(u => u.Email == username);
+            var user = _appDbContext.Logins.SingleOrDefault(u => u.FirstName == username);
             if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
                 return BadRequest("Invalid client request");
