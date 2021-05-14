@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Attack } from '../../models';
 
@@ -21,15 +22,30 @@ export class RecentDataTableComponent implements OnInit, OnChanges {
   public dataSource: MatTableDataSource<Attack>;
   expandedElement: Attack | null;
 
-  constructor() { //ref: ChangeDetectorRef       this.ref.detectChanges();
-
+  constructor(private _snackBar: MatSnackBar) { 
   }
 
   ngOnInit() {
       this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
+      if (this.recentTableData.length == 0) {
+        let snackBarRef = this._snackBar.open('No data to show', null, {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbar']
+        });
+      }
   }
   ngOnChanges() {
     this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
+    if (this.recentTableData.length == 0) {
+      let snackBarRef = this._snackBar.open('No data to show', null, {
+        duration: 2500,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['snackbar']
+      });
+    }
   }
 
 }

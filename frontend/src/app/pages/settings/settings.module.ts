@@ -17,6 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { UsersTableComponent } from './components/users-table/users-table.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -25,6 +29,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     SettingsPageComponent,
     RegisterComponent,
     SettingsComponent,
+    UsersTableComponent,
   ],
   imports: [
     CommonModule,
@@ -44,7 +49,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatIconModule, 
     MatGridListModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class SettingsModule { }

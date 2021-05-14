@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { Email, User } from '../../../../pages/auth/models';
-import { AuthService, EmailService } from '../../../../pages/auth/services';
+import { AuthService } from '../../../../pages/auth/services';
 import { routes } from '../../../../consts';
 
 @Component({

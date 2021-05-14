@@ -39,14 +39,14 @@ export class DashboardPageComponent {
     this.getCounters(this.params);
     this.getTimelineData(this.params);
     this.getChartData(this.params);
-    if (this.severityTableData.length == 0) {
-      let snackBarRef = this._snackBar.open('No data to show', null, {
-        duration: 2500,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
+    // if (this.severityTableData.length == 0) {
+    //   let snackBarRef = this._snackBar.open('No data to show', null, {
+    //     duration: 2500,
+    //     horizontalPosition: 'center',
+    //     verticalPosition: 'top',
         
-      });
-    }
+    //   });
+    //}
   }
 
   getSeverityTableData(params: HttpParams): void {
@@ -86,27 +86,26 @@ export class DashboardPageComponent {
 
   public pushDateRange(event: AircalResponse): void {
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
-    debugger
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getCounters(this.params);
     this.getTimelineData(this.params);
     this.getChartData(this.params);
-    if (this.severityTableData.length == 0) {
-      let snackBarRef = this._snackBar.open('No data to show', null, {
-        duration: 2500,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      });
-    }
+    // if (this.severityTableData.length == 0) {
+    //   let snackBarRef = this._snackBar.open('No data to show', null, {
+    //     duration: 2500,
+    //     horizontalPosition: 'center',
+    //     verticalPosition: 'top',
+    //   });
+    // }
   }
 }
 
-@Component({
-  selector: 'noDataDialog',
-  templateUrl: 'noDataDialog.html',
-})
-export class NoDataDialog { }
+// @Component({
+//   selector: 'noDataDialog',
+//   templateUrl: 'noDataDialog.html',
+// })
+// export class NoDataDialog { }
 
    //   Observable
     // .interval(2*60*1000)

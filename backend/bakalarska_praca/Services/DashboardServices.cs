@@ -25,9 +25,6 @@ namespace bakalarska_praca.Services
             {
                 return counter;
             }
-            //var srcDictionary = new Dictionary<string, int>();
-            //var categoryDictionary = new Dictionary<string, int>();
-            
             for (int i = 0; i < selectedData.Count; i++)        
             {
                 switch (selectedData[i].SeverityCategory)
@@ -48,37 +45,8 @@ namespace bakalarska_praca.Services
                     default:
                         break;
                 }
-                //if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))
-                //{
-                //    srcDictionary.Add(selectedData[i].Src_ip, 1);
-                //}
-                //else
-                //{
-                //    srcDictionary[selectedData[i].Src_ip] += 1;
-                //}
-
-                //if (!categoryDictionary.ContainsKey(selectedData[i].Category))
-                //{
-                //    categoryDictionary.Add(selectedData[i].Category, 1);
-                //}
-                //else
-                //{
-                //    categoryDictionary[selectedData[i].Category] += 1;
-                //}
             }
             counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
-            //srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
-            //categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
-            //foreach (var item in srcDictionary)
-            //{
-            //    counter.LabelSrc.Add(item.Key);
-            //    counter.CounterSrc.Add(item.Value);
-            //}
-            //foreach (var item in categoryDictionary)
-            //{
-            //    counter.LabelCategory.Add(item.Key);
-            //    counter.CounterCategory.Add(item.Value);
-            //}
             return counter;
         }
         public ChartCounter LoadChartCounter(DateTime startDate, DateTime endDate)
@@ -148,13 +116,14 @@ namespace bakalarska_praca.Services
                 switch(variety.TotalDays)
                 {
                     case double number when number <= 1:
-                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
-                            .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        var temp = selectedData[i].Timestamp.Hour;
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.Date;
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(temp);
                         option = "hours";
                         break;
                     case double number when number >1 :   //&& number <=31
-                        selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute)
-                            .AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
+                        selectedData[i].Timestamp = selectedData[i].Timestamp.Date;
+                        //selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour);
                         option = "days";
                         break;
                     //case double number when (number > 31 && number <= 365):

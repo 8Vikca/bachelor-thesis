@@ -78,7 +78,7 @@ namespace bakalarska_praca.Controllers
             try
             {
                 // create user
-                //_authService.Create(user, model.Password);
+                _authService.Create(user, model.Password);
                 return Ok();
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace bakalarska_praca.Controllers
             try
             {
                 var result = _authService.PasswordVerification(model);
-                if (result == false)           
+                if (result == false)
                 {
                     return Unauthorized();
                 }
@@ -124,6 +124,27 @@ namespace bakalarska_praca.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
+        }
+        [HttpGet("/getUsers"), Authorize(Roles = "admin")]
+        public List<UserBasicInfo> GetUsers()
+        {
+            var users = _appDbContext.Logins.Select(user => new UserBasicInfo() { 
+                ID = user.ID, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Role = user.Role
+            }).ToList();
+            return users;
+        }
+
+        [HttpPost("/deleteUser"), Authorize(Roles = "admin")]
+        public IActionResult DeleteUser([FromBody] int userId)
+        {
+            var user = _appDbContext.Logins.FirstOrDefault(user => user.ID == userId);
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+            _appDbContext.Logins.Remove(user);
+            _appDbContext.SaveChanges();
+            return Ok();
         }
     }
 }

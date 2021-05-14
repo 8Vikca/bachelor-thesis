@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
       lastName: new FormControl(''),
     });
     this.securityForm = new FormGroup({
-      currentPassword: new FormControl(''),
+      currentPassword: new FormControl('', Validators.required),
       newPassword: new FormControl('', [Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]),
     });
     this.personalForm.setValue({firstName: this.user.name, lastName: this.user.surname});

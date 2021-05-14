@@ -24,12 +24,11 @@ import { Counter } from "../../models";
 })
 export class IpChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
-  @Input() ipChartSeries: Counter = {};
+  @Input() ipChartSeries: Counter = {counterSrc: null, labelSrc:  null};
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
     this.initializeChart();
-    // setTimeout(this.initializeChart,1)
   }
  
   ngOnChanges(): void {

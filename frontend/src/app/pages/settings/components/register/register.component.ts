@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   public sign(): void {
     if (this.form.valid) {
       this.sendRegisterForm.emit(this.form.value);
-      this.form.reset();
+      window.location.reload();
     }
   }
   

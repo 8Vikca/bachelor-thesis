@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DashboardPageComponent, NoDataDialog } from './containers';
+import { DashboardPageComponent } from './containers';
 import {
   AlertCounterComponent,
   TimelineChartComponent,
@@ -50,7 +50,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     AlertCounterComponent,
     TimelineChartComponent,
     NgxDaterangePickerComponent,
-    NoDataDialog
   ],
   imports: [
     CommonModule,
