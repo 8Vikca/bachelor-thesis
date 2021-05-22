@@ -4,9 +4,9 @@
 - [Git](https://git-scm.com/download/win)
 - [Node.JS](https://nodejs.org/en/download/)
 - [Angular CLI](https://angular.io/guide/setup-local)
-- [SQL Server LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
 - [Mircosoft .Net SDK](https://dotnet.microsoft.com/download/visual-studio-sdks)
-- [Devpack](https://dotnet.microsoft.com/download/dotnet-framework/net472)
+- [SQL Server LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
+- [Devpack](https://dotnet.microsoft.com/download/dotnet-framework/net472) not sure
 
 
 ## Backend
