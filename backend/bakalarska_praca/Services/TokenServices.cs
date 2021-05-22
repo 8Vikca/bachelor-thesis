@@ -14,10 +14,15 @@ namespace bakalarska_praca.Services
     {
         private readonly AppDbContext _appDbContext;
         private readonly string secret;
+        private readonly string issuer;
+        private readonly string audience;
         public TokenServices(AppDbContext appdbContext, IConfiguration config)
         {
             _appDbContext = appdbContext;
             secret = config.GetValue<string>("ServiceConfiguration:JwtSettings:Secret");
+            issuer = config.GetValue<string>("ServiceConfiguration:JwtSettings:Issuer");
+            audience = config.GetValue<string>("ServiceConfiguration:JwtSettings:Audience");
+
         }
 
         public string GenerateAccessToken(IEnumerable<Claim> claims)
@@ -26,8 +31,8 @@ namespace bakalarska_praca.Services
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokenOptions = new JwtSecurityToken(
-                issuer: "http://localhost:44386",
-                audience: "http://localhost:44386",
+                issuer: issuer,
+                audience: audience,
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(5),
                 signingCredentials: signinCredentials

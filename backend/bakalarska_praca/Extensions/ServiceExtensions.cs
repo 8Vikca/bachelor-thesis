@@ -2,11 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace bakalarska_praca.Extensions
 {
@@ -40,12 +36,12 @@ namespace bakalarska_praca.Extensions
              {
                  options.TokenValidationParameters = new TokenValidationParameters
                  {
-                     ValidateIssuer = true,                           //issuer is actual server
-                     ValidateAudience = true,                         //receiver is valid 
+                     ValidateIssuer = false,                           //issuer is actual server
+                     ValidateAudience = false,                         //receiver is valid 
                      ValidateLifetime = true,                         //token has not expired
                      ValidateIssuerSigningKey = true,                 //signing key is valid and trusted by server
-                     ValidIssuer = "http://localhost:44386",
-                     ValidAudience = "http://localhost:44386",
+                     //ValidIssuer = "http://localhost:44386",
+                     //ValidAudience = "http://localhost:44386",
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GD9mf1w&Bjd1pun=opS#")),
                  };
              });

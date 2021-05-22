@@ -21,11 +21,11 @@ namespace bakalarska_praca.Services
         [FunctionName("TimerTriggerElasticsearch")]
         public void Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log)
         {
-            if (myTimer.IsPastDue)
-            {
-                log.LogInformation("Timer is running late!");
-            }
-            log.LogInformation($"Function for Elasticsearch data executed at: {DateTime.Now}");
+            //if (myTimer.IsPastDue)
+            //{
+            //    log.LogInformation("Timer is running late!");
+            //}
+            //log.LogInformation($"Function for Elasticsearch data executed at: {DateTime.Now}");
 
             var scanResults = elasticSearchAPI.Client.Search<Attack>(s => s        //vytiahnutie dat z databazy Elasticsearch
                             .From(0)

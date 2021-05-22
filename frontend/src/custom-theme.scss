@@ -156,7 +156,22 @@ button.mat-menu-item:hover:not([disabled]),
   background-color: $logo-background-color !important;
 }
 
-.md-drppicker .ranges {
+// .mat-grid-tile .mat-figure {
+//   top: 5!important;
+//   left: 5!important;
+//   right: 5!important;
+//   bottom: 5!important;
+//   position: absolute !important;
+//   display: flex !important;
+//   align-items: center !important;
+//   justify-content: center!important;
+//   height: 100%!important;
+//   padding: 0!important;
+//   margin: 0!important;
+//   width: max-content!important;
+// }
+
+.mat-grid-tile .mat-figure .md-drppicker .ranges {
   zoom: 1 !important;
 }
 .md-drppicker td.in-range {

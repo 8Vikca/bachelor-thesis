@@ -28,12 +28,24 @@ namespace bakalarska_praca.Controllers
         [HttpGet("/dataElastic")]
         public void GetDataFromElastic()
         {
+            var newestDate = _appDbContext.Attacks.OrderByDescending(a => a.Timestamp).FirstOrDefault().Timestamp;
             var scanResults = _elasticSearchAPI.Client.Search<StringMessage>(s => s        //vytiahnutie dat z databazy Elasticsearch
                             .From(0)
                             .Size(2000)
                             .Index("filebeat-7.6.1-2021.05.11-000001")
                             .Query(q => q.MatchAll()));
-
+                            
+            //.Query(q => q
+            //                    .Bool(b => b
+            //                        .Filter(bf => bf
+            //                            .DateRange(r => r
+            //                                .Field(f => f.Message.)
+            //                                .GreaterThan(newestDate)
+            //                            )
+            //                        )
+            //                    )
+            //                )
+            //            );
 
             var documents = scanResults.Hits.ToList();
             scanResults = null;
@@ -43,6 +55,10 @@ namespace bakalarska_praca.Controllers
                 {
                     //var deserializedJSON = new Message();
                     var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);
+                    if (deserializedJSON.Timestamp <= newestDate)
+                    {
+                        continue;
+                    }
                     var attack = new Attack();
                     switch (deserializedJSON.Alert.Signature)
                     {
@@ -73,7 +89,7 @@ namespace bakalarska_praca.Controllers
                     {
                         case var n when (n > 0.0 && n < 4.0):
                             attack.SeverityCategory = "low";
-                                break;
+                            break;
                         case var n when (n >= 4.0 && n < 7.0):
                             attack.SeverityCategory = "medium";
                             break;
@@ -83,7 +99,8 @@ namespace bakalarska_praca.Controllers
                         case var n when (n >= 9.0 && n <= 10.0):
                             attack.SeverityCategory = "critical";
                             break;
-                        default: attack.SeverityCategory = "undefined";
+                        default:
+                            attack.SeverityCategory = "undefined";
                             break;
                     }
                     listOfAttacks.Add(attack);

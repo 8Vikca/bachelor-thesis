@@ -48,14 +48,14 @@ export class TablePageComponent implements OnInit {
       this.params = this.params.append('filter', element);
     });
     this.getFilteredData(this.params);
-    if (this.tableData.length == 0) {
-        let snackBarRef = this._snackBar.open('No data to show', null, {
-          duration: 2500,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['snackbar']
-        });
-      }
+    // if (this.tableData.length == 0) {
+    //     let snackBarRef = this._snackBar.open('No data to show', null, {
+    //       duration: 2500,
+    //       horizontalPosition: 'center',
+    //       verticalPosition: 'top',
+    //       panelClass: ['snackbar']
+    //     });
+    //   }
   }
 };
 

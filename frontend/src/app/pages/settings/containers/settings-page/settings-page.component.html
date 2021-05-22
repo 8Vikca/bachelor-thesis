@@ -3,9 +3,19 @@
     <mat-tab label="My Settings">
       <app-settings [user]="user$ | async" (sendUpdate)="sendUpdate($event)"></app-settings>
     </mat-tab>
-    <mat-tab label="New User" [disabled]="role != 'admin'">
-      <app-register (sendRegisterForm)="sendRegisterForm($event)"></app-register>
-      <app-users-table [usersTableData]="allUsers" *ngIf="allUsers"></app-users-table>
+    <mat-tab label="Users" [disabled]="role != 'admin'" >
+      <!-- <mat-grid-list cols="3">  -->
+        <div class="grid-container">
+        <!-- <mat-grid-tile colspan="1"> -->
+          <app-register (sendRegisterForm)="sendRegisterForm($event)"></app-register>
+        <!-- </mat-grid-tile > -->
+        <!-- <mat-grid-tile colspan="2"> -->
+          <app-users-table [usersTableData]="allUsers" *ngIf="allUsers"></app-users-table>
+        <!-- </mat-grid-tile> -->
+      </div>
+      <!-- </mat-grid-list> -->
+      <!-- <app-register (sendRegisterForm)="sendRegisterForm($event)"></app-register>
+      <app-users-table [usersTableData]="allUsers" *ngIf="allUsers"></app-users-table> -->
     </mat-tab>
     <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
   </mat-tab-group>

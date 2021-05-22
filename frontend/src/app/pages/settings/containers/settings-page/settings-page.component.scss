@@ -1,5 +1,15 @@
 @import "src/app/styles/colors";
+@import "src/app/styles/variables";
 
 ::ng-deep mat-tab-group.mat-tab-group.mat-primary .mat-ink-bar {
     background-color: $navbar-background-color;
+}
+.grid-container {
+    display: flex!important;
+    justify-content: space-around;
+    justify-items: center;
+    @media (max-width: 1550px) {
+        flex-wrap: wrap;
+        width: 100% !important;
+      }
 }
