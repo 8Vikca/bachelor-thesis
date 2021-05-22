@@ -5,6 +5,7 @@
 - [Node.JS](https://nodejs.org/en/download/)
 - [Angular CLI](https://angular.io/guide/setup-local)
 - [Mircosoft .Net SDK](https://dotnet.microsoft.com/download/visual-studio-sdks)
+- [VC_redist](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0)
 - [SQL Server LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
 - [Devpack](https://dotnet.microsoft.com/download/dotnet-framework/net472) not sure
 
