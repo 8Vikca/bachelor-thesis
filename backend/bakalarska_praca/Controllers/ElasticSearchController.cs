@@ -26,7 +26,7 @@ namespace bakalarska_praca.Controllers
 
 
         [HttpGet("/dataElastic")]
-        public void GetDataFromElastic()
+        public IActionResult GetDataFromElastic()
         {
             var newestDate = _appDbContext.Attacks.OrderByDescending(a => a.Timestamp).FirstOrDefault().Timestamp;
             var scanResults = _elasticSearchAPI.Client.Search<StringMessage>(s => s        //vytiahnutie dat z databazy Elasticsearch
@@ -78,6 +78,10 @@ namespace bakalarska_praca.Controllers
                             attack.Message = deserializedJSON.Alert.Signature;
                             attack.Category = "CAM";
                             break;
+                        case string a when a.Contains("UDP"):
+                            attack.Message = deserializedJSON.Alert.Signature;
+                            attack.Category = "UDP";
+                            break;
                         default: continue;
                     }
                     attack.Proto = deserializedJSON.Proto;
@@ -104,16 +108,17 @@ namespace bakalarska_praca.Controllers
                             break;
                     }
                     listOfAttacks.Add(attack);
-                    //var attack = new Attack();
-                    // attack.Id =
-                    //attack.Message = item;
                     _appDbContext.Attacks.Add(attack);
 
                 }
-
-                _appDbContext.SaveChanges();
+                if (listOfAttacks.Count > 0)
+                {
+                    _appDbContext.SaveChanges();
+                }
+                
                 //var clearIndex = _elasticSearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
             }
+            return Ok();
         }
     }
 }

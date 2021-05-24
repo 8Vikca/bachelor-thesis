@@ -52,14 +52,15 @@ export class UsersTableComponent implements OnInit, OnChanges {
         this.refreshTable();
       }
     },
-      (err) => {
-        let snackBarRef = this._snackBar.open('{{err}}', null, {
-          duration: 2500,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['snackbar']
-        });
-      });
+      // (err) => {
+      //   let snackBarRef = this._snackBar.open('{{err}}', null, {
+      //     duration: 2500,
+      //     horizontalPosition: 'center',
+      //     verticalPosition: 'top',
+      //     panelClass: ['snackbar']
+      //   });
+      // }
+      );
   }
 
   private refreshTable() {

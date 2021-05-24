@@ -57,4 +57,8 @@ export class AuthService {
       email: this.currentUser.email
     });
   }
+
+  public newData(): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + "/dataElastic"); 
+  }
 }

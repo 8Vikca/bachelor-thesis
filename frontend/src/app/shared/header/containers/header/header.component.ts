@@ -38,4 +38,8 @@ export class HeaderComponent {
 
     this.router.navigate([this.routers.LOGIN]);
   }
+  public newData(): void {
+    this.userService.newData().subscribe();
+    this.router.navigate([this.routers.DASHBOARD]);
+  }
 }
