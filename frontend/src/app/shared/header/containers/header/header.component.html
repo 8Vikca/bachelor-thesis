@@ -5,9 +5,9 @@
       <mat-icon *ngIf="!isMenuOpened" class="header__title-button-icon">menu</mat-icon>
       <mat-icon *ngIf="isMenuOpened" class="header__title-button-icon">arrow_back</mat-icon>
     </button>
-    <h6 class="navbar-brand">
-      <span class="logo logo-left">Cyber</span>
-      <span class="logo logo-right">Attacks</span>
+    <h6 class="navbar-brand" (click)="newData()">
+      <span class="logo logo-left" >Cyber</span>
+      <span class="logo logo-right" >Attacks</span>
   </h6>
   </div>
 
