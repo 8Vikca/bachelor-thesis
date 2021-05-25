@@ -7,7 +7,7 @@ import {
   ChartComponent
 } from "ng-apexcharts";
 import { ChartOptions } from "..";
-import { Counter } from "../../models";
+import { ChartCounter, Counter } from "../../models";
 
 // export type ChartOptions = {
 //   series: ApexNonAxisChartSeries;
@@ -24,7 +24,7 @@ import { Counter } from "../../models";
 })
 export class IpChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
-  @Input() ipChartSeries: Counter = {counterSrc: null, labelSrc:  null};
+  @Input() ipChartSeries: ChartCounter = {counterSrc: null, labelSrc:  null};
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {

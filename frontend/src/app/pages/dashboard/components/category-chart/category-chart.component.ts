@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
-import { Counter } from "../../models";
+import { ChartCounter, Counter } from "../../models";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
@@ -34,7 +34,7 @@ export type ChartOptions = {
 export class CategoryChartComponent implements OnChanges{
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-  @Input() categoryChartSeries: Counter = {
+  @Input() categoryChartSeries: ChartCounter = {
     counterCategory : [], labelCategory : []
   };
 

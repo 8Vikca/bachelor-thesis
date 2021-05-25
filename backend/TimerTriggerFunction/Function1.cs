@@ -10,17 +10,11 @@ namespace TimerTriggerFunction
 {
     public class Function1
     {
-        private readonly HttpClient _client;
-
-        public Function1(HttpClient httpClient, ElasticSearchController controller)
-        {
-            this._client = httpClient;
-        }
         [FunctionName("elasticTrigger")]
-        public void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
+        public void Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, ILogger log)
         {
-            //log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
-            var response = _client.GetAsync("https://localhost:44386/dataElastic");
+            Console.WriteLine("GO");
+            //var response = _client.GetAsync("https://localhost:44386/dataElastic");
 
 
         }
