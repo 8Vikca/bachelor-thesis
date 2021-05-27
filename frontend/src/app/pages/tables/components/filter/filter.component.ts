@@ -32,7 +32,7 @@ export class FilterComponent implements OnInit {
 
   }
   myControl = new FormControl();
-  options: string[] = ['Category = ', 'Severity = ', 'Protocol = ', 'Source_IP = ', 'Dest_IP = '];
+  options: string[] = ['Category = ', 'Severity = ', 'Protocol = ', 'Source_ip = ', 'Dest_ip = '];
   filteredOptions: Observable<string[]>;
   
   private _filter(value: string): string[] {
@@ -55,8 +55,6 @@ export class FilterComponent implements OnInit {
   public clearFilters(): void {
     console.log(this.filters);
     this.filters.splice(0, this.filters.length);
-    this.startDate = "";
-    this.endDate = "";
     this.sendFilters();
 
   }  

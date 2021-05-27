@@ -67,7 +67,8 @@ export class DashboardPageComponent {
             panelClass: ['snackbar']
           });
         }
-      });
+      }
+      );
   }
 
   getCounters(params: HttpParams): void {

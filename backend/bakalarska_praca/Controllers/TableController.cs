@@ -31,41 +31,40 @@ namespace bakalarska_praca.Controllers
         {
             if (filter.Length == 0)
             {
-                var allData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).Take(100).ToList();
+                var allData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).Take(1000).ToList();
                 return allData;
             }
             List<Filter> filters = new List<Filter>();
             foreach (var item in filter)
             {
-                string[] splitItems = item.Split(' ');
+                List<string> splitItems = item.Split(' ').ToList();
                 filters.Add(new Filter { Parameter = splitItems[0], Value = splitItems[2] });
             }
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
 
             foreach (var item in filters)
             {
+                item.Parameter = item.Parameter.ToUpper();
                 item.Value = item.Value.ToUpper();
                 try
                 {
                     switch (item.Parameter)
                     {
-                        case string a when a.Contains("Category"):
+                        case string a when a.Contains("CATEGORY"):
                             selectedData = selectedData.Where(o => o.Category == item.Value).ToList();
                             break;
-                        case string a when a.Contains("Src_ip"):
+                        case string a when a.Contains("SRC_IP"):
                             selectedData = selectedData.Where(o => o.Src_ip == item.Value).ToList();
                             break;
-                        case string a when a.Contains("Dest_ip"):
+                        case string a when a.Contains("DEST_IP"):
                             selectedData = selectedData.Where(o => o.Dest_ip == item.Value).ToList();
                             break;
-                        case string a when a.Contains("Proto"):
+                        case string a when a.Contains("PROTO"):
                             selectedData = selectedData.Where(o => o.Proto == item.Value).ToList();
                             break;
-                        case string a when a.Contains("Severity"):
+                        case string a when a.Contains("SEVERITY"):
                             selectedData = selectedData.Where(o => o.Severity == int.Parse(item.Value)).ToList();
                             break;
-                        default:
-                            return null;
                     }
                 }
                 catch (Exception e)

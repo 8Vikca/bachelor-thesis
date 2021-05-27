@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/pages/auth/models';
 import { AuthService } from 'src/app/pages/auth/services';
@@ -20,7 +21,7 @@ export class SettingsComponent implements OnInit {
   hide2 = true;
   updateUser: UpdateUser = {name: null, surname: null, email: null, currentPassword: null, newPassword:null};
 
-  constructor() {
+  constructor(private _snackBar: MatSnackBar) {
    }
 
   public ngOnInit(): void {
@@ -47,8 +48,15 @@ export class SettingsComponent implements OnInit {
       this.updateUser.surname = this.personalForm.controls['lastName'].value;      
       this.updateUser.email = this.user.email
       this.sendUpdate.emit(this.updateUser);
+      let snackBarRef = this._snackBar.open('Personal data updated', null, {
+        duration: 2500,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['snackbar']
+      });
     }
   }
+
   updatePassword() {
     if (this.securityForm.valid) {
       this.updateUser.currentPassword = this.securityForm.controls['currentPassword'].value;

@@ -64,10 +64,10 @@ namespace bakalarska_praca.Controllers
         public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)
         {
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
-            if (selectedData.Count == 0)
-            {
-                return null;
-            }
+            //if (selectedData.Count == 0)
+            //{
+            //    return timelineData;
+            //}
             var variety = endDate.Date.Subtract(startDate.Date);
             var timelineData = dashboardService.LoadTimelineData(variety, selectedData);
             return timelineData;
