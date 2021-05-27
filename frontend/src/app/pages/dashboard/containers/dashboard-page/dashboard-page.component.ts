@@ -92,7 +92,7 @@ export class DashboardPageComponent {
   }
 
   public pushDateRange(event: AircalResponse): void {
-    this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString()); 
+    this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
     this.getCounters(this.params);
