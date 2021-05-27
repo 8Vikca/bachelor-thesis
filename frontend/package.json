@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
-    "hmr": "ng serve --configuration hmr"
+    "hmr": "ng serve"
   },
   "private": true,
   "dependencies": {

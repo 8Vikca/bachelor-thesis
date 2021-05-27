@@ -5,6 +5,7 @@ using System.Linq;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace bakalarska_praca.Controllers
@@ -14,14 +15,16 @@ namespace bakalarska_praca.Controllers
     [RequireHttps]
     public class ElasticSearchController : ControllerBase
     {
-        ConnectionToNest _elasticSearchAPI;         //premenna na pristup ku klentovi NEST
+        private readonly ConnectionToNest _elasticSearchAPI;         //premenna na pristup ku klentovi NEST
         private readonly AppDbContext _appDbContext;
-        List<Attack> listOfAttacks;
-        public ElasticSearchController(AppDbContext appdbContext)
+        private readonly List<Attack> listOfAttacks;
+        private readonly string index;
+        public ElasticSearchController(AppDbContext appdbContext, IConfiguration config)
         {
             _appDbContext = appdbContext;
             _elasticSearchAPI = new ConnectionToNest();
             listOfAttacks = new List<Attack>();
+            index = config.GetValue<string>("elasticsearch:index");
         }
 
 
@@ -32,7 +35,7 @@ namespace bakalarska_praca.Controllers
             var scanResults = _elasticSearchAPI.Client.Search<StringMessage>(s => s        //vytiahnutie dat z databazy Elasticsearch
                             .From(0)
                             .Size(2000)
-                            .Index("filebeat-7.6.1-2021.05.11-000001")
+                            .Index(index)
                             .Query(q => q.MatchAll()));
                             
             //.Query(q => q

@@ -27,8 +27,8 @@ export class DashboardService {
   loadChartData(params: HttpParams): Observable<ChartCounter[]> {   
     return this.http.get<ChartCounter[]>(environment.apiUrl + "/chartData", {params: params});     
   }
-  loadCounter(params: HttpParams): Observable<Counter[]> {   
-    return this.http.get<Counter[]>(environment.apiUrl + "/counter", {params: params});     
+  loadCounter(params: HttpParams): Observable<Counter> {   
+    return this.http.get<Counter>(environment.apiUrl + "/counter", {params: params});     
   }
   loadTimelineData(params: HttpParams): Observable<Timeline[]> { 
     return this.http.get<Timeline[]>(environment.apiUrl + "/timelineData", {params: params});  

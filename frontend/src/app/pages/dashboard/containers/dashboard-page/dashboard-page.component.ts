@@ -23,30 +23,29 @@ export class DashboardPageComponent {
   public recentTableData: Attack[] = [];
   public chartData: ChartCounter[] = [];
   public timelineData: Timeline[] = [];
-  public counters: Counter[] = [];
+  public counters: Counter;
+  // = {alertsTotal: null, alertsMedium: null, alertsCritical: null, alertsHigh: null, alertsLow: nu};
   params = new HttpParams();
+
   variableDate = new Date;
-  choosedDate = {startDate: null, endDate: null};
-  
+  choosedDate = { startDate: null, endDate: null };
+
 
   constructor(private service: DashboardService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
-    
+    this.choosedDate = {
+      startDate: moment().set({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 }),
+      endDate: moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 })
+    };
+
+    this.params = this.params.set("startDate", this.choosedDate.startDate.toISOString()).set("endDate", this.choosedDate.endDate.toISOString());
   }
 
   public ngOnInit() {
-    this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);
+    this.getRecentTableData(this.params);
     this.getCounters(this.params);
     this.getTimelineData(this.params);
     this.getChartData(this.params);
-    // if (this.severityTableData.length == 0) {
-    //   let snackBarRef = this._snackBar.open('No data to show', null, {
-    //     duration: 2500,
-    //     horizontalPosition: 'center',
-    //     verticalPosition: 'top',
-        
-    //   });
-    //}
   }
 
   getSeverityTableData(params: HttpParams): void {
@@ -60,6 +59,14 @@ export class DashboardPageComponent {
     this.service.loadRecentTableData(params)
       .subscribe(result => {
         this.recentTableData = result;
+        if (this.recentTableData.length == 0) {
+          this._snackBar.open('No data to show', null, {
+            duration: 2500,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar']
+          });
+        }
       });
   }
 
@@ -72,7 +79,7 @@ export class DashboardPageComponent {
 
   getTimelineData(params: HttpParams): void {
     this.service.loadTimelineData(params)
-      .subscribe(result => {
+      .subscribe(result => { 
         this.timelineData = result;
       });
   }
@@ -91,38 +98,5 @@ export class DashboardPageComponent {
     this.getCounters(this.params);
     this.getTimelineData(this.params);
     this.getChartData(this.params);
-    // if (this.severityTableData.length == 0) {
-    //   let snackBarRef = this._snackBar.open('No data to show', null, {
-    //     duration: 2500,
-    //     horizontalPosition: 'center',
-    //     verticalPosition: 'top',
-    //   });
-    // }
   }
 }
-
-// @Component({
-//   selector: 'noDataDialog',
-//   templateUrl: 'noDataDialog.html',
-// })
-// export class NoDataDialog { }
-
-   //   Observable
-    // .interval(2*60*1000)
-    // .timeInterval()
-    // .flatMap(() => this.service.loadSeverityTableData(params)
-    // .subscribe(result => {
-    //   this.severityTableData = result;
-    // });
-    // this.interval = setInterval(() => {
-    //   this.service.loadRecentTableData(params)  
-    //   .subscribe(result => {
-    //     this.recentTableData = result;
-    //   });}, 1 * 30 * 1000);
-    //   debugger
-      // const nodeInterval =  NodeJS.Timeout = setInterval(() => {
-  //   // do something
-  // }, 1000);
-  // setInterval(){
-  //   this.getRecentTableData(this.params);
-  // };

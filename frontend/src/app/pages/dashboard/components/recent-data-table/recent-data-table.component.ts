@@ -27,25 +27,25 @@ export class RecentDataTableComponent implements OnInit, OnChanges {
 
   ngOnInit() {
       this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
-      if (this.recentTableData.length == 0) {
-        let snackBarRef = this._snackBar.open('No data to show', null, {
-          duration: 2500,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ['snackbar']
-        });
-      }
+      // if (this.recentTableData.length == 0) {
+      //   let snackBarRef = this._snackBar.open('No data to show', null, {
+      //     duration: 2500,
+      //     horizontalPosition: 'center',
+      //     verticalPosition: 'top',
+      //     panelClass: ['snackbar']
+      //   });
+      // }
   }
   ngOnChanges() {
     this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
-    if (this.recentTableData.length == 0) {
-      let snackBarRef = this._snackBar.open('No data to show', null, {
-        duration: 2500,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: ['snackbar']
-      });
-    }
+    // if (this.recentTableData.length == 0) {
+    //   let snackBarRef = this._snackBar.open('No data to show', null, {
+    //     duration: 2500,
+    //     horizontalPosition: 'center',
+    //     verticalPosition: 'top',
+    //     panelClass: ['snackbar']
+    //   });
+    // }
   }
 
 }
