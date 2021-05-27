@@ -40,11 +40,12 @@ export class NgxDaterangePickerComponent {
     // }
     // this.dateRangeFired = true;
     // debugger
-    if (event.startDate === null) {
-      event.startDate = moment().set({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
-      event.endDate = moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 });
+    if (event.startDate != null) {
+      this.dateEmitter.emit(event);
+      // event.startDate = moment().set({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
+      // event.endDate = moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 });
     }
-    this.dateEmitter.emit(event);
+    
   }
 }
 

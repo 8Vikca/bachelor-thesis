@@ -47,7 +47,7 @@ export class SettingsPageComponent implements OnInit {
       }
     },
       (err) => {
-        let snackBarRef = this._snackBar.open('{{err}}', null, {
+        let snackBarRef = this._snackBar.open('Error occurred', null, {
           duration: 2500,
           horizontalPosition: 'center',
           verticalPosition: 'top',
@@ -81,6 +81,7 @@ export class SettingsPageComponent implements OnInit {
           });
         });
     }
+    this.user$ = this.userService.getUser();
   }
   public sendPassword(updateUser: UpdateUser) {
     this.service.updatePassword(updateUser).subscribe(response => {
