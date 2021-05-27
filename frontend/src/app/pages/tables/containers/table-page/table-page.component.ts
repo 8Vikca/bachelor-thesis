@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { TableService } from '../../services';
 import { Attack } from '../../models';
 import { HttpParams } from '@angular/common/http';
@@ -21,7 +20,6 @@ export class TablePageComponent implements OnInit {
 
   public ngOnInit() {
     this.getData();
-    //this.getFilteredData(this.params);
   }
 
   getData(): void {
@@ -34,6 +32,14 @@ export class TablePageComponent implements OnInit {
     this.service.loadFilteredData(params)
       .subscribe(result => {
         this.tableData = result;
+        if (this.tableData.length == 0) {
+          let snackBarRef = this._snackBar.open('No data to show', null, {
+            duration: 2500,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar']
+          });
+        }
       });
 
   }
@@ -48,14 +54,7 @@ export class TablePageComponent implements OnInit {
       this.params = this.params.append('filter', element);
     });
     this.getFilteredData(this.params);
-    // if (this.tableData.length == 0) {
-    //     let snackBarRef = this._snackBar.open('No data to show', null, {
-    //       duration: 2500,
-    //       horizontalPosition: 'center',
-    //       verticalPosition: 'top',
-    //       panelClass: ['snackbar']
-    //     });
-    //   }
+   
   }
 };
 
