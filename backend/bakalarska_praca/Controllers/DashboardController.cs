@@ -26,7 +26,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/recentData")]
-        public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)
+        public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)                         //get metoda na vratenie najnovsich 10 dat
         {
 
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
@@ -36,7 +36,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/severityData")]
-        public List<Attack> GetSeverityData(DateTime startDate, DateTime endDate)
+        public List<Attack> GetSeverityData(DateTime startDate, DateTime endDate)           //get metoda na vratenie najzavaznejsich 10 dat
         {
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
                 .OrderByDescending(o => o.Severity)
@@ -45,7 +45,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/counter")]
-        public Counter GetCounter(DateTime startDate, DateTime endDate)
+        public Counter GetCounter(DateTime startDate, DateTime endDate)             //get metoda na vratenie pocitadla
         {
             var counter = new Counter();
             counter = dashboardService.LoadCounters(startDate, endDate);
@@ -53,7 +53,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/chartData")]
-        public ChartCounter GetChartData(DateTime startDate, DateTime endDate)
+        public ChartCounter GetChartData(DateTime startDate, DateTime endDate)          //get metoda na vratenie dat pre grafy
         {
             var counter = new ChartCounter();
             counter = dashboardService.LoadChartCounter(startDate, endDate);
@@ -61,13 +61,9 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpGet("/timelineData")]
-        public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)
+        public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)         //get metoda na vratenie dat pre casovu os
         {
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
-            //if (selectedData.Count == 0)
-            //{
-            //    return timelineData;
-            //}
             var variety = endDate.Date.Subtract(startDate.Date);
             var timelineData = dashboardService.LoadTimelineData(variety, selectedData);
             return timelineData;

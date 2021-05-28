@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models.Auth
 {
-    public class UserBasicInfo
+    public class UserBasicInfo      //trieda na tvorbu claims
     {
         public int ID { get; set; }
         public string Email { get; set; }

@@ -30,19 +30,17 @@ namespace bakalarska_praca
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //vytvorenie lokalnej databazy
-            services.AddHttpsRedirection(options =>
+            services.AddHttpsRedirection(options =>         //presmerovanie http => https
             {
                 options.RedirectStatusCode = (int)HttpStatusCode.PermanentRedirect;
                 options.HttpsPort = 44386;
             });
           
-            services.AddHsts(options =>
+            services.AddHsts(options =>         //tvorba HSTS
             {
                 options.Preload = true;
                 options.IncludeSubDomains = true;
                 options.MaxAge = TimeSpan.FromDays(365);
-                //options.ExcludedHosts.Add("example.com");
-                //options.ExcludedHosts.Add("www.example.com");
             });
             services.ConfigureCors();
             services.ConfigureIISIntegration();
@@ -60,12 +58,11 @@ namespace bakalarska_praca
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            //var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);        //redirect to https
-            //app.UseRewriter(options);
+            var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);        //redirect to https
+            app.UseRewriter(options);
 
             app.UseStaticFiles();       
             app.UseCors("CorsPolicy");                                  //povolenie http poziadaviek

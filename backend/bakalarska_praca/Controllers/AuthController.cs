@@ -36,7 +36,7 @@ namespace bakalarska_praca.Controllers
         {
             var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
-            if (user == null)           //zmenit na kontrolu hesla
+            if (user == null)           
             {
                 return Unauthorized();
             }

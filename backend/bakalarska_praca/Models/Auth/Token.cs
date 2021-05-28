@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Token
+    public class Token          //JSON token
     {
         [JsonProperty("token")]
         public string AccessToken { get; set; }

@@ -16,7 +16,7 @@ namespace bakalarska_praca.Services
         private readonly string secret;
         private readonly string issuer;
         private readonly string audience;
-        public TokenServices(AppDbContext appdbContext, IConfiguration config)
+        public TokenServices(AppDbContext appdbContext, IConfiguration config)      //config => vytiahnutie dat z konfiguracneho suboru
         {
             _appDbContext = appdbContext;
             secret = config.GetValue<string>("ServiceConfiguration:JwtSettings:Secret");
@@ -25,12 +25,12 @@ namespace bakalarska_praca.Services
 
         }
 
-        public string GenerateAccessToken(IEnumerable<Claim> claims)
+        public string GenerateAccessToken(IEnumerable<Claim> claims)            //generovanie pristupoveho tokenu
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
-            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);           //podpis generovany pomocou HMAC
 
-            var tokenOptions = new JwtSecurityToken(
+            var tokenOptions = new JwtSecurityToken(            //samotna tvorba tokenu
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
@@ -41,25 +41,25 @@ namespace bakalarska_praca.Services
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return tokenString;
         }
-        public string GenerateRefreshToken()
+        public string GenerateRefreshToken()            //generovanie obnovovacieho tokenu
         {
             var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
+            using (var rng = RandomNumberGenerator.Create())        //pomocou nahodnej hodnoty
             {
                 rng.GetBytes(randomNumber);
                 return Convert.ToBase64String(randomNumber);
             }
         }
 
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)           //get the user principal from the expired access token
+        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)           //vytiahnutie dat z expirovaneho tokenu
         {
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false, //you might want to validate the audience and issuer depending on your use case
+                ValidateAudience = false, 
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
-                ValidateLifetime = false //here we are saying that we don't care about the token's expiration date
+                ValidateLifetime = false 
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken securityToken;

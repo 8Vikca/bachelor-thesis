@@ -22,22 +22,22 @@ namespace bakalarska_praca.Controllers
         }
         [HttpPost]
         [Route("/refresh")]
-        public IActionResult Refresh(Token tokenApiModel)
+        public IActionResult Refresh(Token tokenApiModel)               //metoda volana po vyprsani pristupoveho tokenu
         {
             if (tokenApiModel.AccessToken == null || tokenApiModel.RefreshToken == null)
             {
                 return BadRequest("Invalid client request");
             }
             string accessToken = tokenApiModel.AccessToken;
-            string refreshToken = tokenApiModel.RefreshToken;
-            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);
-            var username = principal.Identity.Name; //this is mapped to the Name claim by default
-            var user = _appDbContext.Logins.SingleOrDefault(u => u.FirstName == username);
+            string refreshToken = tokenApiModel.RefreshToken;       
+            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);       //overenie zhody udajov z databaze a pristupoveho tokenu
+            var username = principal.Identity.Name;
+            var user = _appDbContext.Logins.SingleOrDefault(u => u.FirstName == username);                  
             if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
                 return BadRequest("Invalid client request");
             }
-            var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);
+            var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);           //ak sa data zhoduju  a obnovovaci token nie je vyprsany => vygeneruju sa nove tokeny
             var newRefreshToken = _tokenService.GenerateRefreshToken();
             user.RefreshToken = newRefreshToken;
             _appDbContext.SaveChanges();
@@ -46,17 +46,6 @@ namespace bakalarska_praca.Controllers
                 accessToken = newAccessToken,
                 refreshToken = newRefreshToken
             });
-        }
-        [HttpPost, Authorize]
-        [Route("/revoke")]
-        public IActionResult Revoke()
-        {
-            var username = User.Identity.Name;
-            var user = _appDbContext.Logins.SingleOrDefault(u => u.Email == username);
-            if (user == null) return BadRequest();
-            user.RefreshToken = null;
-            _appDbContext.SaveChanges();
-            return NoContent();
         }
     }
 }

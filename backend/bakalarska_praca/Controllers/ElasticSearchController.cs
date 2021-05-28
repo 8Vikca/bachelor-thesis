@@ -29,26 +29,14 @@ namespace bakalarska_praca.Controllers
 
 
         [HttpGet("/dataElastic")]
-        public IActionResult GetDataFromElastic()
+        public IActionResult GetDataFromElastic()           //kontrola existenice novych dat z databazy Elasticsearch
         {
             var newestDate = _appDbContext.Attacks.OrderByDescending(a => a.Timestamp).FirstOrDefault().Timestamp;
             var scanResults = _elasticSearchAPI.Client.Search<StringMessage>(s => s        //vytiahnutie dat z databazy Elasticsearch
                             .From(0)
-                            .Size(2000)
+                            .Size(10000)
                             .Index(index)
                             .Query(q => q.MatchAll()));
-                            
-            //.Query(q => q
-            //                    .Bool(b => b
-            //                        .Filter(bf => bf
-            //                            .DateRange(r => r
-            //                                .Field(f => f.Message.)
-            //                                .GreaterThan(newestDate)
-            //                            )
-            //                        )
-            //                    )
-            //                )
-            //            );
 
             var documents = scanResults.Hits.ToList();
             scanResults = null;
@@ -58,7 +46,7 @@ namespace bakalarska_praca.Controllers
                 {
                     try
                     {
-                        var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);
+                        var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);         //ak je mozne deserializovat string na json => pridaju sa nove data
                         if (deserializedJSON.Timestamp <= newestDate)
                         {
                             continue;
@@ -112,7 +100,7 @@ namespace bakalarska_praca.Controllers
                                 break;
                         }
                         listOfAttacks.Add(attack);
-                        _appDbContext.Attacks.Add(attack);
+                        _appDbContext.Attacks.Add(attack);          //pridanie noveho zaznamu
                     }
                     catch (Exception)
                     {
@@ -121,10 +109,8 @@ namespace bakalarska_praca.Controllers
                 }
                 if (listOfAttacks.Count > 0)
                 {
-                    _appDbContext.SaveChanges();
-                }
-                
-                //var clearIndex = _elasticSearchAPI.Client.Indices.Delete("attack");     //vymazanie dat ulozenych v lokalnej databaze z dovodu ich duplikacie
+                    _appDbContext.SaveChanges();                //ulozenie databazy
+                }             
             }
             return Ok();
         }

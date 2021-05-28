@@ -3,20 +3,19 @@ using bakalarska_praca.Models.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace bakalarska_praca.Services
 {
     public class DashboardServices
     {
 
-        private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;      
         public DashboardServices(AppDbContext appdbContext)
         {
             _appDbContext = appdbContext;
         }
 
-        public Counter LoadCounters(DateTime startDate, DateTime endDate) //alerts counter
+        public Counter LoadCounters(DateTime startDate, DateTime endDate) //vypocet alertov kazdej skupiny
         {
             var counter = new Counter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
@@ -49,7 +48,7 @@ namespace bakalarska_praca.Services
             counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
             return counter;
         }
-        public ChartCounter LoadChartCounter(DateTime startDate, DateTime endDate)
+        public ChartCounter LoadChartCounter(DateTime startDate, DateTime endDate)          //vypocet TOP 5 do grafov
         {
             var counter = new ChartCounter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
@@ -61,9 +60,9 @@ namespace bakalarska_praca.Services
             var srcDictionary = new Dictionary<string, int>();
             var categoryDictionary = new Dictionary<string, int>();
            
-            for (int i = 0; i < selectedData.Count; i++)        //pocitanie SRC IP a Category
+            for (int i = 0; i < selectedData.Count; i++)        
             {
-                if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))
+                if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))     //pocitanie podla IP adresy utocnika
                 {
                     srcDictionary.Add(selectedData[i].Src_ip, 1);
                 }
@@ -72,8 +71,8 @@ namespace bakalarska_praca.Services
                     srcDictionary[selectedData[i].Src_ip] += 1;
                 }
 
-                if (!categoryDictionary.ContainsKey(selectedData[i].Category))
-                {
+                if (!categoryDictionary.ContainsKey(selectedData[i].Category))      //pocitanie podla kategorie utoku
+                {   
                     categoryDictionary.Add(selectedData[i].Category, 1);
                 }
                 else
@@ -81,14 +80,14 @@ namespace bakalarska_praca.Services
                     categoryDictionary[selectedData[i].Category] += 1;
                 }
             }
-            srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
-            categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);
-            foreach (var item in srcDictionary)
+            srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);                       //vyber TOP 5 najcastejsich kategorii
+            categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);             //vyber TOP 5 najcastejsich IP adries utocnika
+            foreach (var item in srcDictionary)         //zmena ulozenych dat zo slovnika do objektu
             {
                 counter.LabelSrc.Add(item.Key);
                 counter.CounterSrc.Add(item.Value);
             }
-            foreach (var item in categoryDictionary)
+            foreach (var item in categoryDictionary)        //zmena ulozenych dat zo slovnika do objektu
             {
                 counter.LabelCategory.Add(item.Key);
                 counter.CounterCategory.Add(item.Value);
@@ -96,18 +95,18 @@ namespace bakalarska_praca.Services
 
             return counter;
         }
-        public List<Timeline> LoadTimelineData(TimeSpan variety, List<Attack> selectedData)
+        public List<Timeline> LoadTimelineData(TimeSpan variety, List<Attack> selectedData)         //vypocet podla casu
         {
             var timelineData = new List<Timeline>();
             string option;
-            var timelineDictionary = this.fillDictionary(selectedData, variety, out option);
+            var timelineDictionary = this.fillDictionary(selectedData, variety, out option);        
             foreach (var item in timelineDictionary)
             {
                 timelineData.Add(new Timeline { Timestamp = item.Key, Value = item.Value, Option = option });
             }
             return timelineData;
         }
-        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety, out string option)
+        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety, out string option)     //naplnenie slovniku podla zvoleneho datumu
         {
             option = "";
             var timelineDictionary = new Dictionary<DateTime, int>();
@@ -115,26 +114,16 @@ namespace bakalarska_praca.Services
             {
                 switch(variety.TotalDays)
                 {
-                    case double number when number <= 1:
+                    case double number when number <= 1:                                        //zvoleny datum je mensi ako 24 hodin
                         var temp = selectedData[i].Timestamp.Hour;
                         selectedData[i].Timestamp = selectedData[i].Timestamp.Date;
                         selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(temp);
                         option = "hours";
                         break;
-                    case double number when number >1 :   //&& number <=31
+                    case double number when number >1:                                         //zvoleny datum je vacsi ako 24 hodin
                         selectedData[i].Timestamp = selectedData[i].Timestamp.Date;
-                        //selectedData[i].Timestamp = selectedData[i].Timestamp.AddHours(-selectedData[i].Timestamp.Hour);
                         option = "days";
                         break;
-                    //case double number when (number > 31 && number <= 365):
-                    //    selectedData[i].Timestamp = selectedData[i].Timestamp.AddDays(-selectedData[i].Timestamp.Day).AddHours(-selectedData[i].Timestamp.Hour)
-                    //        .AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second).AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
-                    //    break;
-                    //case double number when (number > 365):
-                    //    selectedData[i].Timestamp = selectedData[i].Timestamp.AddMonths(-selectedData[i].Timestamp.Month).AddDays(-selectedData[i].Timestamp.Day)
-                    //        .AddHours(-selectedData[i].Timestamp.Hour).AddMinutes(-selectedData[i].Timestamp.Minute).AddSeconds(-selectedData[i].Timestamp.Second)
-                    //        .AddMilliseconds(-selectedData[i].Timestamp.Millisecond);
-                    //    break;
                 }
                 if (!timelineDictionary.ContainsKey(selectedData[i].Timestamp))
                 {

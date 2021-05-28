@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Alert
+    public class Alert          //pridavne vlastnosti json objektu
     {
         public string Action { get; set; }
         public string Signature { get; set; }

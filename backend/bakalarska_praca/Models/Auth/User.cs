@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class User
+    public class User       //informacie o uzivatelovi v databaze
     {
         public int ID { get; set; }
         public string Email { get; set; }

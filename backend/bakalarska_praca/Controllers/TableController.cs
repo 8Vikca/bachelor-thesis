@@ -20,14 +20,14 @@ namespace bakalarska_praca.Controllers
             _appDbContext = appdbContext;
         }
 
-        [HttpGet("/allData")]
-        public List<Attack> GetAllData()
+        [HttpGet("/allData"), Authorize]
+        public List<Attack> GetAllData()                //vratenie vsetkych dat z databazy (v pripade velkeho mnozsta sa vrati najnovsich 1000)
         {
             var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(1000).ToList();
             return selectedData;
         }
         [HttpGet("/filteredData"), Authorize] 
-        public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)   //[FromBody] string[] filters
+        public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)   //get metoda na vratenie dat s aplikovanymi filtrami
         {
             if (filter.Length == 0)
             {

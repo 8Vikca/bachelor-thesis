@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models.Auth
 {
-    public class UpdateUser
+    public class UpdateUser             //trieda na prijatie zmenenych udajov uzivatela
     {
         public string Name { get; set; }
 

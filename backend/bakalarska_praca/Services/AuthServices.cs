@@ -22,7 +22,7 @@ namespace bakalarska_praca.Services
         }
 
         
-        public User Authenticate(Authenticate userModel)
+        public User Authenticate(Authenticate userModel)                    //overenie uzivatela
         {
             if (string.IsNullOrEmpty(userModel.Email) || string.IsNullOrEmpty(userModel.Password))
                 return null;
@@ -33,7 +33,7 @@ namespace bakalarska_praca.Services
                 return null;
             return user;
         }
-        public bool PasswordVerification(UpdateUser userModel)
+        public bool PasswordVerification(UpdateUser userModel)                  //overenie hesla z databazy
         {
             if (string.IsNullOrEmpty(userModel.Email) || string.IsNullOrEmpty(userModel.CurrentPassword))
                 return false;
@@ -53,15 +53,12 @@ namespace bakalarska_praca.Services
             return true;
         }
 
-        public User Create(User user, string password)
+        public User Create(User user, string password)                      //tvorba uzivatela
         {
-            // validation
             if (string.IsNullOrWhiteSpace(password))
-                //throw new AppException("Password is required");
                 return null;
 
             if (_appDbContext.Logins.Any(x => x.Email == user.Email))
-                //throw new AppException("Username \"" + user.Username + "\" is already taken");
                 return null;
 
             byte[] passwordHash, passwordSalt;
@@ -76,7 +73,7 @@ namespace bakalarska_praca.Services
             return user;
         }
 
-        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)           //tvorba hashu a soli do databazy
         {
             if (password == null) throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
@@ -87,7 +84,7 @@ namespace bakalarska_praca.Services
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)           //porovnanie hashu a soli pomocou databazy
         {
             if (password == null) throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
