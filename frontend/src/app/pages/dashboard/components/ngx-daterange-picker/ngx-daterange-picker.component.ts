@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -21,7 +21,6 @@ export class NgxDaterangePickerComponent {
   }
   autoApply: any;
 
-
   constructor() {
     this.alwaysShowCalendars = true;
     this.autoApply = true;
@@ -30,22 +29,11 @@ export class NgxDaterangePickerComponent {
       endDate: moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 })
     };
   }
-  
 
   public datesUpdated(event: any) {
-    // debugger
-    // if (this.dateRangeFired == true) {
-    //   this.dateRangeFired = false;
-    //   return;
-    // }
-    // this.dateRangeFired = true;
-    // debugger
     if (event.startDate != null) {
       this.dateEmitter.emit(event);
-      // event.startDate = moment().set({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
-      // event.endDate = moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 });
     }
-    
   }
 }
 

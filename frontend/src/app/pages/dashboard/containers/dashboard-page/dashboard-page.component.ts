@@ -24,12 +24,9 @@ export class DashboardPageComponent {
   public chartData: ChartCounter[] = [];
   public timelineData: Timeline[] = [];
   public counters: Counter;
-  // = {alertsTotal: null, alertsMedium: null, alertsCritical: null, alertsHigh: null, alertsLow: nu};
   params = new HttpParams();
-
   variableDate = new Date;
   choosedDate = { startDate: null, endDate: null };
-
 
   constructor(private service: DashboardService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.choosedDate = {

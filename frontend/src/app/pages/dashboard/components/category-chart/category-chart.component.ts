@@ -1,22 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
-import { ChartCounter, Counter } from "../../models";
+import { Component, Input, OnChanges, ViewChild } from "@angular/core";
+import { ChartCounter } from "../../models";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexChart,
   ChartComponent
 } from "ng-apexcharts";
-
-// type ApexXAxis = {
-//   type?: "category" | "datetime" | "numeric";
-//   categories?: any;
-//   labels?: {
-//     style?: {
-//       colors?: string | string[];
-//       fontSize?: string;
-//     };
-//   };
-// };
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -41,9 +30,6 @@ export class CategoryChartComponent implements OnChanges{
   constructor() {
     this.initializeChart();
   }
-  // ngOnInit(): void {
-  //   this.initializeChart();
-  // }
   ngOnChanges(): void {
     this.initializeChart();
   }
@@ -72,6 +58,5 @@ export class CategoryChartComponent implements OnChanges{
       ],
       colors:['#52524e', '#9a9b94', '#d4d6c8', '#dfdfdf', '#e9e9e5']
     };
-  
   }
 }

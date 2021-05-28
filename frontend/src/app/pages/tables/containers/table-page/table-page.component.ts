@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { TableService } from '../../services';
 import { Attack } from '../../models';
 import { HttpParams } from '@angular/common/http';
@@ -22,7 +21,6 @@ export class TablePageComponent implements OnInit {
 
   public ngOnInit() {
     this.getData();
-    //this.getFilteredData(this.params);
   }
 
   getData(): void {
@@ -44,7 +42,6 @@ export class TablePageComponent implements OnInit {
           });
         }
       });
-
   }
 
   public sendFilters(event: any): void {

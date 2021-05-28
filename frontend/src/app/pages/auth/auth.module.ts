@@ -9,7 +9,7 @@ import { AuthPageComponent } from './containers';
 import { AuthRoutingModule } from './auth-routing.module';
 import { YearPipe } from './pipes';
 import { AuthService } from './services';
-import { LoginFormComponent, SignFormComponent } from './components';
+import { LoginFormComponent } from './components';
 import { AuthGuard } from './guards';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
@@ -18,7 +18,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AuthPageComponent,
     YearPipe,
     LoginFormComponent,
-    SignFormComponent
   ],
   imports: [
     CommonModule,

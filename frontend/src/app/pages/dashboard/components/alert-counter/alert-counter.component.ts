@@ -1,4 +1,3 @@
-import { NullTemplateVisitor } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Counter } from '../../models';
 

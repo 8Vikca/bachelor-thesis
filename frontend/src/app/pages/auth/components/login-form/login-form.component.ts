@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { User } from '../../models';
+import { AuthService } from '../../services';
 
 @Component({
   selector: 'app-login-form',
@@ -11,25 +11,21 @@ import { User } from '../../models';
 export class LoginFormComponent implements OnInit {
   @Output() loginEmitter = new EventEmitter<any>();
   public form: FormGroup;
-  public flatlogicEmail = 'matusicovav@gmail.com';
-  public flatlogicPassword = '987Vikinka';
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor(private _snackBar: MatSnackBar, private userService: AuthService,) {
   }
 
   public ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl(this.flatlogicEmail, [Validators.required, Validators.email]),
-      password: new FormControl(this.flatlogicPassword, [Validators.required])
+      email: new FormControl("" , [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required])
     });
   }
 
   public login(): void {
     if (this.form.valid) {
+      this.userService.newData().subscribe();
       this.loginEmitter.emit(this.form.value); 
-    }
-    else {
-      let snackBarRef = this._snackBar.open('Invalid form');
     }
   }
 }

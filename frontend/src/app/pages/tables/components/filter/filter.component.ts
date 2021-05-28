@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AircalResponse } from 'ngx-aircal';
@@ -16,11 +15,11 @@ export class FilterComponent implements OnInit {
   queryInput: string = "";
   filters: string[] = [];
   @ViewChild('searchInput') filterInput: ElementRef;
-  @Output() filterEmitter = new EventEmitter<{startDate: string , endDate: string, filters: string[]}>();
+  @Output() filterEmitter = new EventEmitter<{ startDate: string, endDate: string, filters: string[] }>();
   startDate: string = "";
   endDate: string = "";
-  openCalendar= false;
-  
+  openCalendar = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -34,50 +33,36 @@ export class FilterComponent implements OnInit {
   myControl = new FormControl();
   options: string[] = ['Category = ', 'Severity = ', 'Protocol = ', 'Source_ip = ', 'Dest_ip = '];
   filteredOptions: Observable<string[]>;
-  
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-  public openChild(){
+  public openChild() {
     this.openCalendar = true;
   }
 
-  public addFilter(queryInput:any): void {
+  public addFilter(queryInput: any): void {
     this.filters.push(queryInput);
     this.queryInput = '';
   }
 
   public sendFilters(): void {
-    this.filterEmitter.emit({startDate: this.startDate, endDate: this.endDate, filters: this.filters});
+    this.filterEmitter.emit({ startDate: this.startDate, endDate: this.endDate, filters: this.filters });
   }
   public clearFilters(): void {
     console.log(this.filters);
     this.filters.splice(0, this.filters.length);
     this.sendFilters();
 
-  }  
-  public clearOneFilter(index: any): void {
-      this.filters.splice(index,1);
   }
-  
+  public clearOneFilter(index: any): void {
+    this.filters.splice(index, 1);
+  }
+
   public pushDates(event: AircalResponse): void {
     this.startDate = event.startDate.toISOString();
     this.endDate = event.endDate.toISOString();
-}
-
-
-  // selectEvent(item) {
-  //   // do something with selected item
-  // }
-
-  // onChangeSearch(val: string) {
-  //   // fetch remote data from here
-  //   // And reassign the 'data' which is binded to 'data' property.
-  // }
-  
-  // onFocused(e){
-  //   // do something when input is focused
-  // }
+  }
 }

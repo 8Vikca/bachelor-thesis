@@ -12,7 +12,7 @@ namespace bakalarska_praca.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [RequireHttps]
+    //[RequireHttps]
     public class ElasticSearchController : ControllerBase
     {
         private readonly ConnectionToNest _elasticSearchAPI;         //premenna na pristup ku klentovi NEST
@@ -56,63 +56,68 @@ namespace bakalarska_praca.Controllers
             {
                 foreach (var item in documents)         //vlozenie dat do lokalnej databazy
                 {
-                    //var deserializedJSON = new Message();
-                    var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);
-                    if (deserializedJSON.Timestamp <= newestDate)
+                    try
                     {
-                        continue;
+                        var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);
+                        if (deserializedJSON.Timestamp <= newestDate)
+                        {
+                            continue;
+                        }
+                        var attack = new Attack();
+                        switch (deserializedJSON.Alert.Signature)
+                        {
+                            case string a when a.Contains("SYN"):
+                                attack.Message = deserializedJSON.Alert.Signature;
+                                attack.Category = "SYN";
+                                break;
+                            case string a when a.Contains("ICMP"):
+                                attack.Message = deserializedJSON.Alert.Signature;
+                                attack.Category = "ICMP";
+                                break;
+                            case string a when a.Contains("SQL"):
+                                attack.Message = deserializedJSON.Alert.Signature;
+                                attack.Category = "SQL";
+                                break;
+                            case string a when a.Contains("CAM"):
+                                attack.Message = deserializedJSON.Alert.Signature;
+                                attack.Category = "CAM";
+                                break;
+                            case string a when a.Contains("UDP"):
+                                attack.Message = deserializedJSON.Alert.Signature;
+                                attack.Category = "UDP";
+                                break;
+                            default: continue;
+                        }
+                        attack.Proto = deserializedJSON.Proto;
+                        attack.Src_ip = deserializedJSON.Src_ip;
+                        attack.Dest_ip = deserializedJSON.Dest_ip;
+                        attack.Timestamp = deserializedJSON.Timestamp;
+                        attack.Severity = (int)deserializedJSON.Alert.Severity;
+                        switch (deserializedJSON.Alert.Severity)
+                        {
+                            case var n when (n > 0.0 && n < 4.0):
+                                attack.SeverityCategory = "low";
+                                break;
+                            case var n when (n >= 4.0 && n < 7.0):
+                                attack.SeverityCategory = "medium";
+                                break;
+                            case var n when (n >= 7.0 && n < 9.0):
+                                attack.SeverityCategory = "high";
+                                break;
+                            case var n when (n >= 9.0 && n <= 10.0):
+                                attack.SeverityCategory = "critical";
+                                break;
+                            default:
+                                attack.SeverityCategory = "undefined";
+                                break;
+                        }
+                        listOfAttacks.Add(attack);
+                        _appDbContext.Attacks.Add(attack);
                     }
-                    var attack = new Attack();
-                    switch (deserializedJSON.Alert.Signature)
+                    catch (Exception)
                     {
-                        case string a when a.Contains("SYN"):
-                            attack.Message = deserializedJSON.Alert.Signature;
-                            attack.Category = "SYN";
-                            break;
-                        case string a when a.Contains("ICMP"):
-                            attack.Message = deserializedJSON.Alert.Signature;
-                            attack.Category = "ICMP";
-                            break;
-                        case string a when a.Contains("SQL"):
-                            attack.Message = deserializedJSON.Alert.Signature;
-                            attack.Category = "SQL";
-                            break;
-                        case string a when a.Contains("CAM"):
-                            attack.Message = deserializedJSON.Alert.Signature;
-                            attack.Category = "CAM";
-                            break;
-                        case string a when a.Contains("UDP"):
-                            attack.Message = deserializedJSON.Alert.Signature;
-                            attack.Category = "UDP";
-                            break;
-                        default: continue;
-                    }
-                    attack.Proto = deserializedJSON.Proto;
-                    attack.Src_ip = deserializedJSON.Src_ip;
-                    attack.Dest_ip = deserializedJSON.Dest_ip;
-                    attack.Timestamp = deserializedJSON.Timestamp;
-                    attack.Severity = (int)deserializedJSON.Alert.Severity;
-                    switch (deserializedJSON.Alert.Severity)
-                    {
-                        case var n when (n > 0.0 && n < 4.0):
-                            attack.SeverityCategory = "low";
-                            break;
-                        case var n when (n >= 4.0 && n < 7.0):
-                            attack.SeverityCategory = "medium";
-                            break;
-                        case var n when (n >= 7.0 && n < 9.0):
-                            attack.SeverityCategory = "high";
-                            break;
-                        case var n when (n >= 9.0 && n <= 10.0):
-                            attack.SeverityCategory = "critical";
-                            break;
-                        default:
-                            attack.SeverityCategory = "undefined";
-                            break;
-                    }
-                    listOfAttacks.Add(attack);
-                    _appDbContext.Attacks.Add(attack);
 
+                    }
                 }
                 if (listOfAttacks.Count > 0)
                 {

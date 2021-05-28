@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Attack } from '../models/attack';
 import { Observable} from 'rxjs';
@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TableService {        
-
 
   constructor(private http: HttpClient) { }
 

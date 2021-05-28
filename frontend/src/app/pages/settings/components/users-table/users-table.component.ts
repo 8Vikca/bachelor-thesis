@@ -24,7 +24,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
   }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
@@ -52,67 +52,10 @@ export class UsersTableComponent implements OnInit, OnChanges {
         this.refreshTable();
       }
     },
-      // (err) => {
-      //   let snackBarRef = this._snackBar.open('{{err}}', null, {
-      //     duration: 2500,
-      //     horizontalPosition: 'center',
-      //     verticalPosition: 'top',
-      //     panelClass: ['snackbar']
-      //   });
-      // }
-      );
+    );
   }
 
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 }
-
-
-
-  //   filteredData: Issue[] = [];
-  //   renderedData: Issue[] = [];
-
-  //   constructor(public _exampleDatabase: DataService,
-  //               public _paginator: MatPaginator,
-  //               public _sort: MatSort) {
-  //     super();
-  //     // Reset to the first page when the user changes the filter.
-  //     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
-  //   }
-
-  //   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  //   connect(): Observable<Issue[]> {
-  //     // Listen for any changes in the base data, sorting, filtering, or pagination
-  //     const displayDataChanges = [
-  //       this._exampleDatabase.dataChange,
-  //       this._sort.sortChange,
-  //       this._filterChange,
-  //       this._paginator.page
-  //     ];
-
-  //     this._exampleDatabase.getAllIssues();
-
-
-  //     return merge(...displayDataChanges).pipe(map( () => {
-  //         // Filter data
-  //         this.filteredData = this._exampleDatabase.data.slice().filter((issue: Issue) => {
-  //           const searchStr = (issue.id + issue.title + issue.url + issue.created_at).toLowerCase();
-  //           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-  //         });
-
-  //         // Sort filtered data
-  //         const sortedData = this.sortData(this.filteredData.slice());
-
-  //         // Grab the page's slice of the filtered sorted data.
-  //         const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-  //         this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
-  //         return this.renderedData;
-  //       }
-  //     ));
-  //   }
-
-  //   disconnect() {}
-
-
-

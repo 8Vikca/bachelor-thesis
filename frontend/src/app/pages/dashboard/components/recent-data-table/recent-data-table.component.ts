@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Attack } from '../../models';
@@ -31,7 +31,6 @@ export class RecentDataTableComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.dataSource = new MatTableDataSource<Attack>(this.recentTableData);
   }
-
 }
 
 

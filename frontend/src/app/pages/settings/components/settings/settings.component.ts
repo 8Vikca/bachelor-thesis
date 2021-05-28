@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
 import { User } from 'src/app/pages/auth/models';
-import { AuthService } from 'src/app/pages/auth/services';
 import { UpdateUser } from '../../models/updateUser';
 
 @Component({

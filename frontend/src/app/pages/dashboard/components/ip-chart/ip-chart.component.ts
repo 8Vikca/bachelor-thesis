@@ -1,21 +1,7 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
-
-import {
-  ApexNonAxisChartSeries,
-  ApexResponsive,
-  ApexChart,
-  ChartComponent
-} from "ng-apexcharts";
+import { Component, Input, OnChanges, ViewChild } from "@angular/core";
+import { ChartComponent} from "ng-apexcharts";
 import { ChartOptions } from "..";
-import { ChartCounter, Counter } from "../../models";
-
-// export type ChartOptions = {
-//   series: ApexNonAxisChartSeries;
-//   chart: ApexChart;
-//   responsive: ApexResponsive[];
-//   labels: any;
-//   colors: string[];
-// };
+import { ChartCounter } from "../../models";
 
 @Component({
   selector: 'app-ip-chart',
@@ -57,7 +43,6 @@ export class IpChartComponent implements OnChanges{
         }
       ],
       colors:['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
-      //['#85603f', '#9e7540', '#bd9354', '#bfb051', '#e3d18a']
     };
   
   }

@@ -43,7 +43,7 @@ export class SettingsPageComponent implements OnInit {
           verticalPosition: 'top',
           panelClass: ['snackbar']
         });
-        //this.router.navigate([this.routers.DASHBOARD]);
+        this.router.navigate([this.routers.SETTINGS]);
       }
     },
       (err) => {
@@ -54,7 +54,6 @@ export class SettingsPageComponent implements OnInit {
           panelClass: ['snackbar']
         });
       });
-
   }
 
   public sendUpdate(updateUser: UpdateUser) {
@@ -69,11 +68,11 @@ export class SettingsPageComponent implements OnInit {
             verticalPosition: 'top',
             panelClass: ['snackbar']
           });
-          //this.router.navigate([this.routers.DASHBOARD]);
+          this.router.navigate([this.routers.DASHBOARD]);
         }
       },
         (err) => {
-          let snackBarRef = this._snackBar.open('{{err}}', null, {
+          let snackBarRef = this._snackBar.open('Error occurred', null, {
             duration: 2500,
             horizontalPosition: 'center',
             verticalPosition: 'top',
@@ -108,13 +107,13 @@ export class SettingsPageComponent implements OnInit {
   public sendRegisterForm(signForm: any): void {
     this.service.sign(signForm).subscribe(response => {
       if (response.status == 200) {
-        //window.location.reload();
         let snackBarRef = this._snackBar.open('User created', null, {
           duration: 2500,
           horizontalPosition: 'center',
           verticalPosition: 'top',
           panelClass: ['snackbar']
         });
+        this.router.navigate([this.routers.SETTINGS]);
       }
     },
       (err) => {
@@ -125,12 +124,5 @@ export class SettingsPageComponent implements OnInit {
           panelClass: ['snackbar']
         });
       });
-    // else {
-    //   console.log("nope");
-    //   //alert("There was a problem logging you out");
-    //   this.openNoAuthSnackBar();
-    //   //let snackBarRef = this._snackBar.open('Message archived');
-    // }
-    //})
   }
 }

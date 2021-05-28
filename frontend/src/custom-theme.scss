@@ -156,21 +156,6 @@ button.mat-menu-item:hover:not([disabled]),
   background-color: $logo-background-color !important;
 }
 
-// .mat-grid-tile .mat-figure {
-//   top: 5!important;
-//   left: 5!important;
-//   right: 5!important;
-//   bottom: 5!important;
-//   position: absolute !important;
-//   display: flex !important;
-//   align-items: center !important;
-//   justify-content: center!important;
-//   height: 100%!important;
-//   padding: 0!important;
-//   margin: 0!important;
-//   width: max-content!important;
-// }
-
 .mat-grid-tile .mat-figure .md-drppicker .ranges {
   zoom: 1 !important;
 }
@@ -189,7 +174,6 @@ mat-select.mat-select {
   font-size: 16px;
   font-weight: 300;
   color: $dark-grey;
-  //border: 1px solid $light-grey;
   border-radius: 4px;
   padding: 8px 10px;
 
@@ -219,10 +203,6 @@ mat-select.mat-select {
     background-color: $blue-white;
   }
 }
-
-// .mat-form-field-underline {
-//   display: none;
-// }
 
 html,
 body {
@@ -289,14 +269,12 @@ button.mat-fab .mat-button-wrapper {
 .mat-card {
   color: $card-font-color;
   margin: 16px;
-  //background-color: $card-background-color;
 }
 
 .mat-card-title p {
   font-size: 21px;
   font-weight: 400;
   color: $card-title-font-color;
-  //background-color: $card-background-color;
 }
 
 mat-toolbar.page-header {
@@ -335,10 +313,6 @@ mat-toolbar.page-header {
     margin-top: 0px;
   }
 }
-
-// .mat-toolbar button:hover {
-//   background-color: white;
-// }
 
 mat-tab-header .mat-tab-label,
 .mat-tab-link {

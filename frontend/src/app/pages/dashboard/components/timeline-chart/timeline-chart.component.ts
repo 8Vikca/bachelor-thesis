@@ -80,16 +80,6 @@ export class TimelineChartComponent implements OnChanges{
       text: "",
       align: "left"
     };
-    // this.fill = {
-    //   type: "gradient",
-    //   gradient: {
-    //     shadeIntensity: 1,
-    //     inverseColors: false,
-    //     opacityFrom: 0.5,
-    //     opacityTo: 0,
-    //     stops: [0, 90, 100]
-    //   }
-    // };
     this.yaxis = {
       labels: {
         formatter: function(val) {
@@ -123,8 +113,6 @@ export class TimelineChartComponent implements OnChanges{
             let utcString = utcDate.toLocaleDateString()
             return (utcString);
           }
-          //console.log(val);
-          // return (val).toFixed(0);
         }
       },
       y: {
@@ -135,15 +123,3 @@ export class TimelineChartComponent implements OnChanges{
     };
   }
 }
-
-//       x: {
-//         formatter: function(val) {
-//           let utcDate = new Date(val);
-//           if(option == "hours") {
-//             let utcString = utcDate.toLocaleString();
-//             return (utcString);
-//           } else {
-//             let utcString = utcDate.toLocaleDateString()
-//             return (utcString);
-//           }
-          

@@ -9,7 +9,6 @@
 #chart {
     height: fit-content;
     width: fit-content;
-    //margin-top: 10px;
     zoom: 1.1;
     @media (max-width: $large) {
       flex-wrap: wrap;
@@ -18,7 +17,6 @@
     }
   }
   .chart-wrapper {
-    //position: relative;
     align-content: center;
     background-color: #ffffff;
     width: fit-content;

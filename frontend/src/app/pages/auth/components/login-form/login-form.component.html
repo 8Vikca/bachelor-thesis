@@ -1,5 +1,4 @@
 <form class="form" [formGroup]="form" (ngSubmit)="login()">
-  <!-- <div *ngIf="invalidLogin" class="alert alert-danger">Invalid</div> -->
   <mat-form-field class="form__input">
     <input matInput placeholder="Email Address" type="email" formControlName="email">
   </mat-form-field>
@@ -10,6 +9,5 @@
 
   <div class="form-actions">
     <button class="form-actions__login" mat-raised-button color="primary" type="submit">Login</button>
-    <!-- <button class="form-actions__forget" mat-button>Forget password</button> -->
   </div>
 </form>

@@ -17,13 +17,11 @@ export class LayoutComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 1024px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
-
     this.isShowSidebar = !this.mobileQuery.matches;
   }
 
   public ngOnDestroy(): void {
     this.mobileQuery.removeListener(this.mobileQueryListener);
-
     this.sidenav.close();
   }
 }

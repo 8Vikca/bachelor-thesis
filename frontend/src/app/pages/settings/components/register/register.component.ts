@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
   @Output() sendRegisterForm = new EventEmitter<void>();
   public form: FormGroup;
   hide = true;
-  // selectedValue: string;
 
   constructor() {}
 
@@ -37,7 +36,6 @@ export class RegisterComponent implements OnInit {
   public sign(): void {
     if (this.form.valid) {
       this.sendRegisterForm.emit(this.form.value);
-      window.location.reload();
     }
   }
   
