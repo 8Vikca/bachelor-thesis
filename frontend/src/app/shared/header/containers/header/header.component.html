@@ -4,12 +4,13 @@
       <mat-icon *ngIf="!isMenuOpened" class="header__title-button-icon">menu</mat-icon>
       <mat-icon *ngIf="isMenuOpened" class="header__title-button-icon">arrow_back</mat-icon>
     </button>
-    <h6 class="navbar-brand" (click)="newData()">
-      <span class="logo logo-left" title="Refresh data">Cyber</span>
-      <span class="logo logo-right" title="Refresh data">Attacks</span>
+    <h6 class="navbar-brand" (click)="home()">
+      <span class="logo logo-left" >Cyber</span>
+      <span class="logo logo-right">Attacks</span>
     </h6>
   </div>
   <div class="header-toolbar">
+    <app-refresh></app-refresh>
     <app-user [user]="user$ | async" (signOut)="signOut()"></app-user>
   </div>
 </mat-toolbar>

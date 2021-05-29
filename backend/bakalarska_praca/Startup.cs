@@ -43,7 +43,7 @@ namespace bakalarska_praca
                 options.MaxAge = TimeSpan.FromDays(365);
             });
             services.ConfigureCors();
-            services.ConfigureIISIntegration();
+           // services.ConfigureIISIntegration();
             services.ConfigureAuth();
 
         }

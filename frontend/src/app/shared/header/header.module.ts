@@ -10,11 +10,13 @@ import { MatBadgeModule } from '@angular/material/badge';
 
 import { HeaderComponent } from './containers';
 import { UserComponent } from './components';
+import { RefreshComponent } from './components/refresh/refresh.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     UserComponent,
+    RefreshComponent,
   ],
   exports: [
     HeaderComponent
