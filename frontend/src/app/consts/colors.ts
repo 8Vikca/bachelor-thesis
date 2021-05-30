@@ -1,4 +1,4 @@
-export enum colors {
+export enum colors {      //konstanty farieb
   YELLOW = '#ffc260',
   BLUE = '#536DFE',
   LIGHT_BLUE = '#F8F9FF',

@@ -24,18 +24,18 @@ export class HeaderComponent {
     this.user$ = this.userService.getUser();
   }
 
-  public openMenu(): void {
+  public openMenu(): void {                       //otvorit header menu
     this.isMenuOpened = !this.isMenuOpened;
 
     this.isShowSidebar.emit(this.isMenuOpened);
   }
 
-  public signOut(): void {
+  public signOut(): void {            //odhlasit uzivatela
     this.userService.signOut();
 
     this.router.navigate([this.routers.LOGIN]);
   }
-  public home(): void {
+  public home(): void {                                 //navigovat na home
     this.router.navigate([this.routers.DASHBOARD]);
   }
 }

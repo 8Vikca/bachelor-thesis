@@ -59,6 +59,12 @@ export class AuthService {
   }
 
   public newData(): Observable<any> {
-    return this.http.get<any>(environment.apiUrl + "/dataElastic"); 
+    return this.http.post<any>(environment.apiUrl + "/dataElastic",{
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      observe: 'response'
+    }
+    );  
   }
 }

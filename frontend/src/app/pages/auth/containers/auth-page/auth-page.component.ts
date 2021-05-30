@@ -19,7 +19,7 @@ export class AuthPageComponent {
     private _snackBar: MatSnackBar
   ) { }
 
-  public sendLoginForm(loginForm: any): void { 
+  public sendLoginForm(loginForm: any): void {        //odoslat login formular
     this.service.login(loginForm).subscribe(response => {
       const token = (<any>response).token;
       const refreshToken = (<any>response).refreshToken;

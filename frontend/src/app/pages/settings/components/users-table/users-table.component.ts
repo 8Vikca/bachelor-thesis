@@ -22,8 +22,8 @@ export class UsersTableComponent implements OnInit, OnChanges {
 
   constructor(public dialog: MatDialog, private service: SettingsService, private _snackBar: MatSnackBar) {
   }
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;     //table paginator
+  @ViewChild(MatSort, { static: true }) sort: MatSort;                    //sort header
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -40,7 +40,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
     this.dataSource.sort = this.sort;
   }
 
-  deleteUser(userId: number) {
+  deleteUser(userId: number) {                    //odstranit uzivatela
     this.service.deleteUser(userId).subscribe(response => {
       if (response.status == 200) {
         let snackBarRef = this._snackBar.open('User deleted', null, {
@@ -49,13 +49,12 @@ export class UsersTableComponent implements OnInit, OnChanges {
           verticalPosition: 'top',
           panelClass: ['snackbar']
         });
-        this.refreshTable();
+        setTimeout(() => {
+          window.location.reload();
+        },
+          1000);
       }
-    },
+    }
     );
-  }
-
-  private refreshTable() {
-    this.paginator._changePageSize(this.paginator.pageSize);
   }
 }

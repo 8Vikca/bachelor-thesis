@@ -7,7 +7,7 @@ import { Attack } from '../../models';
   selector: 'app-severity-table',
   templateUrl: './severity-table.component.html',
   styleUrls: ['./severity-table.component.scss'],
-  animations: [
+  animations: [       //animacia pre expand tabulky
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),

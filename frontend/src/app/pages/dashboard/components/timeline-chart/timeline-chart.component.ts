@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -37,7 +37,7 @@ export class TimelineChartComponent implements OnChanges{
     this.initChartData();
   }
 
-  public initChartData(): void {
+  public initChartData(): void {          //nastavenia casovej osi
     let dates = [];
     let option = "";
     if(this.timelineData.length !=0 && this.timelineData.length != undefined) {

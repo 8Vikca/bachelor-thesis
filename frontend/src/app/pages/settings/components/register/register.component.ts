@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
-    this.form = new FormGroup({
+    this.form = new FormGroup({       //kontrola inputu
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     {value: 'user', viewValue: 'User'},
   ];
 
-  public sign(): void {
+  public sign(): void {     //odoslat registracny formular
     if (this.form.valid) {
       this.sendRegisterForm.emit(this.form.value);
     }

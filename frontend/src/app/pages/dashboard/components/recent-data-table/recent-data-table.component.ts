@@ -1,6 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Attack } from '../../models';
 
@@ -8,7 +7,7 @@ import { Attack } from '../../models';
   selector: 'app-recent-data-table',
   templateUrl: './recent-data-table.component.html',
   styleUrls: ['./recent-data-table.component.scss'],
-  animations: [
+  animations: [   //animacia pre expand tabulky
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),
@@ -22,7 +21,7 @@ export class RecentDataTableComponent implements OnInit, OnChanges {
   public dataSource: MatTableDataSource<Attack>;
   expandedElement: Attack | null;
 
-  constructor(private _snackBar: MatSnackBar) { 
+  constructor() { 
   }
 
   ngOnInit() {

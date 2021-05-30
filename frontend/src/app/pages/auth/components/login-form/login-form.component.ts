@@ -15,17 +15,17 @@ export class LoginFormComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar, private userService: AuthService,) {
   }
 
-  public ngOnInit(): void {
+  public ngOnInit(): void {     //kontrola inputu
     this.form = new FormGroup({
       email: new FormControl("" , [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required])
     });
   }
 
-  public login(): void {
+  public login(): void {      //prihlasenie uzivatela
     if (this.form.valid) {
       this.userService.newData().subscribe();
-      this.loginEmitter.emit(this.form.value); 
+      this.loginEmitter.emit(this.form.value);        
     }
   }
 }

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SettingsService {
+export class SettingsService {      //service na pracu s nastaveniami
 
   constructor(private http: HttpClient) { }
   

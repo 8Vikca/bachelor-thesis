@@ -28,7 +28,7 @@ namespace bakalarska_praca.Controllers
         }
 
 
-        [HttpGet("/dataElastic")]
+        [HttpPost("/dataElastic")]
         public IActionResult GetDataFromElastic()           //kontrola existenice novych dat z databazy Elasticsearch
         {
             var newestDate = _appDbContext.Attacks.OrderByDescending(a => a.Timestamp).FirstOrDefault().Timestamp;

@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar) {
    }
 
-  public ngOnInit(): void {
+  public ngOnInit(): void {         //kontrola inputu
     this.personalForm = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
@@ -40,7 +40,7 @@ export class SettingsComponent implements OnInit {
     this.step = index;
   }
 
-  updateInfo() {
+  updateInfo() {        //odoslat nove osobne udaje
     if (this.personalForm.valid) {
       this.updateUser.name = this.personalForm.controls['firstName'].value;
       this.updateUser.surname = this.personalForm.controls['lastName'].value;      
@@ -55,7 +55,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  updatePassword() {
+  updatePassword() {      //odoslat nove heslo
     if (this.securityForm.valid) {
       this.updateUser.currentPassword = this.securityForm.controls['currentPassword'].value;
       this.updateUser.newPassword = this.securityForm.controls['newPassword'].value;      

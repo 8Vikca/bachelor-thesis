@@ -1,4 +1,4 @@
-export interface Attack {
+export interface Attack {           //model na data v tabulke
     id: number;
     message: string;
     severity: number;

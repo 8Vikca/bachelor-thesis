@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class TableService {        
+export class TableService {           //service na pracu v Investigation
 
   constructor(private http: HttpClient) { }
 

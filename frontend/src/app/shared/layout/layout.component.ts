@@ -13,14 +13,14 @@ export class LayoutComponent implements OnDestroy {
   public mobileQuery: MediaQueryList;
   private mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 1024px)');
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {        //ak je velkost obrazovky max 1024px pozije sa iny sidebar
+    this.mobileQuery = media.matchMedia('(max-width: 1024px)');                     
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
     this.isShowSidebar = !this.mobileQuery.matches;
   }
 
-  public ngOnDestroy(): void {
+  public ngOnDestroy(): void {                                    //zavriet sidebar
     this.mobileQuery.removeListener(this.mobileQueryListener);
     this.sidenav.close();
   }

@@ -15,7 +15,7 @@ export class RefreshComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public newData(): void {
+  public newData(): void {                            //dotaz na elasticsearch
     this._snackBar.open('Refreshing data...', null, {
       horizontalPosition: 'center',
       verticalPosition: 'top',

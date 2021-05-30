@@ -7,7 +7,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { AuthPageComponent } from './containers';
 import { AuthRoutingModule } from './auth-routing.module';
-import { YearPipe } from './pipes';
 import { AuthService } from './services';
 import { LoginFormComponent } from './components';
 import { AuthGuard } from './guards';
@@ -16,7 +15,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AuthPageComponent,
-    YearPipe,
     LoginFormComponent,
   ],
   imports: [

@@ -34,7 +34,7 @@ export class CategoryChartComponent implements OnChanges{
     this.initializeChart();
   }
     
-  initializeChart() {   
+  initializeChart() {         //nastavenia grafu
     this.chartOptions = {
       series: this.categoryChartSeries.counterCategory,
       chart: {

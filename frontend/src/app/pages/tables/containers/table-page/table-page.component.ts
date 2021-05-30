@@ -23,13 +23,13 @@ export class TablePageComponent implements OnInit {
     this.getData();
   }
 
-  getData(): void {
+  getData(): void {           //vratenie vsetkych dostupnych dat
     this.service.loadAllTableData()
       .subscribe(result => {
         this.tableData = result;
       });
   }
-  getFilteredData(params: HttpParams): void {
+  getFilteredData(params: HttpParams): void {       //vratenie filtrovanych dat
     this.service.loadFilteredData(params)
       .subscribe(result => {
         this.tableData = result;
@@ -44,7 +44,7 @@ export class TablePageComponent implements OnInit {
       });
   }
 
-  public sendFilters(event: any): void {
+  public sendFilters(event: any): void {          //odoslat vsetky filtre
     if (event.startDate == "" || event.endDate == "") {
       event.startDate = moment().set({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 }).toISOString();
       event.endDate= moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 }).toISOString();

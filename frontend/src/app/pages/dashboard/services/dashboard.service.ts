@@ -14,7 +14,7 @@ import {
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
+export class DashboardService {       //service na pracu s dashboard
   
   constructor(private http: HttpClient) { }
 

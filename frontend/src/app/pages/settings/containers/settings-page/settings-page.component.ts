@@ -34,7 +34,7 @@ export class SettingsPageComponent implements OnInit {
       this.allUsers = response;
     })
   }
-  public pushAction(userId: number) {
+  public pushAction(userId: number) {                     //odstranit uzivatela
     this.service.deleteUser(userId).subscribe(response => {
       if (response.status == 200) {
         let snackBarRef = this._snackBar.open('User deleted', null, {
@@ -56,7 +56,7 @@ export class SettingsPageComponent implements OnInit {
       });
   }
 
-  public sendUpdate(updateUser: UpdateUser) {
+  public sendUpdate(updateUser: UpdateUser) {       //zmena osobnych udajov
     if (updateUser.currentPassword != null || updateUser.newPassword != null) {
       this.sendPassword(updateUser);
     } else {
@@ -82,7 +82,7 @@ export class SettingsPageComponent implements OnInit {
     }
     this.user$ = this.userService.getUser();
   }
-  public sendPassword(updateUser: UpdateUser) {
+  public sendPassword(updateUser: UpdateUser) {                   //zmena hesla
     this.service.updatePassword(updateUser).subscribe(response => {
       if (response.status == 200) {
         let snackBarRef = this._snackBar.open('Password changed', null, {
@@ -104,7 +104,7 @@ export class SettingsPageComponent implements OnInit {
       });
   }
 
-  public sendRegisterForm(signForm: any): void {
+  public sendRegisterForm(signForm: any): void {      //odoslat registracny formular
     this.service.sign(signForm).subscribe(response => {
       if (response.status == 200) {
         let snackBarRef = this._snackBar.open('User created', null, {
@@ -113,7 +113,10 @@ export class SettingsPageComponent implements OnInit {
           verticalPosition: 'top',
           panelClass: ['snackbar']
         });
-        this.router.navigate([this.routers.SETTINGS]);
+        setTimeout(() => {
+          window.location.reload();
+        },
+          1000);
       }
     },
       (err) => {

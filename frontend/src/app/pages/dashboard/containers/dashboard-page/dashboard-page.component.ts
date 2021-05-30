@@ -33,7 +33,7 @@ export class DashboardPageComponent {
       startDate: moment().set({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 }),
       endDate: moment().set({ hours: 23, minutes: 59, seconds: 59, milliseconds: 999 })
     };
-
+    //odoslat prvu poziadavku s dnesnym dnom
     this.params = this.params.set("startDate", this.choosedDate.startDate.toISOString()).set("endDate", this.choosedDate.endDate.toISOString());
   }
 
@@ -45,14 +45,14 @@ export class DashboardPageComponent {
     this.getChartData(this.params);
   }
 
-  getSeverityTableData(params: HttpParams): void {
+  getSeverityTableData(params: HttpParams): void {    //vratenie dat podla zavaznosti
     this.service.loadSeverityTableData(params)
       .subscribe(result => {
         this.severityTableData = result;
       });
   }
 
-  getRecentTableData(params: HttpParams): void {
+  getRecentTableData(params: HttpParams): void {      ////vratenie najnovsich dat
     this.service.loadRecentTableData(params)
       .subscribe(result => {
         this.recentTableData = result;
@@ -68,28 +68,28 @@ export class DashboardPageComponent {
       );
   }
 
-  getCounters(params: HttpParams): void {
+  getCounters(params: HttpParams): void {     //vratenie pocitadla dat
     this.service.loadCounter(params)
       .subscribe(result => {
         this.counters = result;
       });
   }
 
-  getTimelineData(params: HttpParams): void {
+  getTimelineData(params: HttpParams): void {   //vratenie dat pre casovu os
     this.service.loadTimelineData(params)
       .subscribe(result => { 
         this.timelineData = result;
       });
   }
 
-  getChartData(params: HttpParams): void {
+  getChartData(params: HttpParams): void {      //vratenie dat pre grafy
     this.service.loadChartData(params)
       .subscribe(result => {
         this.chartData = result;
       });
   }
 
-  public pushDateRange(event: AircalResponse): void {
+  public pushDateRange(event: AircalResponse): void {       //odoslat poziadavku na vsetky data s novymi datumami
     this.params = this.params.set("startDate", event.startDate.toISOString()).set("endDate", event.endDate.toISOString());
     this.getRecentTableData(this.params);
     this.getSeverityTableData(this.params);

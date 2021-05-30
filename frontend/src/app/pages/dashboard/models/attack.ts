@@ -1,4 +1,4 @@
-export interface Attack {
+export interface Attack {       //model pre tabulky
     id: number;
     message: string;
     severity: number;

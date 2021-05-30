@@ -8,9 +8,5 @@ import { routes } from '../../consts/routes';
 })
 export class SidebarComponent {
   public routes: typeof routes = routes;
-  public isOpenUiElements = false;
 
-  public openUiElements() {
-    this.isOpenUiElements = !this.isOpenUiElements;
-  }
 }

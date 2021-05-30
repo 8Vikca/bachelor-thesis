@@ -1,4 +1,4 @@
-export enum routes {
+export enum routes {      //konstanty smerovania
   DASHBOARD = '/dashboard',
   SETTINGS = '/settings',
   TABLES = '/tables',

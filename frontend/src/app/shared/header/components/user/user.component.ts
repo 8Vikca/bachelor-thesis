@@ -16,7 +16,7 @@ export class UserComponent {
   constructor() {
   }
 
-  public signOutEmit(): void {
+  public signOutEmit(): void {      //logout uzivatela
     this.signOut.emit();
   }
 }

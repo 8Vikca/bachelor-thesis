@@ -77,13 +77,11 @@ namespace bakalarska_praca.Controllers
 
             try
             {
-                // create user
-                _authService.Create(user, model.Password);
+                _authService.Create(user, model.Password);                      // vytvorenie uzivatela
                 return Ok();
             }
             catch (Exception ex)
             {
-                // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
         }

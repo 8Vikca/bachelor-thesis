@@ -4,21 +4,12 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { Attack } from '../../models/attack';
 import { MatSort } from '@angular/material/sort';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
 @Component({
   selector: 'app-attacks-table',
   templateUrl: './attacks-table.component.html',
-  styleUrls: ['./attacks-table.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  styleUrls: ['./attacks-table.component.scss']
 })
 export class AttacksTableComponent implements OnInit, AfterViewInit {
   @Input() tableData: Attack[] = [];
@@ -29,10 +20,10 @@ export class AttacksTableComponent implements OnInit, AfterViewInit {
 
   public isShowFilterInput = false;
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;     //table paginator
+  @ViewChild(MatSort) sort: MatSort;                                      //sort header
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor() {
 
   }
   ngAfterViewInit(): void {

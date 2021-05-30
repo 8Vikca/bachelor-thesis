@@ -18,7 +18,6 @@ export class FilterComponent implements OnInit {
   @Output() filterEmitter = new EventEmitter<{ startDate: string, endDate: string, filters: string[] }>();
   startDate: string = "";
   endDate: string = "";
-  openCalendar = false;
 
   constructor() { }
 
@@ -39,29 +38,27 @@ export class FilterComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-  public openChild() {
-    this.openCalendar = true;
-  }
 
-  public addFilter(queryInput: any): void {
+
+  public addFilter(queryInput: any): void {       //pridat filter
     this.filters.push(queryInput);
     this.queryInput = '';
   }
 
-  public sendFilters(): void {
+  public sendFilters(): void {        //odoslat filtre
     this.filterEmitter.emit({ startDate: this.startDate, endDate: this.endDate, filters: this.filters });
   }
-  public clearFilters(): void {
+  public clearFilters(): void {       //vymazat vsetky filtre
     console.log(this.filters);
     this.filters.splice(0, this.filters.length);
     this.sendFilters();
 
   }
-  public clearOneFilter(index: any): void {
+  public clearOneFilter(index: any): void {     //vymazat urcity filter
     this.filters.splice(index, 1);
   }
 
-  public pushDates(event: AircalResponse): void {
+  public pushDates(event: AircalResponse): void {       //filtrovat podla datumu
     this.startDate = event.startDate.toISOString();
     this.endDate = event.endDate.toISOString();
   }
