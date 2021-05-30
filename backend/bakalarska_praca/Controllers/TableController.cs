@@ -29,20 +29,20 @@ namespace bakalarska_praca.Controllers
         [HttpGet("/filteredData"), Authorize] 
         public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)   //get metoda na vratenie dat s aplikovanymi filtrami
         {
-            if (filter.Length == 0)
+            if (filter.Length == 0)         //ak nie je ziadny filter, data sa filtruju iba podla datumu
             {
                 var allData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).Take(1000).ToList();
                 return allData;
             }
             List<Filter> filters = new List<Filter>();
-            foreach (var item in filter)
+            foreach (var item in filter)    //rozdelit filtre na metakluc a hodnotu
             {
                 List<string> splitItems = item.Split(' ').ToList();
                 filters.Add(new Filter { Parameter = splitItems[0], Value = splitItems[2] });
             }
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
 
-            foreach (var item in filters)
+            foreach (var item in filters)                                   //aplikacia filtrov
             {
                 item.Parameter = item.Parameter.ToUpper();
                 item.Value = item.Value.ToUpper();

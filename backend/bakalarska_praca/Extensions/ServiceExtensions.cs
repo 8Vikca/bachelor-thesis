@@ -18,12 +18,12 @@ namespace bakalarska_praca.Extensions
                     .AllowAnyHeader());
             });
         }
-        //public static void ConfigureIISIntegration(this IServiceCollection services)        //konfiguracia pre IIS hosting
-        //{
-        //    services.Configure<IISOptions>(options =>
-        //    {
-        //    });
-        //}
+        public static void ConfigureIISIntegration(this IServiceCollection services)        //konfiguracia pre IIS hosting
+        {
+            services.Configure<IISOptions>(options =>
+            {
+            });
+        }
         public static void ConfigureAuth(this IServiceCollection services)
         {
             services.AddAuthentication(opt =>

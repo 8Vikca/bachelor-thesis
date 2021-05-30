@@ -24,7 +24,6 @@ export class LoginFormComponent implements OnInit {
 
   public login(): void {      //prihlasenie uzivatela
     if (this.form.valid) {
-      this.userService.newData().subscribe();
       this.loginEmitter.emit(this.form.value);        
     }
   }

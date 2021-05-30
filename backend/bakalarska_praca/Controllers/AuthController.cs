@@ -32,7 +32,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpPost("/login")]
-        public IActionResult Login([FromBody] Authenticate userModel)
+        public IActionResult Login([FromBody] Authenticate userModel)                       //prihlasenie uzivatela
         {
             var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
 
@@ -41,7 +41,7 @@ namespace bakalarska_praca.Controllers
                 return Unauthorized();
             }
 
-            var claims = new List<Claim>
+            var claims = new List<Claim>                                                    //vytvorenie CLAIMS
             {
                 new Claim(ClaimTypes.Name, user.FirstName),
                 new Claim(ClaimTypes.Surname, user.LastName),
@@ -52,10 +52,10 @@ namespace bakalarska_praca.Controllers
             var refreshToken = _tokenService.GenerateRefreshToken();
 
             user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);                      
 
             _appDbContext.SaveChanges();
-            return Ok(new
+            return Ok(new                                                           //vratenie tokenov a CLAIMS
             {
                 Token = accessToken,
                 RefreshToken = refreshToken,
@@ -65,7 +65,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpPost("/register"), Authorize(Roles = "admin")]
-        public IActionResult Register([FromBody] Register model)
+        public IActionResult Register([FromBody] Register model)            //registracia uzivatela
         {
             var user = new User()
             {
@@ -87,7 +87,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpPost("/updateUser"), Authorize]
-        public IActionResult UpdateUser([FromBody] UpdateUser model)
+        public IActionResult UpdateUser([FromBody] UpdateUser model)                                    //aktualizacia osobnych udajov
         {
             try
             {
@@ -104,11 +104,11 @@ namespace bakalarska_praca.Controllers
             return Ok();
         }
         [HttpPost("/updatePassword"), Authorize]
-        public IActionResult UpdatePassword([FromBody] UpdateUser model)
+        public IActionResult UpdatePassword([FromBody] UpdateUser model)                    //aktualizacia hesla
         {
             try
             {
-                var result = _authService.PasswordVerification(model);
+                var result = _authService.PasswordVerification(model);                              //overenie sucasneho hesla
                 if (result == false)
                 {
                     return Unauthorized();
@@ -124,7 +124,7 @@ namespace bakalarska_praca.Controllers
             }
         }
         [HttpGet("/getUsers"), Authorize(Roles = "admin")]
-        public List<UserBasicInfo> GetUsers()
+        public List<UserBasicInfo> GetUsers()                                                                                       //vratenie vsetkych uzivatelov
         {
             var users = _appDbContext.Logins.Select(user => new UserBasicInfo() { 
                 ID = user.ID, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Role = user.Role
@@ -133,7 +133,7 @@ namespace bakalarska_praca.Controllers
         }
 
         [HttpPost("/deleteUser"), Authorize(Roles = "admin")]
-        public IActionResult DeleteUser([FromBody] int userId)
+        public IActionResult DeleteUser([FromBody] int userId)                                              //vymazanie uzivatela
         {
             var user = _appDbContext.Logins.FirstOrDefault(user => user.ID == userId);
             if (user == null)

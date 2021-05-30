@@ -100,7 +100,7 @@ namespace bakalarska_praca.Controllers
                                 break;
                         }
                         listOfAttacks.Add(attack);
-                        _appDbContext.Attacks.Add(attack);          //pridanie noveho zaznamu
+                        _appDbContext.Attacks.Add(attack);          //pridanie noveho zaznamu do lokalnej databazy
                     }
                     catch (Exception)
                     {

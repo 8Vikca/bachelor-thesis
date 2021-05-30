@@ -43,7 +43,7 @@ namespace bakalarska_praca
                 options.MaxAge = TimeSpan.FromDays(365);
             });
             services.ConfigureCors();
-           // services.ConfigureIISIntegration();
+            services.ConfigureIISIntegration();
             services.ConfigureAuth();
 
         }
@@ -65,7 +65,7 @@ namespace bakalarska_praca
             app.UseRewriter(options);
 
             app.UseStaticFiles();       
-            app.UseCors("CorsPolicy");                                  //povolenie http poziadaviek
+            app.UseCors("CorsPolicy");                                  //povolenie externych poziadaviek 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.All
