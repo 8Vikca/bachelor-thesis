@@ -1,6 +1,6 @@
 # Bachelor Thesis
 
-You can download working virtual machine with web application integrated from: [Google Drive](https://drive.google.com/drive/folders/1KVkOSS4HEcpgYRN-5qQGOuz7_Xhd18Fu?usp=sharing) in case you are member of organization VUT. You can find video sample with explanation about web application there.
+In case you are member of organization VUT you can download working virtual machine with web application integrated from [Google Drive](https://drive.google.com/drive/folders/1KVkOSS4HEcpgYRN-5qQGOuz7_Xhd18Fu?usp=sharing). You can find there video sample with explanation about web application too.
 
 ## Prerequisites
 - [Git](https://git-scm.com/download/win)
