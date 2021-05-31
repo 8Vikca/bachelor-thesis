@@ -1,5 +1,7 @@
 # Bachelor Thesis
 
+You can download working virtual machine with web application integrated from: [Google Drive](https://drive.google.com/drive/folders/1KVkOSS4HEcpgYRN-5qQGOuz7_Xhd18Fu?usp=sharing) in case you are member of organization VUT. You can find video sample with explanation about web application there.
+
 ## Prerequisites
 - [Git](https://git-scm.com/download/win)
 - [Node.JS](https://nodejs.org/en/download/)
@@ -28,3 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Local server
 
 Run `ng serve` for a dev server. Navigate to `https://localhost:4200/`. Run `ng serve --ssl false` in case you don't have certificate installed.
+
