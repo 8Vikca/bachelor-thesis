@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models.Dashboard
 {
-    public class ChartCounter       //trieda na pracu s grafmi
+    /// <summary>Class <c>ChartCounter</c> models counters for charts data</summary>
+    public class ChartCounter    
     {
         public List<string> LabelSrc { get; set; } = new List<string>();
         public List<int> CounterSrc { get; set; } = new List<int>();

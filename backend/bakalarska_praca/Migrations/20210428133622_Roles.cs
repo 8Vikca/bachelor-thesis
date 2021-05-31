@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bakalarska_praca.Migrations
 {
+    /// <summary>Migration <c>Roles</c> adds property Role in database</summary>
     public partial class Roles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

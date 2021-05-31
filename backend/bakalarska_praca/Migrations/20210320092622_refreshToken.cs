@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bakalarska_praca.Migrations
 {
+    /// <summary>Migration <c>refreshToken</c> adds refresh Token in database</summary>
     public partial class refreshToken : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

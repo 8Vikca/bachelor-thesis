@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
+    /// <summary>Class <c>Token</c> models JSON tokens </summary>
     public class Token          //JSON token
     {
         [JsonProperty("token")]

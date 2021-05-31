@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Counter        //trieda na pracu s pocitadlom
+    /// <summary>Class <c>Counter</c> models counters of every alert category </summary>
+    public class Counter
     {
 
         public int AlertsTotal { get; set; } = 0;

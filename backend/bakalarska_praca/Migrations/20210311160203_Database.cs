@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bakalarska_praca.Migrations
 {
+    /// <summary>Migration <c>Database</c> creates database with mock data</summary>
     public partial class Database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

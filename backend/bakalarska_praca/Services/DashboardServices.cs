@@ -15,7 +15,11 @@ namespace bakalarska_praca.Services
             _appDbContext = appdbContext;
         }
 
-        public Counter LoadCounters(DateTime startDate, DateTime endDate) //vypocet alertov kazdej skupiny
+        /// <summary>Counter of incidents of severity categories</summary>
+        /// <param name="startDate">start date for the method.</param>
+        /// <param name="endDate">end date for the method.</param>
+        /// <returns>counter</returns>
+        public Counter LoadCounters(DateTime startDate, DateTime endDate) 
         {
             var counter = new Counter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
@@ -48,7 +52,12 @@ namespace bakalarska_praca.Services
             counter.AlertsTotal = counter.AlertsLow + counter.AlertsMedium + counter.AlertsHigh + counter.AlertsCritical;
             return counter;
         }
-        public ChartCounter LoadChartCounter(DateTime startDate, DateTime endDate)          //vypocet TOP 5 do grafov
+
+        /// <summary>TOP 5 most used severity categories and source IPs</summary>
+        /// <param name="startDate">start date for the method.</param>
+        /// <param name="endDate">end date for the method.</param>
+        /// <returns>counter</returns>
+        public ChartCounter LoadChartCounter(DateTime startDate, DateTime endDate)   
         {
             var counter = new ChartCounter();
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
@@ -62,7 +71,7 @@ namespace bakalarska_praca.Services
            
             for (int i = 0; i < selectedData.Count; i++)        
             {
-                if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))     //pocitanie podla IP adresy utocnika
+                if (!srcDictionary.ContainsKey(selectedData[i].Src_ip))     
                 {
                     srcDictionary.Add(selectedData[i].Src_ip, 1);
                 }
@@ -71,7 +80,7 @@ namespace bakalarska_praca.Services
                     srcDictionary[selectedData[i].Src_ip] += 1;
                 }
 
-                if (!categoryDictionary.ContainsKey(selectedData[i].Category))      //pocitanie podla kategorie utoku
+                if (!categoryDictionary.ContainsKey(selectedData[i].Category))
                 {   
                     categoryDictionary.Add(selectedData[i].Category, 1);
                 }
@@ -80,14 +89,14 @@ namespace bakalarska_praca.Services
                     categoryDictionary[selectedData[i].Category] += 1;
                 }
             }
-            srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);                       //vyber TOP 5 najcastejsich kategorii
-            categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);             //vyber TOP 5 najcastejsich IP adries utocnika
-            foreach (var item in srcDictionary)         //zmena ulozenych dat zo slovnika do objektu
+            srcDictionary = srcDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);                  
+            categoryDictionary = categoryDictionary.OrderByDescending(o => o.Value).Take(5).ToDictionary(o => o.Key, o => o.Value);             
+            foreach (var item in srcDictionary)      
             {
                 counter.LabelSrc.Add(item.Key);
                 counter.CounterSrc.Add(item.Value);
             }
-            foreach (var item in categoryDictionary)        //zmena ulozenych dat zo slovnika do objektu
+            foreach (var item in categoryDictionary)  
             {
                 counter.LabelCategory.Add(item.Key);
                 counter.CounterCategory.Add(item.Value);
@@ -95,6 +104,11 @@ namespace bakalarska_praca.Services
 
             return counter;
         }
+
+        /// <summary>Counter of incidents by timestamp</summary>
+        /// <param name="variety">variety between startDate and endDate</param>
+        /// <param name="selectedData">data from date range</param>
+        /// <returns>counter</returns>
         public List<Timeline> LoadTimelineData(TimeSpan variety, List<Attack> selectedData)         //vypocet podla casu
         {
             var timelineData = new List<Timeline>();
@@ -106,7 +120,13 @@ namespace bakalarska_praca.Services
             }
             return timelineData;
         }
-        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety, out string option)     //naplnenie slovniku podla zvoleneho datumu
+
+        /// <summary>Method for filling Dictionary with counters</summary>
+        /// <param name="selectedData">email and password for method</param>
+        /// <param name="variety">variety between startDate and endDate</param>
+        /// <param name="option">incidents are grouped by hours or days</param>
+        /// <returns>data grouped by choosed option</returns>
+        public Dictionary<DateTime, int> fillDictionary(List<Attack> selectedData, TimeSpan variety, out string option)   
         {
             option = "";
             var timelineDictionary = new Dictionary<DateTime, int>();

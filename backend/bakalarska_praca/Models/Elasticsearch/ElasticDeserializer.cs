@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class ElasticDeserializer        //deserializovanie string na json vlastnosti
+    /// <summary>Class <c>ElasticDeserializer</c> models string to JSON deserialization </summary>
+    public class ElasticDeserializer       
     {
         public string Id { get; set; }
         public string Event_type { get; set; }

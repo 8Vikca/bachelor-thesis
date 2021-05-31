@@ -8,6 +8,7 @@ using bakalarska_praca.Models;
 
 namespace bakalarska_praca.Migrations
 {
+    /// <summary>DbContext <c>AppDbContextModelSnapshot</c> creates snapshot (auto generated)</summary>
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {

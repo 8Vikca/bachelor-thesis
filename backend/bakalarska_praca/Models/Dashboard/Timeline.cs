@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Timeline       //trieda na pracu s casovou osou
+    /// <summary>Class <c>Timeline</c> models data for timeline chart </summary>
+    public class Timeline  
     {
         public DateTime  Timestamp { get; set; } = new DateTime();
         public int Value { get; set; }

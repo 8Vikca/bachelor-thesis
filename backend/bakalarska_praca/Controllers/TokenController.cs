@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace bakalarska_praca.Controllers
 {
+    /// <summary>Controller <c>TokenController</c> works with methods about JSON tokens</summary>
     [Route("[controller]")]
     [ApiController]
     public class TokenController : ControllerBase
@@ -20,24 +21,29 @@ namespace bakalarska_praca.Controllers
             _appDbContext = appDbContext;
             _tokenService = new TokenServices(appDbContext, config);
         }
+
+        /// <summary>Post method for refreshing token</summary>
+        /// <param name="tokenApiModel">access and refresh tokens for the get method</param>
+        /// <returns>new access and refresh token if success, otherwise BadRequest()</returns>
         [HttpPost]
         [Route("/refresh")]
-        public IActionResult Refresh(Token tokenApiModel)               //metoda volana po vyprsani pristupoveho tokenu
+        public IActionResult Refresh(Token tokenApiModel)          
         {
             if (tokenApiModel.AccessToken == null || tokenApiModel.RefreshToken == null)
             {
                 return BadRequest("Invalid client request");
             }
             string accessToken = tokenApiModel.AccessToken;
-            string refreshToken = tokenApiModel.RefreshToken;       
-            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);       //overenie zhody udajov z databaze a pristupoveho tokenu
+            string refreshToken = tokenApiModel.RefreshToken;
+            
+            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);       
             var username = principal.Identity.Name;
             var user = _appDbContext.Logins.SingleOrDefault(u => u.FirstName == username);                  
             if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
                 return BadRequest("Invalid client request");
             }
-            var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);           //ak sa data zhoduju  a obnovovaci token nie je vyprsany => vygeneruju sa nove tokeny
+            var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);  
             var newRefreshToken = _tokenService.GenerateRefreshToken();
             user.RefreshToken = newRefreshToken;
             _appDbContext.SaveChanges();

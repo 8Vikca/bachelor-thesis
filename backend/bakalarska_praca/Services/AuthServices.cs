@@ -21,8 +21,10 @@ namespace bakalarska_praca.Services
             _appDbContext = appdbContext;
         }
 
-        
-        public User Authenticate(Authenticate userModel)                    //overenie uzivatela
+        /// <summary>Method for user authentication</summary>
+        /// <param name="userModel">email and password for method</param>
+        /// <returns>user object if authentication is successed</returns>
+        public User Authenticate(Authenticate userModel)  
         {
             if (string.IsNullOrEmpty(userModel.Email) || string.IsNullOrEmpty(userModel.Password))
                 return null;
@@ -33,7 +35,11 @@ namespace bakalarska_praca.Services
                 return null;
             return user;
         }
-        public bool PasswordVerification(UpdateUser userModel)                  //overenie hesla z databazy
+
+        /// <summary>Method for password verification</summary>
+        /// <param name="userModel">email and password for method</param>
+        /// <returns>true if verification is successed</returns>
+        public bool PasswordVerification(UpdateUser userModel)        
         {
             if (string.IsNullOrEmpty(userModel.Email) || string.IsNullOrEmpty(userModel.CurrentPassword))
                 return false;
@@ -53,7 +59,11 @@ namespace bakalarska_praca.Services
             return true;
         }
 
-        public User Create(User user, string password)                      //tvorba uzivatela
+        /// <summary>Create user</summary>
+        /// <param name="user">user object for method</param>
+        /// <param name="password">password for method</param>
+        /// <returns>user object if user is created and added to database</returns>
+        public User Create(User user, string password)                 
         {
             if (string.IsNullOrWhiteSpace(password))
                 return null;
@@ -73,7 +83,12 @@ namespace bakalarska_praca.Services
             return user;
         }
 
-        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)           //tvorba hashu a soli do databazy
+        /// <summary>Create hash</summary>
+        /// <param name="password">password for method</param>
+        /// <param name="passwordHash">password hash for method</param>
+        /// <param name="passwordSalt">password salt for method</param>
+        /// <returns>created hash and salt</returns>
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)   
         {
             if (password == null) throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
@@ -84,7 +99,13 @@ namespace bakalarska_praca.Services
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)           //porovnanie hashu a soli pomocou databazy
+
+        /// <summary>Verify hash</summary>
+        /// <param name="password">password for method</param>
+        /// <param name="storedHash">stored password hash for method</param>
+        /// <param name="storedSalt">stored password salt for method</param>
+        /// <returns>true if verification is successed</returns>
+        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)   
         {
             if (password == null) throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");

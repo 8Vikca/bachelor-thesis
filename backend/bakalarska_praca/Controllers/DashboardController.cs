@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bakalarska_praca.Controllers
 {
+    /// <summary>Controller <c>DashboardController</c> works with methods from section Dashboard</summary>
     [Route("[controller]")]
     [ApiController]
     [RequireHttps]
@@ -25,8 +26,12 @@ namespace bakalarska_praca.Controllers
             _appDbContext = appdbContext;
         }
 
+        /// <summary>Get method for most recent data</summary>
+        /// <param name="startDate">start date for the get method.</param>
+        /// <param name="endDate">end date for the get method.</param>
+        /// <returns>filtered data by dates and ordered by timestamp descending</returns>
         [HttpGet("/recentData")]
-        public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)                         //get metoda na vratenie najnovsich 10 dat
+        public List<Attack> GetRecentData(DateTime startDate, DateTime endDate)                        
         {
 
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
@@ -35,8 +40,12 @@ namespace bakalarska_praca.Controllers
             return selectedData;
         }
 
+        /// <summary>Get method for most severity data</summary>
+        /// <param name="startDate">start date for the get method.</param>
+        /// <param name="endDate">end date for the get method.</param>
+        /// <returns>filtered data by dates and ordered by severity descending in given date range</returns>
         [HttpGet("/severityData")]
-        public List<Attack> GetSeverityData(DateTime startDate, DateTime endDate)           //get metoda na vratenie najzavaznejsich 10 dat
+        public List<Attack> GetSeverityData(DateTime startDate, DateTime endDate)         
         {
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate)
                 .OrderByDescending(o => o.Severity)
@@ -44,24 +53,36 @@ namespace bakalarska_praca.Controllers
             return selectedData;
         }
 
+        /// <summary>Get method for counters</summary>
+        /// <param name="startDate">start date for the get method.</param>
+        /// <param name="endDate">end date for the get method.</param>
+        /// <returns>number of incidents of every severity category in given date range</returns>
         [HttpGet("/counter")]
-        public Counter GetCounter(DateTime startDate, DateTime endDate)             //get metoda na vratenie pocitadla
+        public Counter GetCounter(DateTime startDate, DateTime endDate)             
         {
             var counter = new Counter();
             counter = dashboardService.LoadCounters(startDate, endDate);
             return counter;
         }
 
+        /// <summary>Get method for charts data</summary>
+        /// <param name="startDate">start date for the get method.</param>
+        /// <param name="endDate">end date for the get method.</param>
+        /// <returns>numbers of most popular category and  numbers of most source IPs in given date range</returns>
         [HttpGet("/chartData")]
-        public ChartCounter GetChartData(DateTime startDate, DateTime endDate)          //get metoda na vratenie dat pre grafy
+        public ChartCounter GetChartData(DateTime startDate, DateTime endDate)        
         {
             var counter = new ChartCounter();
             counter = dashboardService.LoadChartCounter(startDate, endDate);
             return counter;
         }
 
+        /// <summary>Get method for timeline data</summary>
+        /// <param name="startDate">start date for the get method.</param>
+        /// <param name="endDate">end date for the get method.</param>
+        /// <returns>number of incidents grouped by timestamp in given date range</returns>
         [HttpGet("/timelineData")]
-        public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)         //get metoda na vratenie dat pre casovu os
+        public List<Timeline> GetTimelineData(DateTime startDate, DateTime endDate)        
         {
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
             var variety = endDate.Date.Subtract(startDate.Date);

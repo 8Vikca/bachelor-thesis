@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Attack     //trieda na pracu s utokmi
+    /// <summary>Class <c>Attack</c> models instance of Attacks Database </summary>
+    public class Attack    
     {
         public int Id { get; set; }
         public string Message { get; set; }

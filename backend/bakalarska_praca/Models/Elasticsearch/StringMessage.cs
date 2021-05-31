@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class StringMessage  //string obsahujuci json vlastnosti
+    /// <summary>Class <c>StringMessage</c> models string of json data</summary>
+    public class StringMessage 
     {
         public string Message { get; set; } 
     }

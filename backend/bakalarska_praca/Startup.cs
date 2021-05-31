@@ -29,14 +29,14 @@ namespace bakalarska_praca
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //vytvorenie lokalnej databazy
-            services.AddHttpsRedirection(options =>         //presmerovanie http => https
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
+            services.AddHttpsRedirection(options =>         
             {
                 options.RedirectStatusCode = (int)HttpStatusCode.PermanentRedirect;
                 options.HttpsPort = 44386;
             });
           
-            services.AddHsts(options =>         //tvorba HSTS
+            services.AddHsts(options =>       
             {
                 options.Preload = true;
                 options.IncludeSubDomains = true;
@@ -61,22 +61,17 @@ namespace bakalarska_praca
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);        //redirect to https
+            var options = new RewriteOptions().AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 44386);       
             app.UseRewriter(options);
-
             app.UseStaticFiles();       
-            app.UseCors("CorsPolicy");                                  //povolenie externych poziadaviek 
+            app.UseCors("CorsPolicy");                                
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
-
-            
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

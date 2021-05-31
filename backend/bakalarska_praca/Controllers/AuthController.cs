@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace bakalarska_praca.Controllers
 {
+    /// <summary>Controller <c>AuthController</c> works with methods about authentication</summary>
     [Route("[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -31,17 +32,22 @@ namespace bakalarska_praca.Controllers
             _tokenService = new TokenServices(appdbContext, config);
         }
 
+        /// <summary>Post method for user login</summary>
+        /// <param name="userModel">password and email for the verification</param>
+        /// <returns>OK() method if user is authenticated, otherwise Unauthorized()</returns>
         [HttpPost("/login")]
-        public IActionResult Login([FromBody] Authenticate userModel)                       //prihlasenie uzivatela
+        public IActionResult Login([FromBody] Authenticate userModel)                       
         {
-            var user = _authService.Authenticate(userModel);     //funkcia na overenie ci existuje uzivatel v DB
+            /// <summary>Method for verification if user with given email exists</summary>
+            var user = _authService.Authenticate(userModel);     
 
             if (user == null)           
             {
                 return Unauthorized();
             }
 
-            var claims = new List<Claim>                                                    //vytvorenie CLAIMS
+            /// <summary>CLAIMS and Tokens creation</summary>
+            var claims = new List<Claim>                                                    
             {
                 new Claim(ClaimTypes.Name, user.FirstName),
                 new Claim(ClaimTypes.Surname, user.LastName),
@@ -50,12 +56,14 @@ namespace bakalarska_praca.Controllers
             };
             var accessToken = _tokenService.GenerateAccessToken(claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
-
             user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);                      
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
 
+            /// <summary>Save changes to database</summary>
             _appDbContext.SaveChanges();
-            return Ok(new                                                           //vratenie tokenov a CLAIMS
+
+            /// <summary>return tokens and CLAIMS</summary>
+            return Ok(new                                                         
             {
                 Token = accessToken,
                 RefreshToken = refreshToken,
@@ -64,8 +72,11 @@ namespace bakalarska_praca.Controllers
 
         }
 
+        /// <summary>Post method for user registration</summary>
+        /// <param name="model">user information for new instance in user database</param>
+        /// <returns>OK() method if user is registered, otherwise BadRequest()</returns>
         [HttpPost("/register"), Authorize(Roles = "admin")]
-        public IActionResult Register([FromBody] Register model)            //registracia uzivatela
+        public IActionResult Register([FromBody] Register model)           
         {
             var user = new User()
             {
@@ -77,7 +88,7 @@ namespace bakalarska_praca.Controllers
 
             try
             {
-                _authService.Create(user, model.Password);                      // vytvorenie uzivatela
+                _authService.Create(user, model.Password);            
                 return Ok();
             }
             catch (Exception ex)
@@ -86,9 +97,13 @@ namespace bakalarska_praca.Controllers
             }
         }
 
+        /// <summary>Post method for user's personal dataupdate</summary>
+        /// <param name="model">new name or surname for database update</param>
+        /// <returns>OK() if user is updated, otherwise BadRequest()</returns>
         [HttpPost("/updateUser"), Authorize]
-        public IActionResult UpdateUser([FromBody] UpdateUser model)                                    //aktualizacia osobnych udajov
+        public IActionResult UpdateUser([FromBody] UpdateUser model)                                   
         {
+            /// <summary>Try to find user which is suppossed to be updated</summary>
             try
             {
                 var user = _appDbContext.Logins.Where(o => o.Email == model.Email).Single();
@@ -103,12 +118,16 @@ namespace bakalarska_praca.Controllers
             }
             return Ok();
         }
+
+        /// <summary>Post method for user's personal data update</summary>
+        /// <param name="model">current password and new password for database update</param>
+        /// <returns>OK() if user is updated, Unauthorized() in case user isn't verified, otherwise BadRequest()</returns>
         [HttpPost("/updatePassword"), Authorize]
-        public IActionResult UpdatePassword([FromBody] UpdateUser model)                    //aktualizacia hesla
+        public IActionResult UpdatePassword([FromBody] UpdateUser model)                   
         {
             try
             {
-                var result = _authService.PasswordVerification(model);                              //overenie sucasneho hesla
+                var result = _authService.PasswordVerification(model); 
                 if (result == false)
                 {
                     return Unauthorized();
@@ -123,8 +142,11 @@ namespace bakalarska_praca.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        /// <summary>Get method for administrator</summary>
+        /// <returns>Every user in Uuser database</returns>
         [HttpGet("/getUsers"), Authorize(Roles = "admin")]
-        public List<UserBasicInfo> GetUsers()                                                                                       //vratenie vsetkych uzivatelov
+        public List<UserBasicInfo> GetUsers()                                                                                     
         {
             var users = _appDbContext.Logins.Select(user => new UserBasicInfo() { 
                 ID = user.ID, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Role = user.Role
@@ -132,8 +154,11 @@ namespace bakalarska_praca.Controllers
             return users;
         }
 
+        /// <summary>Post method for deleting user</summary>
+        /// <param name="userId">id of user which is suppossed to be deleted</param>
+        /// <returns>OK() if user is found and deleted, BadRequest() in case user issn't found</returns>
         [HttpPost("/deleteUser"), Authorize(Roles = "admin")]
-        public IActionResult DeleteUser([FromBody] int userId)                                              //vymazanie uzivatela
+        public IActionResult DeleteUser([FromBody] int userId)                                 
         {
             var user = _appDbContext.Logins.FirstOrDefault(user => user.ID == userId);
             if (user == null)

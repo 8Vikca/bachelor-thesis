@@ -10,12 +10,13 @@ using Newtonsoft.Json;
 
 namespace bakalarska_praca.Controllers
 {
+    /// <summary>Controller <c>DashboardController</c> works with methods from section Dashboard</summary>
     [Route("[controller]")]
     [ApiController]
     //[RequireHttps]
     public class ElasticSearchController : ControllerBase
     {
-        private readonly ConnectionToNest _elasticSearchAPI;         //premenna na pristup ku klentovi NEST
+        private readonly ConnectionToNest _elasticSearchAPI;         
         private readonly AppDbContext _appDbContext;
         private readonly List<Attack> listOfAttacks;
         private readonly string index;
@@ -27,30 +28,37 @@ namespace bakalarska_praca.Controllers
             index = config.GetValue<string>("elasticsearch:index");
         }
 
-
+        /// <summary>Post method for requesting new data from Elasticsearch database</summary>
+        /// <returns>OK() if new data were found and added to local database, BadRequest() in case exception occured</returns>
         [HttpPost("/dataElastic")]
-        public IActionResult GetDataFromElastic()           //kontrola existenice novych dat z databazy Elasticsearch
+        public IActionResult GetDataFromElastic()          
         {
             var newestDate = _appDbContext.Attacks.OrderByDescending(a => a.Timestamp).FirstOrDefault().Timestamp;
-            var scanResults = _elasticSearchAPI.Client.Search<StringMessage>(s => s        //vytiahnutie dat z databazy Elasticsearch
+
+            /// <summary>Method for Elasticsearch request</summary>
+            var scanResults = _elasticSearchAPI.Client.Search<StringMessage>(s => s   
                             .From(0)
                             .Size(10000)
                             .Index(index)
                             .Query(q => q.MatchAll()));
 
+            /// <summary>Extract only data</summary>
             var documents = scanResults.Hits.ToList();
             scanResults = null;
             if (documents.Count > 0)
             {
-                foreach (var item in documents)         //vlozenie dat do lokalnej databazy
+                foreach (var item in documents)  
                 {
+                    
                     try
                     {
-                        var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);         //ak je mozne deserializovat string na json => pridaju sa nove data
+                        /// <summary>Try deserialize string message to JSON</summary>
+                        var deserializedJSON = JsonConvert.DeserializeObject<ElasticDeserializer>(item.Source.Message);  
                         if (deserializedJSON.Timestamp <= newestDate)
                         {
                             continue;
                         }
+                        /// <summary>If object don't exist in current database, add it</summary>
                         var attack = new Attack();
                         switch (deserializedJSON.Alert.Signature)
                         {
@@ -100,16 +108,17 @@ namespace bakalarska_praca.Controllers
                                 break;
                         }
                         listOfAttacks.Add(attack);
-                        _appDbContext.Attacks.Add(attack);          //pridanie noveho zaznamu do lokalnej databazy
+                        _appDbContext.Attacks.Add(attack);        
                     }
                     catch (Exception)
                     {
 
                     }
                 }
+                /// <summary>If any object was added in database, save changes</summary>
                 if (listOfAttacks.Count > 0)
                 {
-                    _appDbContext.SaveChanges();                //ulozenie databazy
+                    _appDbContext.SaveChanges();             
                 }             
             }
             return Ok();

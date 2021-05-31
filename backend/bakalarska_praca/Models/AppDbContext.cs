@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
+    /// <summary>Class <c>AppDbContext</c> works with local database (migrations) </summary>
     public class AppDbContext : DbContext      
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) //praca s databazou
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
         {
 
         }

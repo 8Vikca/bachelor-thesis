@@ -16,7 +16,7 @@ namespace bakalarska_praca.Services
         private readonly string secret;
         private readonly string issuer;
         private readonly string audience;
-        public TokenServices(AppDbContext appdbContext, IConfiguration config)      //config => vytiahnutie dat z konfiguracneho suboru
+        public TokenServices(AppDbContext appdbContext, IConfiguration config)   
         {
             _appDbContext = appdbContext;
             secret = config.GetValue<string>("ServiceConfiguration:JwtSettings:Secret");
@@ -25,12 +25,15 @@ namespace bakalarska_praca.Services
 
         }
 
-        public string GenerateAccessToken(IEnumerable<Claim> claims)            //generovanie pristupoveho tokenu
+        /// <summary>Create new access token</summary>
+        /// <param name="claims">claims for the method</param>
+        /// <returns>new access token</returns>
+        public string GenerateAccessToken(IEnumerable<Claim> claims)         
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
-            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);           //podpis generovany pomocou HMAC
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);      
 
-            var tokenOptions = new JwtSecurityToken(            //samotna tvorba tokenu
+            var tokenOptions = new JwtSecurityToken(         
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
@@ -41,17 +44,23 @@ namespace bakalarska_praca.Services
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return tokenString;
         }
-        public string GenerateRefreshToken()            //generovanie obnovovacieho tokenu
+
+        /// <summary>Create new refresh token with random number</summary>
+        /// <returns>new refresh token</returns>
+        public string GenerateRefreshToken()     
         {
             var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())        //pomocou nahodnej hodnoty
+            using (var rng = RandomNumberGenerator.Create())   
             {
                 rng.GetBytes(randomNumber);
                 return Convert.ToBase64String(randomNumber);
             }
         }
 
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)           //vytiahnutie dat z expirovaneho tokenu
+        /// <summary>Get principal from expired access token</summary>
+        /// <param name="token">access token for the method</param>
+        /// <returns>principal if token is valid, otherwise SecurityTokenException()</returns>
+        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)     
         {
             var tokenValidationParameters = new TokenValidationParameters
             {

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Register       //trieda pre registracny formular
+    /// <summary>Class <c>Register</c> models registration form </summary>
+    public class Register
     {
         [Required]
         public string FirstName { get; set; }

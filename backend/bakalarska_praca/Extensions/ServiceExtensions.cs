@@ -8,7 +8,8 @@ namespace bakalarska_praca.Extensions
 {
     public static class ServiceExtensions
     {
-        public static void ConfigureCors(this IServiceCollection services)          //konfiguracia CORS POLICY
+        /// <summary>Configure CORS Policy</summary>
+        public static void ConfigureCors(this IServiceCollection services)   
         {
             services.AddCors(options =>
             {
@@ -18,12 +19,16 @@ namespace bakalarska_praca.Extensions
                     .AllowAnyHeader());
             });
         }
-        public static void ConfigureIISIntegration(this IServiceCollection services)        //konfiguracia pre IIS hosting
+
+        /// <summary>Configure IIS hosting</summary>
+        public static void ConfigureIISIntegration(this IServiceCollection services)   
         {
             services.Configure<IISOptions>(options =>
             {
             });
         }
+
+        /// <summary>Configure JWT bearer</summary>
         public static void ConfigureAuth(this IServiceCollection services)
         {
             services.AddAuthentication(opt =>
@@ -32,7 +37,7 @@ namespace bakalarska_praca.Extensions
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }
             )
-            .AddJwtBearer(options =>        //validate received token from client
+            .AddJwtBearer(options =>      
              {
                  options.TokenValidationParameters = new TokenValidationParameters
                  {

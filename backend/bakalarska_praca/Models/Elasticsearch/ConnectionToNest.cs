@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class ConnectionToNest       //trieda na pripojenie sa do databaze Elasticsearch
+    /// <summary>Class <c>ConnectionToNest</c> models connection to Elasticsearch database </summary>
+    public class ConnectionToNest       
     {
         public ElasticClient Client { get; }
         public ConnectionToNest()

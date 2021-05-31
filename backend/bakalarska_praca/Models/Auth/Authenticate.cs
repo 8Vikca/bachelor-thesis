@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace bakalarska_praca.Models
 {
-    public class Authenticate           //trieda pri autentizacii uzivatela
+    /// <summary>Class <c>Authenticate</c> models login verification </summary>
+    public class Authenticate 
     {
         [Required]
         public string Email { get; set; }

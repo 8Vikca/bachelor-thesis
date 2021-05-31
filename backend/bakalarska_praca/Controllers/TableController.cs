@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bakalarska_praca.Controllers
 {
+    /// <summary>Controller <c>TableController</c> works with methods from section Investigation</summary>
     [Route("[controller]")]
     [ApiController]
     [RequireHttps]
@@ -20,29 +21,42 @@ namespace bakalarska_praca.Controllers
             _appDbContext = appdbContext;
         }
 
+        /// <summary>Get method for all data</summary>
+        /// <returns>all data ordered by timestamp descending</returns>
         [HttpGet("/allData"), Authorize]
-        public List<Attack> GetAllData()                //vratenie vsetkych dat z databazy (v pripade velkeho mnozsta sa vrati najnovsich 1000)
+        public List<Attack> GetAllData()          
         {
             var selectedData = _appDbContext.Attacks.OrderByDescending(o => o.Timestamp).Take(1000).ToList();
             return selectedData;
         }
+
+        /// <summary>Get method for filtered data</summary>
+        /// <param name="startDate">start date for the get method.</param>
+        /// <param name="endDate">end date for the get method.</param>
+        /// <param name="filter">array of filters to apply</param>
+        /// <returns>filtered data by dates and filters and ordered by timestamp descending</returns>
         [HttpGet("/filteredData"), Authorize] 
-        public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)   //get metoda na vratenie dat s aplikovanymi filtrami
+        public List<Attack> GetFilteredData(DateTime startDate, DateTime endDate, [FromQuery] string[] filter)  
         {
-            if (filter.Length == 0)         //ak nie je ziadny filter, data sa filtruju iba podla datumu
+            /// <summary>check if array isn't empty</summary>
+            /// <returns>filtered data by dates and ordered by timestamp descending</returns>
+            if (filter.Length == 0)         
             {
                 var allData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).Take(1000).ToList();
                 return allData;
             }
+
+            /// <summary>divide string into metakey and value</summary>
             List<Filter> filters = new List<Filter>();
-            foreach (var item in filter)    //rozdelit filtre na metakluc a hodnotu
+            foreach (var item in filter) 
             {
                 List<string> splitItems = item.Split(' ').ToList();
                 filters.Add(new Filter { Parameter = splitItems[0], Value = splitItems[2] });
             }
             var selectedData = _appDbContext.Attacks.Where(o => o.Timestamp >= startDate && o.Timestamp <= endDate).OrderByDescending(o => o.Timestamp).ToList();
 
-            foreach (var item in filters)                                   //aplikacia filtrov
+            /// <summary>apply filters</summary>
+            foreach (var item in filters)                     
             {
                 item.Parameter = item.Parameter.ToUpper();
                 item.Value = item.Value.ToUpper();
