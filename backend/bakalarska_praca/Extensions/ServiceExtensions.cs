@@ -45,8 +45,8 @@ namespace bakalarska_praca.Extensions
                      ValidateAudience = false,                         //receiver is valid 
                      ValidateLifetime = true,                         //token has not expired
                      ValidateIssuerSigningKey = true,                 //signing key is valid and trusted by server
-                     //ValidIssuer = "http://localhost:44386",
-                     //ValidAudience = "http://localhost:44386",
+                     ValidIssuer = "Test.com",
+                     ValidAudience = "Test.com",
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GD9mf1w&Bjd1pun=opS#")),
                  };
              });

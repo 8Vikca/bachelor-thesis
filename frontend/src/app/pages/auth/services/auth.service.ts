@@ -10,6 +10,9 @@ import { User } from '../models';
   providedIn: 'root'
 })
 export class AuthService {
+
+  authtoken = localStorage.getItem("token");
+
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
   }
 
@@ -31,7 +34,8 @@ export class AuthService {
   public refresh(credentials: any): Observable<any> {
     return this.http.post<any>(environment.apiUrl + "/refresh", credentials, {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + this.authtoken
       }),
       observe: 'response'
     }

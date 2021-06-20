@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using bakalarska_praca.Models;
 using bakalarska_praca.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -13,7 +14,7 @@ namespace bakalarska_praca.Controllers
     /// <summary>Controller <c>DashboardController</c> works with methods from section Dashboard</summary>
     [Route("[controller]")]
     [ApiController]
-    //[RequireHttps]
+    [RequireHttps]
     public class ElasticSearchController : ControllerBase
     {
         private readonly ConnectionToNest _elasticSearchAPI;         
